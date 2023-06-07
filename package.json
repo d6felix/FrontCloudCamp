@@ -2,7 +2,7 @@
   "name": "front-cloud-camp",
   "version": "1.0.0",
   "description": "form page",
-  "main": "index.tsx",
+  "main": "index.js",
   "license": "MIT",
   "private": false,
   "dependencies": {

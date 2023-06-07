@@ -13,9 +13,8 @@
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
-        "project": [
-            "./tsconfig.json"
-        ]
+        // "project": "./tsconfig.json",
+        "parser": "@typescript-eslint/parser"
     },
     "env": {
         "es6": true
