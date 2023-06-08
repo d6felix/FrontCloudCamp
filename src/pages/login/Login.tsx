@@ -20,10 +20,14 @@ export function Login() {
 
 	return (
 		<form onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
-			<label>Phone number</label>
-			<input {...register("phoneNumber")} />
-			<label>E-mail</label>
-			<input {...register("email")} />
+			<label>
+				Phone number
+				<input type="tel" {...register("phoneNumber")} />
+			</label>
+			<label>
+				E-mail
+				<input type="email" {...register("email")} />
+			</label>
 			<button
 				type="button"
 				onClick={() => {
