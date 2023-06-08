@@ -28,6 +28,7 @@
     "jsx": "react-jsx"
   },
   "include": [
+    "src",
     "declarations.d.ts",
     "./src**/*",
     "./src/index.tsx",

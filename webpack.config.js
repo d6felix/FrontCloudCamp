@@ -92,6 +92,7 @@ module.exports = {
       "@utils": path.join(srcPath, "/utils"),
       "@assets": path.join(srcPath, "/assets"),
       "@data": path.join(srcPath, "/data"),
+      "@pages": path.join(srcPath, "/pages"),
     },
   },
   devServer: {
