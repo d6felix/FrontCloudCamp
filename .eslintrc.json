@@ -1,65 +1,71 @@
 {
-    "extends": [
-        "eslint-config-airbnb",
-        "airbnb/hooks",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:import/recommended",
-        "airbnb-typescript",
-        "plugin:prettier/recommended"
-    ],
-    "plugins": [
-        "prettier"
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        // "project": "./tsconfig.json",
-        "parser": "@typescript-eslint/parser"
-    },
     "env": {
+        "browser": true,
         "es6": true
     },
-    "rules": {
-        "react/jsx-filename-extension": [
-            1,
-            {
-                "extensions": [
-                    ".ts",
-                    ".tsx"
-                ]
+    "extends": [
+        "eslint:recommended",
+        "airbnb/hooks",
+        "airbnb-typescript",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:prettier/recommended",
+        "plugin:import/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "tsconfigRootDir": ".",
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "project": "./tsconfig.json"
             }
-        ],
-        "no-console": "off",
+        },
+        "react": {
+            "version": "18.x"
+        }
+    },
+    "rules": {
+        "linebreak-style": "off",
         "prettier/prettier": [
             "error",
             {
-                "endOfLine": "auto"
+                "printWidth": 80,
+                "endOfLine": "lf",
+                "singleQuote": true,
+                "tabWidth": 2,
+                "indentStyle": "space",
+                "useTabs": true,
+                "trailingComma": "es5"
             }
         ],
-        "import/order": [
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/ban-types": [
             "error",
             {
-                "groups": [
-                    "builtin",
-                    "external",
-                    "internal"
-                ],
-                "pathGroups": [
-                    {
-                        "pattern": "react",
-                        "group": "external",
-                        "position": "before"
-                    }
-                ],
-                "pathGroupsExcludedImportTypes": [
-                    "react"
-                ],
-                "newlines-between": "always",
-                "alphabetize": {
-                    "order": "asc",
-                    "caseInsensitive": true
+                "extendDefaults": true,
+                "types": {
+                    "{}": false
                 }
             }
-        ]
+        ],
+        "react-hooks/exhaustive-deps": "off",
+        "object-shorthand": "error",
+        "no-console": "warn"
     }
 }

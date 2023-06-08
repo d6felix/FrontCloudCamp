@@ -2,6 +2,9 @@
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
+    "types": [
+      "@types/node"
+    ],
     "downlevelIteration": true,
     "importHelpers": true,
     "lib": [
@@ -26,6 +29,7 @@
   },
   "include": [
     "declarations.d.ts",
-    ".eslintrc.json"
+    "./src**/*",
+    "./src/index.tsx",
   ]
 }

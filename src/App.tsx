@@ -1,10 +1,8 @@
-import React from "react";
-
-import classNames from "classnames";
-import "./App.scss";
+import classNames from 'classnames';
+import './app.scss';
 
 export function App() {
-  return <div className={classNames("page")} />;
+	return <div className={classNames('page')}> hehe</div>;
 }
 
 export default App;
