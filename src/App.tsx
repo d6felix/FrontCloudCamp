@@ -1,8 +1,8 @@
-import classNames from 'classnames';
-import './app.scss';
+//import classNames from "classnames";
+import "./app.scss";
 
 export function App() {
-	return <div className={classNames('page')}> hehe</div>;
+	return <div>App</div>;
 }
 
 export default App;
