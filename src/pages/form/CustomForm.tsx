@@ -1,3 +1,4 @@
+import { useId } from "react-id-generator";
 import "./CustomForm.scss";
 import { useForm } from "react-hook-form";
 
@@ -15,26 +16,46 @@ type FormData = {
 export function CustomForm() {
 	const {
 		register,
-		setValue,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>();
 	// eslint-disable-next-line no-console
 	const onSubmit = handleSubmit((data) => console.log(data));
 
+	const id: React.Key[] = useId(3, "advantages");
+	const advantages = Array.from({ length: 3 }).map((_, index) => {
+		return (
+			<div key={id[index]}>
+				<input {...register("advantages")} />
+				<button type="button">delete</button>
+			</div>
+		);
+	});
+
 	return (
 		// eslint-disable-next-line @typescript-eslint/no-misused-promises
 		<form onSubmit={onSubmit}>
-			<label>Nickname</label>
-			<input {...register("nickname")} />
-			<label>Name</label>
-			<input {...register("name")} />
-			<label>Sername</label>
-			<input {...register("sername")} />
-			<label>sex</label>
-			<input {...register("sex")} />
-			<label>About:</label>
+			<label>
+				Nickname
+				<input {...register("nickname")} />
+			</label>
+			<label>
+				Name
+				<input {...register("name")} />
+			</label>
+			<label>
+				Sername
+				<input {...register("sername")} />
+			</label>
+			<label htmlFor="sex-select">
+				Sex
+				<select id="sex-select" placeholder="Not selected" {...register("sex")}>
+					<option value="man">Man</option>
+					<option value="woman">Woman</option>
+				</select>
+			</label>
 
+			<label>Advantages:{advantages}</label>
 			<fieldset>
 				<legend>Checkbox group:</legend>
 				<ul>
@@ -112,6 +133,7 @@ export function CustomForm() {
 					</li>
 				</ul>
 			</fieldset>
+			<label>About:</label>
 			<textarea {...register("about")}></textarea>
 		</form>
 	);
