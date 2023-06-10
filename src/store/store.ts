@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-// ...
+import formStepReducer from "@features/formStep/formStepSlice";
 
 export const store = configureStore({
 	reducer: {
-		//posts: postsReducer,
-		//comments: commentsReducer,
-		//users: usersReducer,
+		formStep: formStepReducer,
 	},
 });
 

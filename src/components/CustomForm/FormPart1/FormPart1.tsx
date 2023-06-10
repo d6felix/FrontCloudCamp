@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
 import { FormData } from "@components/CustomForm";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "@hooks/reduxHooks";
+import { increment } from "@features/formStep/formStepSlice";
 
-type FormPartProps = {
-	setStep: React.Dispatch<React.SetStateAction<number>>;
-};
-
-export function FormPart1({ setStep }: FormPartProps) {
+export function FormPart1() {
 	const {
 		register,
 		//	formState: { errors },
 	} = useForm<FormData>();
+
+	const dispatch = useAppDispatch();
 
 	return (
 		<div>
@@ -36,7 +36,7 @@ export function FormPart1({ setStep }: FormPartProps) {
 			<Link to={"/"}>
 				<button type="button">Back</button>
 			</Link>
-			<button type="button" onClick={() => setStep(2)}>
+			<button type="button" onClick={() => dispatch(increment())}>
 				Next
 			</button>
 		</div>

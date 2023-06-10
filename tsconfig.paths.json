@@ -8,8 +8,8 @@
       "@utils/*": [
         "src/utils/*"
       ],
-      "@data/*": [
-        "src/data/*"
+      "@features/*": [
+        "src/features/*"
       ],
       "@assets/*": [
         "src/assets/*"

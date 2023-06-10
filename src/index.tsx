@@ -5,6 +5,8 @@ import "./index.scss";
 import { ErrorPage } from "@pages/error";
 import { FormPage } from "@pages/form";
 import { LoginPage } from "@pages/login";
+import { store } from "@store/store";
+import { Provider } from "react-redux";
 
 const rootElement = document.getElementById("root");
 
@@ -24,6 +26,8 @@ if (!rootElement) throw new Error("Failed to find the root element");
 
 createRoot(rootElement).render(
 	<StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
 	</StrictMode>
 );

@@ -12,9 +12,10 @@ export function LoginPage() {
 		register,
 		setValue,
 		handleSubmit,
-		formState: { errors },
+		//formState: { errors },
 	} = useForm<FormLoginData>();
 	const onSubmit = (data: unknown) => {
+		// eslint-disable-next-line no-console
 		console.log(data);
 	};
 

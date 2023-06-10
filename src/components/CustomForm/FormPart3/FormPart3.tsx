@@ -1,20 +1,21 @@
 import { useForm } from "react-hook-form";
 import { FormData } from "@components/CustomForm";
+import { useAppDispatch } from "@hooks/reduxHooks";
+import { decrement } from "@features/formStep/formStepSlice";
 
-type FormPartProps = {
-	setStep: React.Dispatch<React.SetStateAction<number>>;
-};
-
-export function FormPart3({ setStep }: FormPartProps) {
+export function FormPart3() {
 	const {
 		register,
 		//	formState: { errors },
 	} = useForm<FormData>();
+
+	const dispatch = useAppDispatch();
+
 	return (
 		<div>
 			<label>About:</label>
 			<textarea {...register("about")}></textarea>
-			<button type="button" onClick={() => setStep(2)}>
+			<button type="button" onClick={() => dispatch(decrement())}>
 				Back
 			</button>
 			<button type="submit">Submit</button>
