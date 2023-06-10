@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import "./Login.scss";
+import "./LoginPage.scss";
 import { Link } from "react-router-dom";
 
 type FormLoginData = {
@@ -7,7 +7,7 @@ type FormLoginData = {
 	email: string;
 };
 
-export function Login() {
+export function LoginPage() {
 	const {
 		register,
 		setValue,
@@ -44,4 +44,4 @@ export function Login() {
 	);
 }
 
-export default Login;
+export default LoginPage;

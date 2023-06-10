@@ -3,20 +3,20 @@ import { StrictMode } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.scss";
 import { ErrorPage } from "@pages/error";
-import { CustomForm } from "@pages/form";
-import { Login } from "@pages/login";
+import { FormPage } from "@pages/form";
+import { LoginPage } from "@pages/login";
 
 const rootElement = document.getElementById("root");
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Login />,
+		element: <LoginPage />,
 		errorElement: <ErrorPage />,
 	},
 	{
 		path: "create",
-		element: <CustomForm />,
+		element: <FormPage />,
 	},
 ]);
 
