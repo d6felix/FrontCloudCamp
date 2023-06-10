@@ -1,16 +1,40 @@
 import { useForm } from "react-hook-form";
 import { FormData } from "@components/CustomForm";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "@hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { increment } from "@features/formStep/formStepSlice";
+import {
+	updateFormSubmit,
+	selectFormSubmit,
+} from "@features/formSubmit/formSubmitSlice";
+import { useEffect } from "react";
 
 export function FormPart1() {
 	const {
 		register,
+		getValues,
+		setValue,
 		//	formState: { errors },
 	} = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
+	const savedValues = useAppSelector(selectFormSubmit);
+
+	useEffect(() => {
+		const { nickname, name, sername, sex } = { ...savedValues };
+		setValue("nickname", nickname);
+		setValue("name", name);
+		setValue("sername", sername);
+		setValue("sex", sex);
+	}, []);
+
+	const backHandle = () => {
+		dispatch(updateFormSubmit(getValues()));
+	};
+	const nextStepHandle = () => {
+		dispatch(updateFormSubmit(getValues()));
+		dispatch(increment());
+	};
 
 	return (
 		<div>
@@ -34,9 +58,11 @@ export function FormPart1() {
 				</select>
 			</label>
 			<Link to={"/"}>
-				<button type="button">Back</button>
+				<button type="button" onClick={backHandle}>
+					Back
+				</button>
 			</Link>
-			<button type="button" onClick={() => dispatch(increment())}>
+			<button type="button" onClick={nextStepHandle}>
 				Next
 			</button>
 		</div>

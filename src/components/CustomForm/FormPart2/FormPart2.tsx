@@ -1,113 +1,108 @@
 import { useForm } from "react-hook-form";
 import { FormData } from "@components/CustomForm";
 import { useId } from "react-id-generator";
-import { useAppDispatch } from "@hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { increment, decrement } from "@features/formStep/formStepSlice";
+import {
+	selectFormSubmit,
+	updateFormSubmit,
+} from "@features/formSubmit/formSubmitSlice";
+import { useEffect } from "react";
 
 export function FormPart2() {
 	const {
 		register,
+		setValue,
+		getValues,
 		//	formState: { errors },
 	} = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
+	const savedValues = useAppSelector(selectFormSubmit);
 
-	const id: React.Key[] = useId(3, "advantages");
+	useEffect(() => {
+		const { advantages, checkbox, radio } = { ...savedValues };
+		setValue("advantages", advantages);
+		setValue("checkbox", checkbox);
+		setValue("radio", radio);
+	}, []);
+
+	const backStepHandle = () => {
+		dispatch(updateFormSubmit(getValues()));
+		dispatch(decrement());
+	};
+	const nextStepHandle = () => {
+		dispatch(updateFormSubmit(getValues()));
+		dispatch(increment());
+	};
+
+	const advantagesId: React.Key[] = useId(3, "advantages");
 	const advantages = Array.from({ length: 3 }).map((_, index) => {
 		return (
-			<div key={id[index]}>
-				<input {...register("advantages")} />
+			<div key={advantagesId[index]}>
+				<input {...register(`advantages.${index}`)} />
 				<button type="button">delete</button>
 			</div>
 		);
 	});
 
+	const checkboxId: React.Key[] = useId(3, "checkbox");
+	const checkbox = Array.from({ length: 3 }).map((_, index) => {
+		const num = index + 1;
+		return (
+			<li key={checkboxId[index]}>
+				<label htmlFor={`checkbox_${num}`}>
+					<input
+						type="checkbox"
+						id={`checkbox_${num}`}
+						value={num}
+						{...register(`checkbox.${num}`)}
+					/>
+					{num}
+				</label>
+			</li>
+		);
+	});
+
+	const radioId: React.Key[] = useId(3, "radio");
+	const radio = Array.from({ length: 3 }).map((_, index) => {
+		const num = index + 1;
+		return (
+			<li key={radioId[index]}>
+				<label htmlFor={`radio_${num}`}>
+					<input
+						type="radio"
+						id={`radio_${num}`}
+						value={num}
+						{...register("radio")}
+					/>
+					{num}
+				</label>
+			</li>
+		);
+	});
+
 	return (
 		<div>
-			<label>Advantages:{advantages}</label>
+			<fieldset>
+				<label>Advantages:{advantages}</label>
+			</fieldset>
 			<fieldset>
 				<legend>Checkbox group:</legend>
-				<ul>
-					<li>
-						<label htmlFor="checkbox_1">
-							<input
-								type="checkbox"
-								id="checkbox_1"
-								value="1"
-								{...register("checkbox")}
-							/>
-							1
-						</label>
-					</li>
-					<li>
-						<label htmlFor="checkbox_2">
-							<input
-								type="checkbox"
-								id="checkbox_2"
-								value="2"
-								{...register("checkbox")}
-							/>
-							2
-						</label>
-					</li>
-					<li>
-						<label htmlFor="checkbox_3">
-							<input
-								type="checkbox"
-								id="checkbox_3"
-								value="3"
-								{...register("checkbox")}
-							/>
-							3
-						</label>
-					</li>
-				</ul>
+				<ul>{checkbox}</ul>
 			</fieldset>
 
 			<fieldset>
 				<legend>Radio group:</legend>
-				<ul>
-					<li>
-						<label htmlFor="radio_1">
-							<input
-								type="radio"
-								id="radio_1"
-								value="1"
-								{...register("radio")}
-							/>
-							1
-						</label>
-					</li>
-					<li>
-						<label htmlFor="radio_2">
-							<input
-								type="radio"
-								id="radio_2"
-								value="2"
-								{...register("checkbox")}
-							/>
-							2
-						</label>
-					</li>
-					<li>
-						<label htmlFor="radio_3">
-							<input
-								type="radio"
-								id="radio_3"
-								value="3"
-								{...register("checkbox")}
-							/>
-							3
-						</label>
-					</li>
-				</ul>
+				<ul>{radio}</ul>
 			</fieldset>
-			<button type="button" onClick={() => dispatch(decrement())}>
+			<button type="button" onClick={backStepHandle}>
 				Back
 			</button>
-			<button type="button" onClick={() => dispatch(increment())}>
+			<button type="button" onClick={nextStepHandle}>
 				Next
 			</button>
+			<button type="submit">Submit</button>
 		</div>
 	);
 }

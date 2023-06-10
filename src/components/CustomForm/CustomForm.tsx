@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useAppSelector } from "@hooks/reduxHooks";
 import { selectFormStep } from "@features/formStep/formStepSlice";
 
+import { selectFormSubmit } from "@features/formSubmit/formSubmitSlice";
+
 export type FormData = {
 	nickname: string;
 	name: string;
@@ -21,10 +23,15 @@ export function CustomForm() {
 		handleSubmit,
 		//formState: { errors },
 	} = useForm<FormData>();
-	// eslint-disable-next-line no-console
-	const onSubmit = handleSubmit((data) => console.log(data));
 
 	const step = useAppSelector(selectFormStep);
+	const formSubmit = useAppSelector(selectFormSubmit);
+	const onSubmit = handleSubmit(() => {
+		// eslint-disable-next-line no-console
+		console.log(formSubmit);
+	});
+
+	console.log(formSubmit);
 
 	return (
 		// eslint-disable-next-line @typescript-eslint/no-misused-promises
