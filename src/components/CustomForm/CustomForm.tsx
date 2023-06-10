@@ -27,11 +27,10 @@ export function CustomForm() {
 	const step = useAppSelector(selectFormStep);
 	const formSubmit = useAppSelector(selectFormSubmit);
 	const onSubmit = handleSubmit(() => {
-		// eslint-disable-next-line no-console
 		console.log(formSubmit);
 	});
 
-	console.log(formSubmit);
+	//console.log(formSubmit);
 
 	return (
 		// eslint-disable-next-line @typescript-eslint/no-misused-promises
