@@ -9,7 +9,7 @@ const initialState: FormSubmitState = {
 	name: "",
 	sername: "",
 	sex: "man",
-	advantages: [],
+	advantages: ["", "", ""],
 	checkbox: [],
 	radio: 0,
 	about: "",
@@ -21,13 +21,27 @@ export const formSubmitSlice = createSlice({
 	reducers: {
 		updateFormSubmit: (state, action: PayloadAction<Partial<FormData>>) => {
 			const newState = Object.assign({}, state, action.payload);
-			console.log("redux: ", state, action.payload);
 			return newState;
+		},
+		removeFormAdvantage: (
+			state,
+			action: PayloadAction<{ toRemove: number; advantages: string[] }>
+		) => {
+			const newState = Object.assign({}, state, {
+				advantages: action.payload.advantages.filter(
+					(_, index) => index !== action.payload.toRemove
+				),
+			});
+			return newState;
+		},
+		addFormAdvantage: (state) => {
+			state.advantages.push("");
 		},
 	},
 });
 
-export const { updateFormSubmit } = formSubmitSlice.actions;
+export const { updateFormSubmit, removeFormAdvantage, addFormAdvantage } =
+	formSubmitSlice.actions;
 
 export const selectFormSubmit = (state: RootState) => state.formSubmit;
 

@@ -4,6 +4,8 @@ import { useId } from "react-id-generator";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { increment, decrement } from "@features/formStep/formStepSlice";
 import {
+	removeFormAdvantage,
+	addFormAdvantage,
 	selectFormSubmit,
 	updateFormSubmit,
 } from "@features/formSubmit/formSubmitSlice";
@@ -12,6 +14,7 @@ import { useEffect } from "react";
 export function FormPart2() {
 	const {
 		register,
+		unregister,
 		setValue,
 		getValues,
 		//	formState: { errors },
@@ -36,15 +39,37 @@ export function FormPart2() {
 		dispatch(increment());
 	};
 
-	const advantagesId: React.Key[] = useId(3, "advantages");
-	const advantages = Array.from({ length: 3 }).map((_, index) => {
-		return (
-			<div key={advantagesId[index]}>
-				<input {...register(`advantages.${index}`)} />
-				<button type="button">delete</button>
-			</div>
-		);
-	});
+	const addAdvantages = () => {
+		dispatch(addFormAdvantage());
+	};
+
+	const advantagesLength = useAppSelector(selectFormSubmit).advantages.length;
+	const advantagesId: React.Key[] = useId(advantagesLength, "advantages");
+	const advantages = Array.from({ length: advantagesLength }).map(
+		(_, index) => {
+			return (
+				<div key={advantagesId[index]}>
+					<input {...register(`advantages.${index}`)} />
+					<button
+						type="button"
+						onClick={() => {
+							//unregister(`advantages.${index}`);
+							//dispatch(updateFormSubmit());
+							console.log(index);
+							dispatch(
+								removeFormAdvantage({
+									toRemove: index,
+									advantages: getValues().advantages,
+								})
+							);
+						}}
+					>
+						delete
+					</button>
+				</div>
+			);
+		}
+	);
 
 	const checkboxId: React.Key[] = useId(3, "checkbox");
 	const checkbox = Array.from({ length: 3 }).map((_, index) => {
@@ -56,7 +81,7 @@ export function FormPart2() {
 						type="checkbox"
 						id={`checkbox_${num}`}
 						value={num}
-						{...register(`checkbox.${num}`)}
+						{...register(`checkbox`)}
 					/>
 					{num}
 				</label>
@@ -86,6 +111,9 @@ export function FormPart2() {
 		<div>
 			<fieldset>
 				<label>Advantages:{advantages}</label>
+				<button type="button" onClick={addAdvantages}>
+					+
+				</button>
 			</fieldset>
 			<fieldset>
 				<legend>Checkbox group:</legend>
