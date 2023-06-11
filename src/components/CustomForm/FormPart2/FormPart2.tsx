@@ -14,7 +14,6 @@ import { useEffect } from "react";
 export function FormPart2() {
 	const {
 		register,
-		unregister,
 		setValue,
 		getValues,
 		//	formState: { errors },
@@ -28,7 +27,7 @@ export function FormPart2() {
 		setValue("advantages", advantages);
 		setValue("checkbox", checkbox);
 		setValue("radio", radio);
-	}, []);
+	}, [savedValues]);
 
 	const backStepHandle = () => {
 		dispatch(updateFormSubmit(getValues()));
@@ -40,7 +39,11 @@ export function FormPart2() {
 	};
 
 	const addAdvantages = () => {
-		dispatch(addFormAdvantage());
+		dispatch(
+			addFormAdvantage({
+				advantages: getValues("advantages"),
+			})
+		);
 	};
 
 	const advantagesLength = useAppSelector(selectFormSubmit).advantages.length;
@@ -53,13 +56,10 @@ export function FormPart2() {
 					<button
 						type="button"
 						onClick={() => {
-							//unregister(`advantages.${index}`);
-							//dispatch(updateFormSubmit());
-							console.log(index);
 							dispatch(
 								removeFormAdvantage({
 									toRemove: index,
-									advantages: getValues().advantages,
+									advantages: getValues("advantages"),
 								})
 							);
 						}}
