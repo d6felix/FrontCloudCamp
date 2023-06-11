@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 import { useAppSelector } from "@hooks/reduxHooks";
 import { selectFormStep } from "@features/formStep/formStepSlice";
 
-import { selectFormSubmit } from "@features/formSubmit/formSubmitSlice";
+import {
+	selectFormSubmit,
+	useAddFormDataMutation,
+} from "@features/formSubmit/formSubmitSlice";
 
 export type FormData = {
 	nickname: string;
@@ -24,13 +27,12 @@ export function CustomForm() {
 		//formState: { errors },
 	} = useForm<FormData>();
 
+	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
 	const formSubmit = useAppSelector(selectFormSubmit);
 	const onSubmit = handleSubmit(() => {
-		console.log(formSubmit);
+		return addFormData(formSubmit).then((response) => console.log(response));
 	});
-
-	//console.log(formSubmit);
 
 	return (
 		// eslint-disable-next-line @typescript-eslint/no-misused-promises

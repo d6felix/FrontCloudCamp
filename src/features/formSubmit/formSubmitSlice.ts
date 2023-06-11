@@ -1,10 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@store/store";
 import { FormData } from "@components/CustomForm";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseURL } from "./formSubmitAPI";
 
-export type FormSubmitState = FormData;
+export type FormDataState = FormData;
 
-const initialState: FormSubmitState = {
+const initialState: FormDataState = {
 	nickname: "",
 	name: "",
 	sername: "",
@@ -15,11 +17,11 @@ const initialState: FormSubmitState = {
 	about: "",
 };
 
-export const formSubmitSlice = createSlice({
-	name: "formSubmit",
+export const formDataSlice = createSlice({
+	name: "formData",
 	initialState,
 	reducers: {
-		updateFormSubmit: (state, action: PayloadAction<Partial<FormData>>) => {
+		updateForm: (state, action: PayloadAction<Partial<FormData>>) => {
 			const newState = Object.assign({}, state, action.payload);
 			return newState;
 		},
@@ -46,9 +48,24 @@ export const formSubmitSlice = createSlice({
 	},
 });
 
-export const { updateFormSubmit, removeFormAdvantage, addFormAdvantage } =
-	formSubmitSlice.actions;
+export const { updateForm, removeFormAdvantage, addFormAdvantage } =
+	formDataSlice.actions;
 
-export const selectFormSubmit = (state: RootState) => state.formSubmit;
+export const selectFormSubmit = (state: RootState) => state.formData;
 
-export default formSubmitSlice.reducer;
+export const formApi = createApi({
+	reducerPath: "formApi",
+	baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
+	endpoints: (builder) => ({
+		addFormData: builder.mutation<FormData, Partial<FormData>>({
+			query: (body) => ({
+				url: "/",
+				method: "POST",
+				body,
+			}),
+		}),
+	}),
+});
+
+export const { useAddFormDataMutation } = formApi;
+export default formDataSlice.reducer;

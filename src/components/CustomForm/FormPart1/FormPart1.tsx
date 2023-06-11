@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { increment } from "@features/formStep/formStepSlice";
 import {
-	updateFormSubmit,
+	updateForm,
 	selectFormSubmit,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
@@ -29,10 +29,10 @@ export function FormPart1() {
 	}, []);
 
 	const backHandle = () => {
-		dispatch(updateFormSubmit(getValues()));
+		dispatch(updateForm(getValues()));
 	};
 	const nextStepHandle = () => {
-		dispatch(updateFormSubmit(getValues()));
+		dispatch(updateForm(getValues()));
 		dispatch(increment());
 	};
 

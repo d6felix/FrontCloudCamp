@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { decrement } from "@features/formStep/formStepSlice";
 import {
 	selectFormSubmit,
-	updateFormSubmit,
+	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 
@@ -25,11 +25,11 @@ export function FormPart3() {
 	}, []);
 
 	const backStepHandle = () => {
-		dispatch(updateFormSubmit(getValues()));
+		dispatch(updateForm(getValues()));
 		dispatch(decrement());
 	};
 	const onSubmitHandle = () => {
-		dispatch(updateFormSubmit(getValues()));
+		dispatch(updateForm(getValues()));
 	};
 
 	return (

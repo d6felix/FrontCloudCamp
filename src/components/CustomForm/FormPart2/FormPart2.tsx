@@ -7,7 +7,7 @@ import {
 	removeFormAdvantage,
 	addFormAdvantage,
 	selectFormSubmit,
-	updateFormSubmit,
+	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 
@@ -30,11 +30,11 @@ export function FormPart2() {
 	}, [savedValues]);
 
 	const backStepHandle = () => {
-		dispatch(updateFormSubmit(getValues()));
+		dispatch(updateForm(getValues()));
 		dispatch(decrement());
 	};
 	const nextStepHandle = () => {
-		dispatch(updateFormSubmit(getValues()));
+		dispatch(updateForm(getValues()));
 		dispatch(increment());
 	};
 
@@ -130,7 +130,6 @@ export function FormPart2() {
 			<button type="button" onClick={nextStepHandle}>
 				Next
 			</button>
-			<button type="submit">Submit</button>
 		</div>
 	);
 }
