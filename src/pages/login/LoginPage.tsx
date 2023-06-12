@@ -1,45 +1,53 @@
 import { useForm } from "react-hook-form";
 import "./LoginPage.scss";
 import { Link } from "react-router-dom";
-
-type FormLoginData = {
-	phoneNumber: number;
-	email: string;
-};
+import type { FormData } from "@schema/dataTypes";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+import {
+	selectFormData,
+	updateForm,
+} from "@features/formSubmit/formSubmitSlice";
+import { useEffect } from "react";
+import { withHookFormMask } from "use-mask-input";
 
 export function LoginPage() {
 	const {
 		register,
 		setValue,
-		handleSubmit,
+		getValues,
 		//formState: { errors },
-	} = useForm<FormLoginData>();
-	const onSubmit = (data: unknown) => {
-		// eslint-disable-next-line no-console
-		console.log(data);
+	} = useForm<FormData>();
+
+	const dispatch = useAppDispatch();
+	const savedValues = useAppSelector(selectFormData);
+
+	useEffect(() => {
+		const { phoneNumber, email } = { ...savedValues };
+		setValue("phoneNumber", phoneNumber);
+		setValue("email", email);
+	}, []);
+
+	const onSubmit = () => {
+		dispatch(updateForm(getValues()));
 	};
 
 	return (
-		<form onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
+		<form>
 			<label>
 				Phone number
-				<input type="tel" {...register("phoneNumber")} />
+				<input
+					type="tel"
+					{...withHookFormMask(register("phoneNumber"), ["+7 (999) 999-99-99"])}
+				/>
 			</label>
 			<label>
 				E-mail
 				<input type="email" {...register("email")} />
 			</label>
-			<button
-				type="button"
-				onClick={() => {
-					setValue("phoneNumber", 897654321);
-					setValue("email", "example@test.com");
-				}}
-			>
-				SetValue
-			</button>
 			<Link to={"create"}>
-				<button type="button">Начать</button>
+				<button type="submit" onClick={onSubmit}>
+					Начать
+				</button>
 			</Link>
 		</form>
 	);

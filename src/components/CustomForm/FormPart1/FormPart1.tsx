@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { FormData } from "@components/CustomForm";
+import { FormData } from "@schema/dataTypes";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { increment } from "@features/formStep/formStepSlice";
 import {
 	updateForm,
-	selectFormSubmit,
+	selectFormData,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 
@@ -18,7 +18,7 @@ export function FormPart1() {
 	} = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
-	const savedValues = useAppSelector(selectFormSubmit);
+	const savedValues = useAppSelector(selectFormData);
 
 	useEffect(() => {
 		const { nickname, name, sername, sex } = { ...savedValues };

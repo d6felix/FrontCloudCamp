@@ -1,12 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@store/store";
-import { FormData } from "@components/CustomForm";
+import type { FormData } from "@schema/dataTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseURL } from "./formSubmitAPI";
 
 export type FormDataState = FormData;
 
 const initialState: FormDataState = {
+	phoneNumber: "",
+	email: "",
 	nickname: "",
 	name: "",
 	sername: "",
@@ -51,7 +53,7 @@ export const formDataSlice = createSlice({
 export const { updateForm, removeFormAdvantage, addFormAdvantage } =
 	formDataSlice.actions;
 
-export const selectFormSubmit = (state: RootState) => state.formData;
+export const selectFormData = (state: RootState) => state.formData;
 
 export const formApi = createApi({
 	reducerPath: "formApi",

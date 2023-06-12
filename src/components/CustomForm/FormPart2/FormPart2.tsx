@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { FormData } from "@components/CustomForm";
+import type { FormData } from "@schema/dataTypes";
 import { useId } from "react-id-generator";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { increment, decrement } from "@features/formStep/formStepSlice";
 import {
 	removeFormAdvantage,
 	addFormAdvantage,
-	selectFormSubmit,
+	selectFormData,
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
@@ -20,7 +20,7 @@ export function FormPart2() {
 	} = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
-	const savedValues = useAppSelector(selectFormSubmit);
+	const savedValues = useAppSelector(selectFormData);
 
 	useEffect(() => {
 		const { advantages, checkbox, radio } = { ...savedValues };
@@ -46,7 +46,7 @@ export function FormPart2() {
 		);
 	};
 
-	const advantagesLength = useAppSelector(selectFormSubmit).advantages.length;
+	const advantagesLength = useAppSelector(selectFormData).advantages.length;
 	const advantagesId: React.Key[] = useId(advantagesLength, "advantages");
 	const advantages = Array.from({ length: advantagesLength }).map(
 		(_, index) => {

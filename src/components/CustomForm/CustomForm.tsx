@@ -4,22 +4,13 @@ import { FormPart3 } from "./FormPart3/FormPart3";
 import { useForm } from "react-hook-form";
 import { useAppSelector } from "@hooks/reduxHooks";
 import { selectFormStep } from "@features/formStep/formStepSlice";
+import { FormData } from "@schema/dataTypes";
+import { formDataSchema } from "@schema/yupFormSchema";
 
 import {
-	selectFormSubmit,
+	selectFormData,
 	useAddFormDataMutation,
 } from "@features/formSubmit/formSubmitSlice";
-
-export type FormData = {
-	nickname: string;
-	name: string;
-	sername: string;
-	sex: "man" | "woman";
-	advantages: string[];
-	checkbox: number[];
-	radio: number;
-	about: string;
-};
 
 export function CustomForm() {
 	const {
@@ -29,9 +20,15 @@ export function CustomForm() {
 
 	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
-	const formSubmit = useAppSelector(selectFormSubmit);
+	const formSubmit = useAppSelector(selectFormData);
 	const onSubmit = handleSubmit(() => {
-		return addFormData(formSubmit).then((response) => console.log(response));
+		try {
+			console.log(formSubmit);
+			formDataSchema.validateSync(formSubmit);
+		} catch (ValidationError) {
+			console.log(ValidationError);
+		}
+		//return addFormData(formSubmit).then((response) => console.log(response));
 	});
 
 	return (

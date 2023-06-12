@@ -3807,6 +3807,11 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==
 
+inputmask@5.0.8:
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-5.0.8.tgz#cd0f70b058c3291a0d4f27de25dbfc179c998bb4"
+  integrity sha512-1WcbyudPTXP1B28ozWWyFa6QRIUG4KiLoyR6LFHlpT4OfTzRqFfWgHFadNvRuMN1S9XNVz9CdNvCGjJi+uAMqQ==
+
 install-peers@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/install-peers/-/install-peers-1.0.4.tgz#0fcfe18d223a72bb39ddeca09394ce50e3305c79"
@@ -5859,6 +5864,13 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-mask-input@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/use-mask-input/-/use-mask-input-3.1.2.tgz#28715629ba4efd3ff8b03711d65e5e0b763523ef"
+  integrity sha512-QQ5Fc9XGEqOzT27BjYVS1qRJUOhbtu9AYBxlnnz5tLERrqWXdSkE0LUmKc4DeLwZW/CY5pv8RIMGM+JiRZ3YnA==
+  dependencies:
+    inputmask "5.0.8"
 
 use-sync-external-store@^1.0.0:
   version "1.2.0"

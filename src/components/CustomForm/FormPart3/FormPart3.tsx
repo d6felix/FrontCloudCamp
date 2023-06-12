@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { FormData } from "@components/CustomForm";
+import type { FormData } from "@schema/dataTypes";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { decrement } from "@features/formStep/formStepSlice";
 import {
-	selectFormSubmit,
+	selectFormData,
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
@@ -17,12 +17,12 @@ export function FormPart3() {
 	} = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
-	const savedValues = useAppSelector(selectFormSubmit);
+	const savedValues = useAppSelector(selectFormData);
 
 	useEffect(() => {
 		const { about } = { ...savedValues };
 		setValue("about", about);
-	}, []);
+	}, [savedValues]);
 
 	const backStepHandle = () => {
 		dispatch(updateForm(getValues()));

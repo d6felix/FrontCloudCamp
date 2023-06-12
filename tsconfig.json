@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2017",
     "types": [
       "@types/node"
     ],
@@ -13,6 +13,8 @@
       "es5",
       "esnext"
     ],
+    "strictNullChecks": true,
+    "strictFunctionTypes": false,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
