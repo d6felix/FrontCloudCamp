@@ -45,8 +45,8 @@ export function LoginPage() {
 				<input type="email" {...register("email")} />
 			</label>
 			<Link to={"create"}>
-				<button type="submit" onClick={onSubmit}>
-					Начать
+				<button type="submit" onClick={onSubmit} id="button-start">
+					Start
 				</button>
 			</Link>
 		</form>

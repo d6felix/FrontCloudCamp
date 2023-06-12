@@ -40,29 +40,33 @@ export function FormPart1() {
 		<div>
 			<label>
 				Nickname
-				<input {...register("nickname")} />
+				<input {...register("nickname")} id="field-nickname" />
 			</label>
 			<label>
 				Name
-				<input {...register("name")} />
+				<input {...register("name")} id="field-name" />
 			</label>
 			<label>
 				Sername
-				<input {...register("sername")} />
+				<input {...register("sername")} id="field-sername" />
 			</label>
-			<label htmlFor="sex-select">
+			<label htmlFor="field-sex">
 				Sex
-				<select id="sex-select" placeholder="Not selected" {...register("sex")}>
-					<option value="man">Man</option>
-					<option value="woman">Woman</option>
+				<select id="field-sex" placeholder="Not selected" {...register("sex")}>
+					<option value="man" id="field-sex-option-man">
+						Man
+					</option>
+					<option value="woman" id="field-sex-option-woman">
+						Woman
+					</option>
 				</select>
 			</label>
 			<Link to={"/"}>
-				<button type="button" onClick={backHandle}>
+				<button type="button" onClick={backHandle} id="button-back">
 					Back
 				</button>
 			</Link>
-			<button type="button" onClick={nextStepHandle}>
+			<button type="button" onClick={nextStepHandle} id="button-next">
 				Next
 			</button>
 		</div>

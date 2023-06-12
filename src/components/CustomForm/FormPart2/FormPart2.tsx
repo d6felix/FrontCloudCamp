@@ -52,7 +52,10 @@ export function FormPart2() {
 		(_, index) => {
 			return (
 				<div key={advantagesId[index]}>
-					<input {...register(`advantages.${index}`)} />
+					<input
+						{...register(`advantages.${index}`)}
+						id={`field-advantages-${index + 1}`}
+					/>
 					<button
 						type="button"
 						onClick={() => {
@@ -63,6 +66,7 @@ export function FormPart2() {
 								})
 							);
 						}}
+						id={`button-remove-${index + 1}`}
 					>
 						delete
 					</button>
@@ -76,10 +80,10 @@ export function FormPart2() {
 		const num = index + 1;
 		return (
 			<li key={checkboxId[index]}>
-				<label htmlFor={`checkbox_${num}`}>
+				<label htmlFor={`field-checkbox-group-option-${num}`}>
 					<input
 						type="checkbox"
-						id={`checkbox_${num}`}
+						id={`field-checkbox-group-option-${num}`}
 						value={num}
 						{...register(`checkbox`)}
 					/>
@@ -94,10 +98,10 @@ export function FormPart2() {
 		const num = index + 1;
 		return (
 			<li key={radioId[index]}>
-				<label htmlFor={`radio_${num}`}>
+				<label htmlFor={`field-radio-group-option-${num}`}>
 					<input
 						type="radio"
-						id={`radio_${num}`}
+						id={`field-radio-group-option-${num}`}
 						value={num}
 						{...register("radio")}
 					/>
@@ -111,7 +115,7 @@ export function FormPart2() {
 		<div>
 			<fieldset>
 				<label>Advantages:{advantages}</label>
-				<button type="button" onClick={addAdvantages}>
+				<button type="button" onClick={addAdvantages} id="button-add">
 					+
 				</button>
 			</fieldset>
@@ -124,10 +128,10 @@ export function FormPart2() {
 				<legend>Radio group:</legend>
 				<ul>{radio}</ul>
 			</fieldset>
-			<button type="button" onClick={backStepHandle}>
+			<button type="button" onClick={backStepHandle} id="button-back">
 				Back
 			</button>
-			<button type="button" onClick={nextStepHandle}>
+			<button type="button" onClick={nextStepHandle} id="button-next">
 				Next
 			</button>
 		</div>

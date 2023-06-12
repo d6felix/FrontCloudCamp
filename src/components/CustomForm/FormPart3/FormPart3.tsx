@@ -35,11 +35,11 @@ export function FormPart3() {
 	return (
 		<div>
 			<label>About:</label>
-			<textarea {...register("about")}></textarea>
-			<button type="button" onClick={backStepHandle}>
+			<textarea {...register("about")} id="field-about"></textarea>
+			<button type="button" onClick={backStepHandle} id="button-back">
 				Back
 			</button>
-			<button type="submit" onClick={onSubmitHandle}>
+			<button type="submit" onClick={onSubmitHandle} id="button-send">
 				Submit
 			</button>
 		</div>
