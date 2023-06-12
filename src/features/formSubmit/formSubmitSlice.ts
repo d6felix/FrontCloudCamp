@@ -3,6 +3,7 @@ import { RootState } from "@store/store";
 import type { FormData } from "@schema/dataTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseURL } from "./formSubmitAPI";
+import { ServerResponse } from "./responseType";
 
 export type FormDataState = FormData;
 
@@ -59,7 +60,7 @@ export const formApi = createApi({
 	reducerPath: "formApi",
 	baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
 	endpoints: (builder) => ({
-		addFormData: builder.mutation<FormData, Partial<FormData>>({
+		addFormData: builder.mutation<ServerResponse, FormData>({
 			query: (body) => ({
 				url: "/",
 				method: "POST",

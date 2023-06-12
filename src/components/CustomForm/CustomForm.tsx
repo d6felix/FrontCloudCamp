@@ -19,7 +19,7 @@ import { useState } from "react";
 export function CustomForm() {
 	const {
 		handleSubmit,
-		//formState: { errors },
+		formState: { errors },
 	} = useForm<FormData>();
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [submitSuccess, setSubmitSuccess] = useState<boolean>(true);
@@ -27,19 +27,22 @@ export function CustomForm() {
 	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
 	const formSubmit = useAppSelector(selectFormData);
-	const onSubmit = handleSubmit(() => {
-		try {
-			console.log(formSubmit);
-			formDataSchema.validateSync(formSubmit);
-		} catch (ValidationError) {
-			console.log(ValidationError);
+	const onSubmit = async () => {
+		if (formDataSchema.isValidSync(formSubmit)) {
+			const submitResult = await addFormData(formSubmit)
+				.unwrap()
+				.then((payload) => payload.status === "success")
+				.catch(() => false);
+			setSubmitSuccess(submitResult);
+		} else {
+			setSubmitSuccess(false);
 		}
-		//return addFormData(formSubmit).then((response) => console.log(response));
-	});
+		setShowModal(true);
+	};
 
 	return (
 		<>
-			<form onSubmit={onSubmit}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				{step === 1 && <FormPart1 />}
 				{step === 2 && <FormPart2 />}
 				{step === 3 && <FormPart3 />}
