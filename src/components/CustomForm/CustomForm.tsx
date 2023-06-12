@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { FormPart1 } from "./FormPart1/FormPart1";
 import { FormPart2 } from "./FormPart2/FormPart2";
 import { FormPart3 } from "./FormPart3/FormPart3";
@@ -6,17 +7,22 @@ import { useAppSelector } from "@hooks/reduxHooks";
 import { selectFormStep } from "@features/formStep/formStepSlice";
 import { FormData } from "@schema/dataTypes";
 import { formDataSchema } from "@schema/yupFormSchema";
+import { ModalSuccess, ModalError } from "@components/Modal";
 
 import {
 	selectFormData,
 	useAddFormDataMutation,
 } from "@features/formSubmit/formSubmitSlice";
+import { createPortal } from "react-dom";
+import { useState } from "react";
 
 export function CustomForm() {
 	const {
 		handleSubmit,
 		//formState: { errors },
 	} = useForm<FormData>();
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const [submitSuccess, setSubmitSuccess] = useState<boolean>(true);
 
 	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
@@ -32,12 +38,17 @@ export function CustomForm() {
 	});
 
 	return (
-		// eslint-disable-next-line @typescript-eslint/no-misused-promises
-		<form onSubmit={onSubmit}>
-			{step === 1 && <FormPart1 />}
-			{step === 2 && <FormPart2 />}
-			{step === 3 && <FormPart3 />}
-		</form>
+		<>
+			<form onSubmit={onSubmit}>
+				{step === 1 && <FormPart1 />}
+				{step === 2 && <FormPart2 />}
+				{step === 3 && <FormPart3 />}
+			</form>{" "}
+			{createPortal(
+				<>{showModal && (submitSuccess ? <ModalSuccess /> : <ModalError />)}</>,
+				document.body
+			)}
+		</>
 	);
 }
 
