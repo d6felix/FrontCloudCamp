@@ -1,0 +1,38 @@
+@use "../../../src/utils/colors";
+
+.button {
+    color: colors.$white;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    border: none;
+    padding: 16px 28px 16px 18px;
+    background: colors.$green;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &:first-child {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    &.button_disabled,
+    &.button_loading {
+        opacity: 1.0;
+        background: colors.$light-grey;
+    }
+
+    &__loader {
+        width: 20px;
+        height: 20px;
+        border-color: colors.$white;
+        border-bottom-color: transparent;
+        margin-right: 18px;
+    }
+}
