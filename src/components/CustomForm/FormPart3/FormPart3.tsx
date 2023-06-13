@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import type { FormData } from "@schema/dataTypes";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { decrementFormStep } from "@features/formStep/formStepSlice";
@@ -13,6 +13,7 @@ export function FormPart3() {
 		register,
 		setValue,
 		getValues,
+		control,
 		//	formState: { errors },
 	} = useForm<FormData>();
 
@@ -32,10 +33,17 @@ export function FormPart3() {
 		dispatch(updateForm(getValues()));
 	};
 
+	const watchAbout = useWatch({
+		control,
+		name: "about",
+		defaultValue: "",
+	}).replaceAll(" ", "");
+
 	return (
 		<div>
 			<label>About:</label>
 			<textarea {...register("about")} id="field-about"></textarea>
+			<div>{watchAbout.length}</div>
 			<button type="button" onClick={backStepHandle} id="button-back">
 				Back
 			</button>
