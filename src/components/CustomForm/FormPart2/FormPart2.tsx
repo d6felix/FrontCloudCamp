@@ -9,7 +9,7 @@ import {
 	selectFormData,
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export function FormPart2() {
 	const {
@@ -39,17 +39,13 @@ export function FormPart2() {
 	};
 
 	const addAdvantages = () => {
-		dispatch(
-			addFormAdvantage({
-				advantages: getValues("advantages"),
-			})
-		);
+		dispatch(addFormAdvantage(getValues()));
 	};
 
 	const advantagesLength = useAppSelector(selectFormData).advantages.length;
 	const advantagesId: React.Key[] = useId(advantagesLength, "advantages");
-	const advantages = Array.from({ length: advantagesLength }).map(
-		(_, index) => {
+	const advantages = useMemo(() => {
+		return Array.from({ length: advantagesLength }).map((_, index) => {
 			return (
 				<div key={advantagesId[index]}>
 					<input
@@ -72,44 +68,48 @@ export function FormPart2() {
 					</button>
 				</div>
 			);
-		}
-	);
+		});
+	}, [advantagesLength, advantagesId]);
 
 	const checkboxId: React.Key[] = useId(3, "checkbox");
-	const checkbox = Array.from({ length: 3 }).map((_, index) => {
-		const num = index + 1;
-		return (
-			<li key={checkboxId[index]}>
-				<label htmlFor={`field-checkbox-group-option-${num}`}>
-					<input
-						type="checkbox"
-						id={`field-checkbox-group-option-${num}`}
-						value={num}
-						{...register(`checkbox`)}
-					/>
-					{num}
-				</label>
-			</li>
-		);
-	});
+	const checkbox = useMemo(() => {
+		return Array.from({ length: 3 }).map((_, index) => {
+			const num = index + 1;
+			return (
+				<li key={checkboxId[index]}>
+					<label htmlFor={`field-checkbox-group-option-${num}`}>
+						<input
+							type="checkbox"
+							id={`field-checkbox-group-option-${num}`}
+							value={num}
+							{...register(`checkbox`)}
+						/>
+						{num}
+					</label>
+				</li>
+			);
+		});
+	}, [checkboxId]);
 
 	const radioId: React.Key[] = useId(3, "radio");
-	const radio = Array.from({ length: 3 }).map((_, index) => {
-		const num = index + 1;
-		return (
-			<li key={radioId[index]}>
-				<label htmlFor={`field-radio-group-option-${num}`}>
-					<input
-						type="radio"
-						id={`field-radio-group-option-${num}`}
-						value={num}
-						{...register("radio")}
-					/>
-					{num}
-				</label>
-			</li>
-		);
-	});
+	const radio = useMemo(() => {
+		return Array.from({ length: 3 }).map((_, index) => {
+			const num = index + 1;
+			return (
+				<li key={radioId[index]}>
+					<label htmlFor={`field-radio-group-option-${num}`}>
+						<input
+							type="radio"
+							id={`field-radio-group-option-${num}`}
+							value={num}
+							{...register("radio")}
+						/>
+						{num}
+					</label>
+				</li>
+			);
+		});
+	}, [radioId]);
 
 	return (
 		<div>
