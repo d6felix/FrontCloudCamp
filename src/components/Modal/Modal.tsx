@@ -2,25 +2,20 @@ import { ModalError } from "./ModalError";
 import { ModalSuccess } from "./ModalSuccess";
 import styles from "./Modal.module.scss";
 import classNames from "classnames";
-import { ModalState } from "@components/CustomForm";
+import { useAppSelector } from "@hooks/reduxHooks";
+import { selectShowModal } from "@features/showModal/showModalSlice";
 
-type ModalProps = {
-	modalState: ModalState;
-	setModalState: React.Dispatch<React.SetStateAction<ModalState>>;
-};
+export function Modal() {
+	const modalState = useAppSelector(selectShowModal);
 
-export function Modal({ modalState, setModalState }: ModalProps) {
-	return (
-		<>
-			<div className={classNames(styles.darkBG)} />
+	return modalState.show ? (
+		<div className={classNames(styles.darkBG)}>
 			<div className={classNames(styles.modal)}>
-				{modalState.isSuccessfull ? (
-					<ModalSuccess />
-				) : (
-					<ModalError setModalState={setModalState} />
-				)}
+				{modalState.isSuccessfull ? <ModalSuccess /> : <ModalError />}
 			</div>
-		</>
+		</div>
+	) : (
+		<></>
 	);
 }
 
