@@ -13,16 +13,20 @@ export const formStepSlice = createSlice({
 	name: "formStep",
 	initialState,
 	reducers: {
-		increment: (state) => {
+		resetFormStep: (state) => {
+			state.value = 1;
+		},
+		incrementFormStep: (state) => {
 			state.value += 1;
 		},
-		decrement: (state) => {
+		decrementFormStep: (state) => {
 			state.value -= 1;
 		},
 	},
 });
 
-export const { increment, decrement } = formStepSlice.actions;
+export const { incrementFormStep, decrementFormStep, resetFormStep } =
+	formStepSlice.actions;
 
 export const selectFormStep = (state: RootState) => state.formStep.value;
 

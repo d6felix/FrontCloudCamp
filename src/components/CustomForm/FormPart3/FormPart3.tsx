@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { FormData } from "@schema/dataTypes";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { decrement } from "@features/formStep/formStepSlice";
+import { decrementFormStep } from "@features/formStep/formStepSlice";
 import {
 	selectFormData,
 	updateForm,
@@ -26,7 +26,7 @@ export function FormPart3() {
 
 	const backStepHandle = () => {
 		dispatch(updateForm(getValues()));
-		dispatch(decrement());
+		dispatch(decrementFormStep());
 	};
 	const onSubmitHandle = () => {
 		dispatch(updateForm(getValues()));

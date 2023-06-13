@@ -7,6 +7,7 @@ import { updateForm } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 import { withHookFormMask } from "use-mask-input";
 import { LoginHeader } from "@components/LoginHeader";
+import { resetFormStep } from "@features/formStep/formStepSlice";
 
 export function LoginPage() {
 	const {
@@ -25,6 +26,7 @@ export function LoginPage() {
 
 	const onSubmit = () => {
 		dispatch(updateForm(getValues()));
+		dispatch(resetFormStep());
 	};
 
 	return (

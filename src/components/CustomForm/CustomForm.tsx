@@ -14,8 +14,10 @@ import {
 	useAddFormDataMutation,
 } from "@features/formSubmit/formSubmitSlice";
 import { createPortal } from "react-dom";
-import { useState } from "react";
-import { showSuccess } from "@features/showModal/showModalSlice";
+import {
+	showModalSuccess,
+	showModalError,
+} from "@features/showModal/showModalSlice";
 
 export type ModalState = {
 	isSuccessfull: boolean;
@@ -44,7 +46,7 @@ export function CustomForm() {
 	// 	setSubmitSuccess(false);
 	// }
 	const onSubmit = () => {
-		dispatch(showSuccess());
+		dispatch(showModalSuccess());
 	};
 
 	return (

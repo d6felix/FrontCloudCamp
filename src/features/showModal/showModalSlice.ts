@@ -15,19 +15,20 @@ export const showModalSlice = createSlice({
 	name: "showModal",
 	initialState,
 	reducers: {
-		showSuccess: () => {
+		showModalSuccess: () => {
 			return { show: true, isSuccessfull: true };
 		},
-		showError: () => {
+		showModalError: () => {
 			return { show: true, isSuccessfull: false };
 		},
-		hide: () => {
+		hideModal: () => {
 			return { show: false, isSuccessfull: false };
 		},
 	},
 });
 
-export const { showSuccess, showError, hide } = showModalSlice.actions;
+export const { showModalSuccess, showModalError, hideModal } =
+	showModalSlice.actions;
 
 export const selectShowModal = (state: RootState) => state.showModal;
 

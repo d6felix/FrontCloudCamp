@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { FormData } from "@schema/dataTypes";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { increment } from "@features/formStep/formStepSlice";
+import { incrementFormStep } from "@features/formStep/formStepSlice";
 import {
 	updateForm,
 	selectFormData,
@@ -33,7 +33,7 @@ export function FormPart1() {
 	};
 	const nextStepHandle = () => {
 		dispatch(updateForm(getValues()));
-		dispatch(increment());
+		dispatch(incrementFormStep());
 	};
 
 	return (

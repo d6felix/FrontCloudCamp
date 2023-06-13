@@ -2,7 +2,10 @@ import { useForm } from "react-hook-form";
 import type { FormData } from "@schema/dataTypes";
 import { useId } from "react-id-generator";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { increment, decrement } from "@features/formStep/formStepSlice";
+import {
+	incrementFormStep,
+	decrementFormStep,
+} from "@features/formStep/formStepSlice";
 import {
 	removeFormAdvantage,
 	addFormAdvantage,
@@ -31,11 +34,11 @@ export function FormPart2() {
 
 	const backStepHandle = () => {
 		dispatch(updateForm(getValues()));
-		dispatch(decrement());
+		dispatch(decrementFormStep());
 	};
 	const nextStepHandle = () => {
 		dispatch(updateForm(getValues()));
-		dispatch(increment());
+		dispatch(incrementFormStep());
 	};
 
 	const addAdvantages = () => {
