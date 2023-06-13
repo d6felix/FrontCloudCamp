@@ -3,7 +3,7 @@ type FormProgressProps = {
 };
 
 export function FormProgress({ step }: FormProgressProps) {
-	return <div>FormProgress: {step}</div>;
+	return <div>{step}</div>;
 }
 
 export default FormProgress;
