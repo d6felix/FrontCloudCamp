@@ -7,7 +7,7 @@ import { useAppSelector } from "@hooks/reduxHooks";
 import { selectFormStep } from "@features/formStep/formStepSlice";
 import { FormData } from "@schema/dataTypes";
 import { formDataSchema } from "@schema/yupFormSchema";
-import { ModalSuccess, ModalError } from "@components/Modal";
+import { Modal } from "@components/Modal";
 
 import {
 	selectFormData,
@@ -16,28 +16,40 @@ import {
 import { createPortal } from "react-dom";
 import { useState } from "react";
 
+export type ModalState = {
+	isSuccessfull: boolean;
+	show: boolean;
+};
+
 export function CustomForm() {
 	const {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>();
-	const [showModal, setShowModal] = useState<boolean>(false);
-	const [submitSuccess, setSubmitSuccess] = useState<boolean>(true);
+
+	const [modalState, setModalState] = useState<ModalState>({
+		isSuccessfull: false,
+		show: false,
+	});
 
 	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
 	const formSubmit = useAppSelector(selectFormData);
-	const onSubmit = async () => {
-		if (formDataSchema.isValidSync(formSubmit)) {
-			const submitResult = await addFormData(formSubmit)
-				.unwrap()
-				.then((payload) => payload.status === "success")
-				.catch(() => false);
-			setSubmitSuccess(submitResult);
-		} else {
-			setSubmitSuccess(false);
-		}
-		setShowModal(true);
+	//const onSubmit = async () => {
+	// if (formDataSchema.isValidSync(formSubmit)) {
+	// 	// const submitResult = await addFormData(formSubmit)
+	// 	// 	.unwrap()
+	// 	// 	.then((payload) => payload.status === "success")
+	// 	// 	.catch(() => false);
+	// 	setSubmitSuccess(submitResult);
+	// } else {
+	// 	setSubmitSuccess(false);
+	// }
+	const onSubmit = () => {
+		setModalState({
+			isSuccessfull: false,
+			show: true,
+		});
 	};
 
 	return (
@@ -48,7 +60,11 @@ export function CustomForm() {
 				{step === 3 && <FormPart3 />}
 			</form>{" "}
 			{createPortal(
-				<>{showModal && (submitSuccess ? <ModalSuccess /> : <ModalError />)}</>,
+				<>
+					{modalState.show && (
+						<Modal modalState={modalState} setModalState={setModalState} />
+					)}
+				</>,
 				document.body
 			)}
 		</>

@@ -1,2 +1,1 @@
-export * from "./ModalSuccess";
-export * from "./ModalError";
+export * from "./Modal";
