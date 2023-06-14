@@ -7,6 +7,7 @@ import {
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
+import { Button } from "@components/Button";
 
 export function FormPart3() {
 	const {
@@ -44,12 +45,12 @@ export function FormPart3() {
 			<label>About:</label>
 			<textarea {...register("about")} id="field-about"></textarea>
 			<div>{watchAbout.length}</div>
-			<button type="button" onClick={backStepHandle} id="button-back">
+			<Button type="button" onClick={backStepHandle} id="button-back">
 				Back
-			</button>
-			<button type="submit" onClick={onSubmitHandle} id="button-send">
+			</Button>
+			<Button type="submit" onClick={onSubmitHandle} id="button-send">
 				Submit
-			</button>
+			</Button>
 		</div>
 	);
 }

@@ -13,6 +13,7 @@ import {
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect, useMemo } from "react";
+import { Button } from "@components/Button";
 
 export function FormPart2() {
 	const {
@@ -131,12 +132,12 @@ export function FormPart2() {
 				<legend>Radio group:</legend>
 				<ul>{radio}</ul>
 			</fieldset>
-			<button type="button" onClick={backStepHandle} id="button-back">
+			<Button type="button" onClick={backStepHandle} id="button-back">
 				Back
-			</button>
-			<button type="button" onClick={nextStepHandle} id="button-next">
+			</Button>
+			<Button type="button" onClick={nextStepHandle} id="button-next">
 				Next
-			</button>
+			</Button>
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import "./LoginPage.scss";
+import styles from "./LoginPage.module.scss";
 import { Link } from "react-router-dom";
 import type { FormData } from "@schema/dataTypes";
 import { useAppDispatch } from "@hooks/reduxHooks";
@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import { withHookFormMask } from "use-mask-input";
 import { LoginHeader } from "@components/LoginHeader";
 import { resetFormStep } from "@features/formStep/formStepSlice";
+import { Button } from "@components/Button";
+import classNames from "classnames";
 
 export function LoginPage() {
 	const {
@@ -30,7 +32,7 @@ export function LoginPage() {
 	};
 
 	return (
-		<>
+		<div className={classNames(styles.loginPage)}>
 			<LoginHeader />
 			<form>
 				<label>
@@ -47,12 +49,12 @@ export function LoginPage() {
 					<input type="email" {...register("email")} />
 				</label>
 				<Link to={"create"}>
-					<button type="submit" onClick={onSubmit} id="button-start">
+					<Button type="submit" onClick={onSubmit} id="button-start">
 						Start
-					</button>
+					</Button>
 				</Link>
 			</form>
-		</>
+		</div>
 	);
 }
 

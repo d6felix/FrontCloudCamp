@@ -8,6 +8,7 @@ import {
 	selectFormData,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
+import { Button } from "@components/Button";
 
 export function FormPart1() {
 	const {
@@ -62,13 +63,13 @@ export function FormPart1() {
 				</select>
 			</label>
 			<Link to={"/"}>
-				<button type="button" onClick={backHandle} id="button-back">
+				<Button type="button" onClick={backHandle} id="button-back">
 					Back
-				</button>
+				</Button>
 			</Link>
-			<button type="button" onClick={nextStepHandle} id="button-next">
+			<Button type="button" onClick={nextStepHandle} id="button-next">
 				Next
-			</button>
+			</Button>
 		</div>
 	);
 }
