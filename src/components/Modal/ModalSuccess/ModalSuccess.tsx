@@ -16,7 +16,7 @@ export function ModalSuccess() {
 				alt="success icon"
 				className={classNames(styles.modal__successIcon)}
 			/>
-			<Link to={"/"} className={classNames(styles.modal__link)}>
+			<Link to={"/"}>
 				<Button
 					type="button"
 					onClick={() => dispatch(hideModal())}

@@ -27,13 +27,8 @@
     border: hsla(158, 94%, 35%, 0.15) solid 20px;
   }
 
-  &__link {
-    text-decoration: none;
-  }
-
   &__button {
     grid-area: button;
-    text-decoration: none;
   }
 
 }
