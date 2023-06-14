@@ -8,7 +8,7 @@ import { ServerResponse } from "./responseType";
 export type FormDataState = FormData;
 
 const initialState: FormDataState = {
-	phoneNumber: "",
+	phoneNumber: 9999999999,
 	email: "",
 	nickname: "",
 	name: "",

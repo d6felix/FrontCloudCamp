@@ -1,5 +1,5 @@
 export type FormData = {
-	phoneNumber: string;
+	phoneNumber: number;
 	email: string;
 	nickname: string;
 	name: string;

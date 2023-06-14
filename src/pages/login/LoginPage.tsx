@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
 import styles from "./LoginPage.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ export function LoginPage() {
 		formState: { errors },
 	} = useForm<FormData>({
 		mode: "onBlur",
+		reValidateMode: "onBlur",
 		resolver: yupResolver(formDataSchema),
 	});
 
@@ -29,11 +31,19 @@ export function LoginPage() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		setValue("phoneNumber", "9175156001");
+		setValue("phoneNumber", 9175156001);
 		setValue("email", "d6felix@gmail.com");
 	}, []);
 
-	const onSubmit = () => {
+	const phonenumberTransform = (phoneNumber: number | string) => {
+		if (typeof phoneNumber === "number") {
+			return phoneNumber;
+		} else if (typeof phoneNumber === "string") {
+			return +phoneNumber.replace(/\D/g, "").slice(1);
+		}
+	};
+
+	const onStart = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(resetFormStep());
 		if (!errors.email && !errors.phoneNumber) {
@@ -49,9 +59,12 @@ export function LoginPage() {
 					Phone number
 					<input
 						type="tel"
-						{...withHookFormMask(register("phoneNumber"), [
-							"+7 (999) 999-99-99",
-						])}
+						{...withHookFormMask(
+							register("phoneNumber", {
+								setValueAs: phonenumberTransform,
+							}),
+							["+7 (999) 999-99-99"]
+						)}
 					/>
 					<ErrorTip>{errors.phoneNumber?.message}</ErrorTip>
 				</label>
@@ -60,7 +73,7 @@ export function LoginPage() {
 					<input type="email" {...register("email")} />
 					<ErrorTip>{errors.email?.message}</ErrorTip>
 				</label>
-				<Button type="button" onClick={onSubmit} id="button-start">
+				<Button type="button" onClick={onStart} id="button-start">
 					Start
 				</Button>
 			</form>
