@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useRouteError } from "react-router-dom";
 
+type RoutingError = {
+	statusText: "string";
+	message: "string";
+};
+
 export function ErrorPage() {
-	const error: any = useRouteError();
-	// eslint-disable-next-line no-console
-	console.error(error);
+	const error: RoutingError = useRouteError() as RoutingError;
 
 	return (
 		<div id="error-page">
