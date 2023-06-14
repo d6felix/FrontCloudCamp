@@ -9,8 +9,8 @@ export function Modal() {
 	const modalState = useAppSelector(selectShowModal);
 
 	return modalState.show ? (
-		<div className={classNames(styles.darkBG)}>
-			<div className={classNames(styles.modal)}>
+		<div className={classNames(styles.modal)}>
+			<div className={classNames(styles.modal__body)}>
 				{modalState.isSuccessfull ? <ModalSuccess /> : <ModalError />}
 			</div>
 		</div>

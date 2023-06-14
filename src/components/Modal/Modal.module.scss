@@ -1,5 +1,5 @@
-.darkBG {
-  background-color: rgba(0, 0, 0, 0.2);
+.modal {
+  background: hsla(0, 0%, 0%, 0.16);
   width: 100vw;
   height: 100vh;
   z-index: 0;
@@ -9,19 +9,20 @@
   position: absolute;
 }
 
-.modal {
+.modal__body {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 250px;
-  height: 170px;
-  background: white;
-  color: white;
+  width: 460px;
+  padding: 32px;
+  background: hsla(0, 0%, 100%, 1);
+  color: hsla(0, 0%, 100%, 1);
   z-index: 10;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+
+  box-shadow: 0px 8px 32px hsla(0, 0%, 0%, 0.08);
+  border-radius: 12px;
 }
 
 .modalHeader {
