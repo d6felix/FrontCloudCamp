@@ -14,14 +14,19 @@ import {
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect, useMemo } from "react";
 import { Button } from "@components/Button";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { formDataSchema } from "@schema/yupFormSchema";
 
 export function FormPart2() {
 	const {
 		register,
 		setValue,
 		getValues,
-		//	formState: { errors },
-	} = useForm<FormData>();
+		formState: { errors },
+	} = useForm<FormData>({
+		mode: "onBlur",
+		resolver: yupResolver(formDataSchema),
+	});
 
 	const dispatch = useAppDispatch();
 	const savedValues = useAppSelector(selectFormData);
@@ -119,9 +124,14 @@ export function FormPart2() {
 		<div>
 			<fieldset>
 				<label>Advantages:{advantages}</label>
-				<button type="button" onClick={addAdvantages} id="button-add">
+				<Button
+					type="button"
+					onClick={addAdvantages}
+					id="button-add"
+					style="border"
+				>
 					+
-				</button>
+				</Button>
 			</fieldset>
 			<fieldset>
 				<legend>Checkbox group:</legend>
@@ -132,7 +142,12 @@ export function FormPart2() {
 				<legend>Radio group:</legend>
 				<ul>{radio}</ul>
 			</fieldset>
-			<Button type="button" onClick={backStepHandle} id="button-back">
+			<Button
+				type="button"
+				onClick={backStepHandle}
+				id="button-back"
+				style="border"
+			>
 				Back
 			</Button>
 			<Button type="button" onClick={nextStepHandle} id="button-next">

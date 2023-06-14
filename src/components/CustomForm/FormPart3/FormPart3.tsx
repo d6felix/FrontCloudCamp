@@ -8,6 +8,8 @@ import {
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 import { Button } from "@components/Button";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { formDataSchema } from "@schema/yupFormSchema";
 
 export function FormPart3() {
 	const {
@@ -15,8 +17,11 @@ export function FormPart3() {
 		setValue,
 		getValues,
 		control,
-		//	formState: { errors },
-	} = useForm<FormData>();
+		formState: { errors },
+	} = useForm<FormData>({
+		mode: "onBlur",
+		resolver: yupResolver(formDataSchema),
+	});
 
 	const dispatch = useAppDispatch();
 	const savedValues = useAppSelector(selectFormData);
@@ -44,8 +49,13 @@ export function FormPart3() {
 		<div>
 			<label>About:</label>
 			<textarea {...register("about")} id="field-about"></textarea>
-			<div>{watchAbout.length}</div>
-			<Button type="button" onClick={backStepHandle} id="button-back">
+			<div>Symbol count: {watchAbout.length}</div>
+			<Button
+				type="button"
+				onClick={backStepHandle}
+				id="button-back"
+				style="border"
+			>
 				Back
 			</Button>
 			<Button type="submit" onClick={onSubmitHandle} id="button-send">
