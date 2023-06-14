@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { FormData } from "@schema/dataTypes";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { incrementFormStep } from "@features/formStep/formStepSlice";
 import {
@@ -9,17 +9,24 @@ import {
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 import { Button } from "@components/Button";
+import { formDataSchema } from "@schema/yupFormSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorTip } from "@components/ErrorTip";
 
 export function FormPart1() {
 	const {
 		register,
 		getValues,
 		setValue,
-		//	formState: { errors },
-	} = useForm<FormData>();
+		formState: { errors },
+	} = useForm<FormData>({
+		mode: "onBlur",
+		resolver: yupResolver(formDataSchema),
+	});
 
 	const dispatch = useAppDispatch();
 	const savedValues = useAppSelector(selectFormData);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const { nickname, name, sername, sex } = { ...savedValues };
@@ -31,6 +38,7 @@ export function FormPart1() {
 
 	const backHandle = () => {
 		dispatch(updateForm(getValues()));
+		navigate("/");
 	};
 	const nextStepHandle = () => {
 		dispatch(updateForm(getValues()));
@@ -42,14 +50,17 @@ export function FormPart1() {
 			<label>
 				Nickname
 				<input {...register("nickname")} id="field-nickname" />
+				<ErrorTip>{errors.nickname?.message}</ErrorTip>
 			</label>
 			<label>
 				Name
 				<input {...register("name")} id="field-name" />
+				<ErrorTip>{errors.name?.message}</ErrorTip>
 			</label>
 			<label>
 				Sername
 				<input {...register("sername")} id="field-sername" />
+				<ErrorTip>{errors.sername?.message}</ErrorTip>
 			</label>
 			<label htmlFor="field-sex">
 				Sex
@@ -62,11 +73,14 @@ export function FormPart1() {
 					</option>
 				</select>
 			</label>
-			<Link to={"/"}>
-				<Button type="button" onClick={backHandle} id="button-back">
-					Back
-				</Button>
-			</Link>
+			<Button
+				type="button"
+				onClick={backHandle}
+				id="button-back"
+				style="border"
+			>
+				Back
+			</Button>
 			<Button type="button" onClick={nextStepHandle} id="button-next">
 				Next
 			</Button>

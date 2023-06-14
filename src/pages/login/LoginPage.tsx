@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import styles from "./LoginPage.module.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { FormData } from "@schema/dataTypes";
 import { useAppDispatch } from "@hooks/reduxHooks";
 import { updateForm } from "@features/formSubmit/formSubmitSlice";
@@ -10,16 +10,23 @@ import { LoginHeader } from "@components/LoginHeader";
 import { resetFormStep } from "@features/formStep/formStepSlice";
 import { Button } from "@components/Button";
 import classNames from "classnames";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { formDataSchema } from "@schema/yupFormSchema";
+import { ErrorTip } from "@components/ErrorTip";
 
 export function LoginPage() {
 	const {
 		register,
 		setValue,
 		getValues,
-		//formState: { errors },
-	} = useForm<FormData>();
+		formState: { errors },
+	} = useForm<FormData>({
+		mode: "onBlur",
+		resolver: yupResolver(formDataSchema),
+	});
 
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		setValue("phoneNumber", "9175156001");
@@ -29,6 +36,9 @@ export function LoginPage() {
 	const onSubmit = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(resetFormStep());
+		if (!errors.email && !errors.phoneNumber) {
+			navigate("/create");
+		}
 	};
 
 	return (
@@ -43,16 +53,16 @@ export function LoginPage() {
 							"+7 (999) 999-99-99",
 						])}
 					/>
+					<ErrorTip>{errors.phoneNumber?.message}</ErrorTip>
 				</label>
 				<label>
 					E-mail
 					<input type="email" {...register("email")} />
+					<ErrorTip>{errors.email?.message}</ErrorTip>
 				</label>
-				<Link to={"create"}>
-					<Button type="submit" onClick={onSubmit} id="button-start">
-						Start
-					</Button>
-				</Link>
+				<Button type="button" onClick={onSubmit} id="button-start">
+					Start
+				</Button>
 			</form>
 		</div>
 	);
