@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import styles from "./FormProgress.module.scss";
 import CheckMark from "@assets/CheckMark.svg";
+import { memo } from "react";
 
 type FormProgressProps = {
 	step: number;
@@ -63,4 +64,4 @@ export function FormProgress({ step }: FormProgressProps) {
 	);
 }
 
-export default FormProgress;
+export default memo(FormProgress);

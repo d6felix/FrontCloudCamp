@@ -15,6 +15,7 @@
     ],
     "strictNullChecks": true,
     "strictFunctionTypes": false,
+    "sourceMap": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

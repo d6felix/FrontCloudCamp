@@ -40,6 +40,7 @@ const getSettingsForStyles = (withModules = false) => {
 module.exports = {
   target: !isProd ? "web" : "browserslist",
   entry: path.join(srcPath, "index.tsx"),
+  devtool: 'inline-source-map',
   output: {
     path: buildPath,
     filename: "bundle.js",
@@ -57,6 +58,11 @@ module.exports = {
   ].filter(Boolean),
   module: {
     rules: [
+      {
+        test: /\.[tj]sx?$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
+      },
       {
         test: /\.module\.s?css$/,
         use: getSettingsForStyles(true),
