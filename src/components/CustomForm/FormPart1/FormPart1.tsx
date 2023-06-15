@@ -31,10 +31,10 @@ export function FormPart1() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const { nickname, name, sername, sex } = { ...savedValues };
+		const { nickname, name, surname, sex } = { ...savedValues };
 		setValue("nickname", nickname);
 		setValue("name", name);
-		setValue("sername", sername);
+		setValue("surname", surname);
 		setValue("sex", sex);
 	}, []);
 
@@ -68,13 +68,13 @@ export function FormPart1() {
 				<ErrorTip>{errors.name?.message}</ErrorTip>
 			</label>
 			<label>
-				Sername
+				Surname
 				<input
 					className={classNames(styles.form1__input)}
-					{...register("sername")}
-					id="field-sername"
+					{...register("surname")}
+					id="field-surname"
 				/>
-				<ErrorTip>{errors.sername?.message}</ErrorTip>
+				<ErrorTip>{errors.surname?.message}</ErrorTip>
 			</label>
 			<label htmlFor="field-sex">
 				Sex

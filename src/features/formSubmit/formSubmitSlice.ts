@@ -12,7 +12,7 @@ const initialState: FormDataState = {
 	email: "",
 	nickname: "",
 	name: "",
-	sername: "",
+	surname: "",
 	sex: "man",
 	advantages: ["", "", ""],
 	checkbox: [],

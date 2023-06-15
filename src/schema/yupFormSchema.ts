@@ -26,12 +26,12 @@ export const formDataSchema: ObjectSchema<FormData> = object({
 			/^[A-Z][a-z]*$/,
 			"Name should have only letters and start with capital."
 		),
-	sername: string()
-		.required("Should have sername.")
-		.max(50, "Sername max length is 30.")
+	surname: string()
+		.required("Should have surname.")
+		.max(50, "Surname max length is 30.")
 		.matches(
 			/^[A-Z][a-z]*$/,
-			"Sername should have only letters and start with capital."
+			"Surname should have only letters and start with capital."
 		),
 	sex: string()
 		.oneOf(["man", "woman"], "Sex should be a man or woman.")

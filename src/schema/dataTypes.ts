@@ -3,7 +3,7 @@ export type FormData = {
 	email: string;
 	nickname: string;
 	name: string;
-	sername: string;
+	surname: string;
 	sex: "man" | "woman";
 	advantages: string[];
 	checkbox: number[];
