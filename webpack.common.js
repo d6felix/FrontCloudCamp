@@ -96,5 +96,7 @@ module.exports = {
       "@schema": path.join(srcPath, "/schema"),
     },
   },
-
+  optimization: {
+    usedExports: true,
+  },
 };
