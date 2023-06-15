@@ -1,11 +1,10 @@
 const path = require("path");
+console.log("Path: ", __dirname);
 
 const buildPath = path.resolve(__dirname, "build");
 const contentPath = path.resolve(__dirname, "public");
 const srcPath = path.resolve(__dirname, "src");
-const isProd = process.env.NODE_ENV === "production";
-const loclahost = "localhost";
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const isProd = process.env.NODE_ENV.trim() === "production";
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TsCheckerPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -21,7 +20,7 @@ const getSettingsForStyles = (withModules = false) => {
           modules: {
             localIdentName: !isProd
               ? "[path][name]__[local]"
-              : "[fullhash:base64]",
+              : "[hash:base64]",
           },
         },
       },
@@ -38,9 +37,8 @@ const getSettingsForStyles = (withModules = false) => {
 };
 
 module.exports = {
-  target: !isProd ? "web" : "browserslist",
+  target: "web",
   entry: path.join(srcPath, "index.tsx"),
-  devtool: 'inline-source-map',
   output: {
     path: buildPath,
     filename: "bundle.js",
@@ -50,19 +48,13 @@ module.exports = {
       template: path.resolve(contentPath, "index.html"),
       favicon: path.resolve(contentPath, "favicon.ico"),
     }),
-    !isProd && new ReactRefreshWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name]-[fullhash].css",
     }),
     new TsCheckerPlugin(),
-  ].filter(Boolean),
+  ],
   module: {
     rules: [
-      {
-        test: /\.[tj]sx?$/,
-        enforce: "pre",
-        use: ["source-map-loader"],
-      },
       {
         test: /\.module\.s?css$/,
         use: getSettingsForStyles(true),
@@ -104,11 +96,5 @@ module.exports = {
       "@schema": path.join(srcPath, "/schema"),
     },
   },
-  devServer: {
-    host: loclahost,
-    port: 3000,
-    static: contentPath,
-    hot: true,
-    historyApiFallback: true,
-  },
+
 };
