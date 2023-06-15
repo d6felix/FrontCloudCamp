@@ -1,15 +1,25 @@
 .header {
   position: relative;
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  grid-template-columns: 10fr 30fr 60fr;
+  grid-template-areas:
+    "usrImg title title"
+    "usrImg links .";
 
   border-bottom: solid 1px hsla(0, 0%, 0%, 0.08);
 
   &__title {
+    grid-are: title;
     font-weight: 600;
     font-size: 20px;
     line-height: 26px;
+
+    align-self: center;
   }
 
   &__userImg {
+    grid-area: usrImg;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,8 +36,22 @@
     color: hsla(212, 19%, 16%, 1);
   }
 
+  &__linkContainer {
+    grid-area: links;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 17px;
+  }
+
   &__link {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+
+    text-decoration: none;
     font-size: 12px;
     line-height: 16px;
+    color: hsla(239, 94%, 66%, 1);
   }
 }

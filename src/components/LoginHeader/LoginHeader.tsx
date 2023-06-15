@@ -16,27 +16,29 @@ export function LoginHeader() {
 			<h1 className={classNames(styles.header__title)}>
 				{lastName.concat(" ", firstName)}
 			</h1>
-			<img src={FolderIcon} alt="icon for personal link" />
-			<a
-				href="https://t.me/felix2d6"
-				className={classNames(styles.header__link)}
-			>
-				Telegram
-			</a>
-			<img src={FolderIcon} alt="icon for personal link" />
-			<a
-				href="https://github.com/d6felix"
-				className={classNames(styles.header__link)}
-			>
-				GitHub
-			</a>
-			<img src={FolderIcon} alt="icon for personal link" />
-			<a
-				href="https://hh.ru/resume/7fd12e42ff0af153d50039ed1f37616e324648"
-				className={classNames(styles.header__link)}
-			>
-				Resume
-			</a>
+			<span className={classNames(styles.header__linkContainer)}>
+				<a
+					href="https://t.me/felix2d6"
+					className={classNames(styles.header__link)}
+				>
+					<img src={FolderIcon} alt="icon for personal link" />
+					<span>Telegram</span>
+				</a>
+				<a
+					href="https://github.com/d6felix"
+					className={classNames(styles.header__link)}
+				>
+					<img src={FolderIcon} alt="icon for personal link" />{" "}
+					<span>GitHub</span>
+				</a>
+				<a
+					href="https://hh.ru/resume/7fd12e42ff0af153d50039ed1f37616e324648"
+					className={classNames(styles.header__link)}
+				>
+					<img src={FolderIcon} alt="icon for personal link" />
+					<span>Resume</span>
+				</a>
+			</span>
 		</header>
 	);
 }
