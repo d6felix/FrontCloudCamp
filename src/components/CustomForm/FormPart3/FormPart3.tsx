@@ -47,8 +47,10 @@ export function FormPart3() {
 
 	return (
 		<div>
-			<label>About:</label>
-			<textarea {...register("about")} id="field-about"></textarea>
+			<label htmlFor="field-about">
+				About:
+				<textarea {...register("about")} id="field-about"></textarea>
+			</label>
 			<div>Symbol count: {watchAbout.length}</div>
 			<Button
 				type="button"

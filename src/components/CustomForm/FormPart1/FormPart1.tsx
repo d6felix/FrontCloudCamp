@@ -49,7 +49,7 @@ export function FormPart1() {
 
 	return (
 		<div className={classNames(styles.form1)}>
-			<label>
+			<label htmlFor="field-nickname">
 				Nickname
 				<input
 					className={classNames(styles.form1__input)}
@@ -58,7 +58,7 @@ export function FormPart1() {
 				/>
 				<ErrorTip>{errors.nickname?.message}</ErrorTip>
 			</label>
-			<label>
+			<label htmlFor="field-name">
 				Name
 				<input
 					className={classNames(styles.form1__input)}
@@ -67,7 +67,7 @@ export function FormPart1() {
 				/>
 				<ErrorTip>{errors.name?.message}</ErrorTip>
 			</label>
-			<label>
+			<label htmlFor="field-surname">
 				Surname
 				<input
 					className={classNames(styles.form1__input)}

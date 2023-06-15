@@ -2,4 +2,13 @@
 
 .form2 {
   @include mix.inputStyles;
+
+  &__button {
+    &_back {}
+
+    &_next {
+      position: relative;
+      right: 0;
+    }
+  }
 }

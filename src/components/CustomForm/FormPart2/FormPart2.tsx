@@ -59,7 +59,7 @@ export function FormPart2() {
 	const advantages = useMemo(() => {
 		return Array.from({ length: advantagesLength }).map((_, index) => {
 			return (
-				<div key={advantagesId[index]}>
+				<div key={advantagesId[index]} id="field-advantages">
 					<input
 						className={classNames(styles.form2__input)}
 						{...register(`advantages.${index}`)}
@@ -126,7 +126,7 @@ export function FormPart2() {
 	return (
 		<div className={classNames(styles.form2)}>
 			<fieldset>
-				<label>Advantages:{advantages}</label>
+				<label htmlFor="field-advantages">Advantages:{advantages}</label>
 				<Button
 					type="button"
 					onClick={addAdvantages}
@@ -146,6 +146,7 @@ export function FormPart2() {
 				<ul>{radio}</ul>
 			</fieldset>
 			<Button
+				className={classNames(styles.form2__button_back)}
 				type="button"
 				onClick={backStepHandle}
 				id="button-back"
@@ -153,7 +154,12 @@ export function FormPart2() {
 			>
 				Back
 			</Button>
-			<Button type="button" onClick={nextStepHandle} id="button-next">
+			<Button
+				className={classNames(styles.form2__button_next)}
+				type="button"
+				onClick={nextStepHandle}
+				id="button-next"
+			>
 				Next
 			</Button>
 		</div>
