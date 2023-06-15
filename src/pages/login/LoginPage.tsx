@@ -14,6 +14,7 @@ import classNames from "classnames";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formDataSchema } from "@schema/yupFormSchema";
 import { ErrorTip } from "@components/ErrorTip";
+import { phonenumberTransform } from "@utils/helperFunctions";
 
 export function LoginPage() {
 	const {
@@ -34,14 +35,6 @@ export function LoginPage() {
 		setValue("phoneNumber", 9175156001);
 		setValue("email", "d6felix@gmail.com");
 	}, []);
-
-	const phonenumberTransform = (phoneNumber: number | string) => {
-		if (typeof phoneNumber === "number") {
-			return phoneNumber;
-		} else if (typeof phoneNumber === "string") {
-			return +phoneNumber.replace(/\D/g, "").slice(1);
-		}
-	};
 
 	const onStart = () => {
 		dispatch(updateForm(getValues()));
