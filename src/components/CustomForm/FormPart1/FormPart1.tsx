@@ -9,22 +9,25 @@ import {
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
-import { formDataSchema } from "@schema/yupFormSchema";
+import { formPart1Schema } from "@schema/yupFormSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
 import classNames from "classnames";
 import styles from "./FormPart1.module.scss";
 import { Select } from "@components/FormElements/Select";
+import { ValidationError } from "yup";
 
 export function FormPart1() {
 	const {
 		register,
 		getValues,
 		setValue,
+		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>({
 		mode: "onBlur",
-		resolver: yupResolver(formDataSchema),
+		reValidateMode: "onBlur",
+		resolver: yupResolver(formPart1Schema),
 	});
 
 	const dispatch = useAppDispatch();
@@ -39,11 +42,12 @@ export function FormPart1() {
 		setValue("sex", sex);
 	}, []);
 
-	const backHandle = () => {
+	const handleBack = () => {
 		dispatch(updateForm(getValues()));
 		navigate("/");
 	};
-	const nextStepHandle = () => {
+
+	const handleNextStep = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(incrementFormStep());
 	};
@@ -80,13 +84,17 @@ export function FormPart1() {
 			<Select register={register} label="sex" options={["man", "woman"]} />
 			<Button
 				type="button"
-				onClick={backHandle}
+				onClick={handleBack}
 				id="button-back"
 				style="border"
 			>
 				Back
 			</Button>
-			<Button type="button" onClick={nextStepHandle} id="button-next">
+			<Button
+				type="button"
+				onClick={(...args) => void handleSubmit(handleNextStep)(...args)}
+				id="button-next"
+			>
 				Next
 			</Button>
 		</div>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { FormPart1 } from "./FormPart1/FormPart1";
 import { FormPart2 } from "./FormPart2/FormPart2";
 import { FormPart3 } from "./FormPart3/FormPart3";
@@ -47,11 +46,12 @@ export function CustomForm() {
 	// }
 	const onSubmit = () => {
 		dispatch(showModalSuccess());
+		console.log(formSubmit);
 	};
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>
 				{step === 1 && <FormPart1 />}
 				{step === 2 && <FormPart2 />}
 				{step === 3 && <FormPart3 />}
