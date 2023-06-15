@@ -3,13 +3,42 @@
 .loginPage {
   @include mix.inputStyles;
 
-  &__input {
-    width: 400px;
-  }
 
   border-radius: 12px 12px 0px 0px;
   width: 66vw;
   margin: 30px auto;
   background-color: hsla(0, 0%, 100%, 1);
   padding: 25px 24px 291px 24px;
+
+  &__form {
+    display: grid;
+    grid-template-columns: 40fr;
+    grid-template-rows: repeat(3, min-content);
+    grid-template-areas:
+      "phone"
+      "email"
+      "button";
+    padding: 24px 0;
+    gap: 24px;
+  }
+
+  &__label {
+    &__phone {
+      grid-area: phone;
+    }
+
+    &__email {
+      grid-area: email;
+    }
+  }
+
+  &__input {
+    margin-top: 8px;
+    width: clamp(10rem, 70%, 40rem);
+  }
+
+  &__button {
+    grid-area: button;
+    margin-top: 24px;
+  }
 }

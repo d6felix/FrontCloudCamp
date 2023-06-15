@@ -19,6 +19,10 @@ fieldset {
     border: none;
 }
 
+html {
+    font-size: 10px;
+}
+
 body {
     background-color: hsla(240, 5%, 96%, 1);
     max-height: 100vh;
@@ -26,8 +30,8 @@ body {
     font-family: 'SB Sans Interface';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 1.4rem;
+    line-height: 2rem;
 
     overflow-x: hidden;
     margin-right: calc(-1 * (100vw - 100%));

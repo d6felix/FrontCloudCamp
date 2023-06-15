@@ -54,8 +54,13 @@ export function LoginPage() {
 	return (
 		<div className={classNames(styles.loginPage)}>
 			<LoginHeader />
-			<form>
-				<label>
+			<form className={classNames(styles.loginPage__form)}>
+				<label
+					className={classNames(
+						styles.loginPage__label,
+						styles.loginPage__label_phone
+					)}
+				>
 					Phone number
 					<input
 						className={classNames(styles.loginPage__input)}
@@ -67,18 +72,32 @@ export function LoginPage() {
 							["+7 (999) 999-99-99"]
 						)}
 					/>
-					<ErrorTip>{errors.phoneNumber?.message}</ErrorTip>
+					<ErrorTip className={classNames(styles.loginPage__errorTip)}>
+						{errors.phoneNumber?.message}
+					</ErrorTip>
 				</label>
-				<label>
+				<label
+					className={classNames(
+						styles.loginPage__label,
+						styles.loginPage__label_email
+					)}
+				>
 					E-mail
 					<input
 						type="email"
 						{...register("email")}
 						className={classNames(styles.loginPage__input)}
 					/>
-					<ErrorTip>{errors.email?.message}</ErrorTip>
+					<ErrorTip className={classNames(styles.loginPage__errorTip)}>
+						{errors.email?.message}
+					</ErrorTip>
 				</label>
-				<Button type="button" onClick={onStart} id="button-start">
+				<Button
+					type="button"
+					onClick={onStart}
+					id="button-start"
+					className={classNames(styles.loginPage__button)}
+				>
 					Start
 				</Button>
 			</form>

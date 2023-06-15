@@ -16,10 +16,10 @@
   transform: translate(-50%, -50%);
 
   font-weight: 600;
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 2rem;
+  line-height: 26rem;
 
-  width: 460px;
+  width: clamp(240px, 50vw, 460px);
   padding: 32px;
   background: hsla(0, 0%, 100%, 1);
   color: hsla(0, 0%, 100%, 1);
