@@ -16,6 +16,9 @@ import { useEffect, useMemo } from "react";
 import { Button } from "@components/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formDataSchema } from "@schema/yupFormSchema";
+import RemoveIcon from "@assets/RemoveIcon.svg";
+import styles from "./FormPart2.module.scss";
+import classNames from "classnames";
 
 export function FormPart2() {
 	const {
@@ -58,11 +61,11 @@ export function FormPart2() {
 			return (
 				<div key={advantagesId[index]}>
 					<input
+						className={classNames(styles.form2__input)}
 						{...register(`advantages.${index}`)}
 						id={`field-advantages-${index + 1}`}
 					/>
-					<button
-						type="button"
+					<div
 						onClick={() => {
 							dispatch(
 								removeFormAdvantage({
@@ -73,8 +76,8 @@ export function FormPart2() {
 						}}
 						id={`button-remove-${index + 1}`}
 					>
-						delete
-					</button>
+						<img src={RemoveIcon} alt="remove" />
+					</div>
 				</div>
 			);
 		});
@@ -121,7 +124,7 @@ export function FormPart2() {
 	}, [radioId]);
 
 	return (
-		<div>
+		<div className={classNames(styles.form2)}>
 			<fieldset>
 				<label>Advantages:{advantages}</label>
 				<Button

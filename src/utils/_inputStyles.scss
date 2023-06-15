@@ -1,0 +1,15 @@
+@mixin inputStyles {
+  &__input {
+    padding: 12px;
+    width: 300px;
+    background: #FFFFFF;
+    color: hsla(0, 0%, 0%, 0.48);
+    border: 1px solid hsla(0, 0%, 0%, 0.16);
+    border-radius: 4px;
+
+    &:focus {
+      outline: none;
+      border-color: hsla(239, 94%, 66%, 1);
+    }
+  }
+}

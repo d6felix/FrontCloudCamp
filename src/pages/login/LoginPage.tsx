@@ -58,6 +58,7 @@ export function LoginPage() {
 				<label>
 					Phone number
 					<input
+						className={classNames(styles.loginPage__input)}
 						type="tel"
 						{...withHookFormMask(
 							register("phoneNumber", {
@@ -70,7 +71,11 @@ export function LoginPage() {
 				</label>
 				<label>
 					E-mail
-					<input type="email" {...register("email")} />
+					<input
+						type="email"
+						{...register("email")}
+						className={classNames(styles.loginPage__input)}
+					/>
 					<ErrorTip>{errors.email?.message}</ErrorTip>
 				</label>
 				<Button type="button" onClick={onStart} id="button-start">

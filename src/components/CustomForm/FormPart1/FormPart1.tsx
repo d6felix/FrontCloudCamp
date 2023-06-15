@@ -12,6 +12,8 @@ import { Button } from "@components/Button";
 import { formDataSchema } from "@schema/yupFormSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
+import classNames from "classnames";
+import styles from "./FormPart1.module.scss";
 
 export function FormPart1() {
 	const {
@@ -46,20 +48,32 @@ export function FormPart1() {
 	};
 
 	return (
-		<div>
+		<div className={classNames(styles.form1)}>
 			<label>
 				Nickname
-				<input {...register("nickname")} id="field-nickname" />
+				<input
+					className={classNames(styles.form1__input)}
+					{...register("nickname")}
+					id="field-nickname"
+				/>
 				<ErrorTip>{errors.nickname?.message}</ErrorTip>
 			</label>
 			<label>
 				Name
-				<input {...register("name")} id="field-name" />
+				<input
+					className={classNames(styles.form1__input)}
+					{...register("name")}
+					id="field-name"
+				/>
 				<ErrorTip>{errors.name?.message}</ErrorTip>
 			</label>
 			<label>
 				Sername
-				<input {...register("sername")} id="field-sername" />
+				<input
+					className={classNames(styles.form1__input)}
+					{...register("sername")}
+					id="field-sername"
+				/>
 				<ErrorTip>{errors.sername?.message}</ErrorTip>
 			</label>
 			<label htmlFor="field-sex">

@@ -1,0 +1,5 @@
+@use "./../../../utils/inputStyles" as mix;
+
+.form2 {
+  @include mix.inputStyles;
+}

@@ -1,6 +1,15 @@
+@use "./../../utils/inputStyles" as mix;
+
 .loginPage {
+  @include mix.inputStyles;
+
+  &__input {
+    width: 400px;
+  }
+
   border-radius: 12px 12px 0px 0px;
   width: 66vw;
   margin: 30px auto;
   background-color: hsla(0, 0%, 100%, 1);
+  padding: 25px 24px 0 24px;
 }
