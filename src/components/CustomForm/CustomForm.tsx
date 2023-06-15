@@ -27,20 +27,20 @@ export type ModalState = {
 export function CustomForm() {
 	const {
 		handleSubmit,
-		formState: { errors },
+		//formState: { errors },
 	} = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
 
-	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
+	//const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
 	const formSubmit = useAppSelector(selectFormData);
 	//const onSubmit = async () => {
 	// if (formDataSchema.isValidSync(formSubmit)) {
-	// 	// const submitResult = await addFormData(formSubmit)
-	// 	// 	.unwrap()
-	// 	// 	.then((payload) => payload.status === "success")
-	// 	// 	.catch(() => false);
+	// 	 const submitResult = await addFormData(formSubmit)
+	// 	 	.unwrap()
+	// 	 	.then((payload) => payload.status === "success")
+	// 	 	.catch(() => false);
 	// 	setSubmitSuccess(submitResult);
 	// } else {
 	// 	setSubmitSuccess(false);

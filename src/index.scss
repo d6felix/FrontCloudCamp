@@ -1,10 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: block;
-}
-
 @font-face {
     font-family: "SB Sans Interface";
     src: url("./assets/fonts/SBSansInterface-Regular.woff2") format("woff2");
@@ -13,6 +6,17 @@
 @font-face {
     font-family: "SB Sans Text Mono";
     src: url("./assets/fonts/SBSansInterface-Semibold.woff2") format("woff2");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+fieldset {
+    border: none;
 }
 
 body {
@@ -27,8 +31,4 @@ body {
 
     overflow-x: hidden;
     margin-right: calc(-1 * (100vw - 100%));
-}
-
-fieldset {
-    border: none;
 }
