@@ -3,16 +3,31 @@
 
   border-bottom: solid 1px hsla(0, 0%, 0%, 0.08);
 
-  &__userImg {
+  &__title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+  }
 
+  &__userImg {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-family: "SB Sans Text Mono";
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 52px;
+
     width: 80px;
     height: 80px;
     border-radius: 50%;
     background: hsla(214, 68%, 90%, 1);
-    font-size: 35px;
     color: hsla(212, 19%, 16%, 1);
+  }
+
+  &__link {
+    font-size: 12px;
+    line-height: 16px;
   }
 }

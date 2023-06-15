@@ -81,6 +81,10 @@ module.exports = {
         test: /\.(png|svg|jpg)$/,
         type: "asset/resource",
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        type: 'asset/resource',
+      }
     ],
   },
   resolve: {
