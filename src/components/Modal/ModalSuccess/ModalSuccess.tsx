@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useAppDispatch } from "@hooks/reduxHooks";
 import { hideModal } from "@features/showModal/showModalSlice";
 import ModalGreenSuccess from "@assets/ModalGreenSuccess.svg";
-import { Button } from "@components/Button";
+import { Button } from "@components/FormElements/Button";
 
 export function ModalSuccess() {
 	const navigate = useNavigate();

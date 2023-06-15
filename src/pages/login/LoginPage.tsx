@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { withHookFormMask } from "use-mask-input";
 import { LoginHeader } from "@components/LoginHeader";
 import { resetFormStep } from "@features/formStep/formStepSlice";
-import { Button } from "@components/Button";
+import { Button } from "@components/FormElements/Button";
 import classNames from "classnames";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formDataSchema } from "@schema/yupFormSchema";

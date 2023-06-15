@@ -13,7 +13,7 @@ import {
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect, useMemo } from "react";
-import { Button } from "@components/Button";
+import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formDataSchema } from "@schema/yupFormSchema";
 import RemoveIcon from "@assets/RemoveIcon.svg";

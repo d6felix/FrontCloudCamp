@@ -8,7 +8,7 @@ import {
 	selectFormData,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
-import { Button } from "@components/Button";
+import { Button } from "@components/FormElements/Button";
 import { formDataSchema } from "@schema/yupFormSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
@@ -78,14 +78,31 @@ export function FormPart1() {
 			</label>
 			<label htmlFor="field-sex">
 				Sex
-				<select id="field-sex" placeholder="Not selected" {...register("sex")}>
-					<option value="man" id="field-sex-option-man">
-						Man
-					</option>
-					<option value="woman" id="field-sex-option-woman">
-						Woman
-					</option>
-				</select>
+				<div className={classNames(styles.form1__selectContainer)}>
+					<select
+						id="field-sex"
+						placeholder="Not selected"
+						{...register("sex")}
+						className={classNames(styles.form1__select)}
+					>
+						<option
+							value="man"
+							id="field-sex-option-man"
+							className={classNames(styles.form1__selectOption)}
+						>
+							Man
+						</option>
+						<option
+							value="woman"
+							id="field-sex-option-woman"
+							className={classNames(styles.form1__selectOption)}
+						>
+							Woman
+						</option>
+					</select>
+
+					<span className={classNames(styles.form1__focus)}></span>
+				</div>
 			</label>
 			<Button
 				type="button"

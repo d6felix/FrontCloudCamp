@@ -4,7 +4,7 @@ import { useAppDispatch } from "@hooks/reduxHooks";
 import { hideModal } from "@features/showModal/showModalSlice";
 import CrossClose from "@assets/CrossClose.svg";
 import ModalRedError from "@assets/ModalRedError.svg";
-import { Button } from "@components/Button";
+import { Button } from "@components/FormElements/Button";
 
 export function ModalError() {
 	const dispatch = useAppDispatch();
