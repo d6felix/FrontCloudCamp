@@ -14,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
 import classNames from "classnames";
 import styles from "./FormPart1.module.scss";
+import { Select } from "@components/FormElements/Select";
 
 export function FormPart1() {
 	const {
@@ -76,34 +77,7 @@ export function FormPart1() {
 				/>
 				<ErrorTip>{errors.surname?.message}</ErrorTip>
 			</label>
-			<label htmlFor="field-sex">
-				Sex
-				<div className={classNames(styles.form1__selectContainer)}>
-					<select
-						id="field-sex"
-						placeholder="Not selected"
-						{...register("sex")}
-						className={classNames(styles.form1__select)}
-					>
-						<option
-							value="man"
-							id="field-sex-option-man"
-							className={classNames(styles.form1__selectOption)}
-						>
-							Man
-						</option>
-						<option
-							value="woman"
-							id="field-sex-option-woman"
-							className={classNames(styles.form1__selectOption)}
-						>
-							Woman
-						</option>
-					</select>
-
-					<span className={classNames(styles.form1__focus)}></span>
-				</div>
-			</label>
+			<Select register={register} label="sex" options={["man", "woman"]} />
 			<Button
 				type="button"
 				onClick={backHandle}

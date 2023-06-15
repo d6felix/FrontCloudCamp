@@ -1,0 +1,62 @@
+.select {
+
+  &__select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    z-index: 1;
+    grid-area: select;
+    width: 300px;
+
+    border: 1px solid hsla(0, 0%, 0%, 0.16);
+    border-radius: 0.25em;
+    padding: 12px 0 12px 12px;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &::after {
+      grid-area: select;
+    }
+  }
+
+  &__selectContainer {
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+    position: relative;
+
+    :focus {
+      border: 1px solid hsla(239, 94%, 66%, 1)
+    }
+
+    cursor: pointer;
+
+    &::after {
+      position: absolute;
+      content: "";
+      justify-self: end;
+      width: 9.5px;
+      height: 9.5px;
+      border-bottom: 1px solid hsla(0, 0%, 0%, 0.24);
+      border-right: 1px solid hsla(0, 0%, 0%, 0.24);
+      transform: rotate(45deg);
+    }
+
+
+  }
+
+  &__selectOption {
+
+    height: 37px;
+    padding: 12px;
+    width: 300px;
+  }
+}
