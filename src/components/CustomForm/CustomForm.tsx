@@ -17,25 +17,17 @@ import {
 	showModalError,
 } from "@features/showModal/showModalSlice";
 
-export type ModalState = {
-	isSuccessfull: boolean;
-	show: boolean;
-};
-
 export function CustomForm() {
-	const {
-		handleSubmit,
-		formState: { errors },
-	} = useForm<FormData>();
+	const { handleSubmit } = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
 
-	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
+	const [addFormData] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
 	const formSubmit = useAppSelector(selectFormData);
 	const onSubmit = async () => {
 		if (formDataSchema.isValidSync(formSubmit)) {
-			const submitResult = await addFormData(formSubmit)
+			await addFormData(formSubmit)
 				.unwrap()
 				.then((payload) =>
 					payload.status === "success"
