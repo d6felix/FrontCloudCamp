@@ -46,7 +46,7 @@
             "error",
             {
                 "printWidth": 80,
-                "endOfLine": "lf",
+                "endOfLine": "auto",
                 "doubleQuote": true,
                 "tabWidth": 2,
                 "indentStyle": "space",
