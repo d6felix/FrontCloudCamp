@@ -6,7 +6,8 @@
   "license": "MIT",
   "sideEffects": [
     "./src/index.scss",
-    "./src/index.tsx"
+    "./src/index.tsx",
+    "./src/components/FormElements/Button/Button.module.scss"
   ],
   "private": false,
   "dependencies": {
