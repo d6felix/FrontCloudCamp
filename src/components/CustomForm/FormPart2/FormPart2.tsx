@@ -19,6 +19,7 @@ import RemoveIcon from "@assets/RemoveIcon.svg";
 import styles from "./FormPart2.module.scss";
 import classNames from "classnames";
 import { ErrorTip } from "@components/ErrorTip";
+import { CheckBox } from "@components/FormElements/CheckBox";
 
 export function FormPart2() {
 	const {
@@ -91,15 +92,12 @@ export function FormPart2() {
 			const num = index + 1;
 			return (
 				<li key={checkboxId[index]}>
-					<label htmlFor={`field-checkbox-group-option-${num}`}>
-						<input
-							type="checkbox"
-							id={`field-checkbox-group-option-${num}`}
-							value={num}
-							{...register(`checkbox`)}
-						/>
-						{num}
-					</label>
+					<CheckBox
+						id={`field-checkbox-group-option-${num}`}
+						register={register}
+						value={num}
+						label={"checkbox"}
+					/>
 				</li>
 			);
 		});
