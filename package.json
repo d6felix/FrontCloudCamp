@@ -6,7 +6,7 @@
   "license": "MIT",
   "sideEffects": [
     "./src/index.scss",
-    "./src/index.tsx",
+    "./src/index.tsx"
   ],
   "private": false,
   "dependencies": {
