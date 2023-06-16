@@ -1,5 +1,5 @@
 import { useForm, useWatch } from "react-hook-form";
-import type { FormData } from "@schema/dataTypes";
+import { FormData, formPart3Schema } from "@schema/RegistrationForm";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { decrementFormStep } from "@features/formStep/formStepSlice";
 import {
@@ -9,18 +9,20 @@ import {
 import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { formDataSchema } from "@schema/yupFormSchema";
+import { ErrorTip } from "@components/ErrorTip";
 
 export function FormPart3() {
 	const {
 		register,
 		setValue,
+		setFocus,
 		getValues,
 		control,
 		formState: { errors },
 	} = useForm<FormData>({
 		mode: "onBlur",
-		resolver: yupResolver(formDataSchema),
+		reValidateMode: "onBlur",
+		resolver: yupResolver(formPart3Schema),
 	});
 
 	const dispatch = useAppDispatch();
@@ -28,8 +30,9 @@ export function FormPart3() {
 
 	useEffect(() => {
 		const { about } = { ...savedValues };
+		setFocus("about");
 		setValue("about", about);
-	}, [savedValues]);
+	}, [savedValues, setFocus]);
 
 	const backStepHandle = () => {
 		dispatch(updateForm(getValues()));
@@ -50,6 +53,7 @@ export function FormPart3() {
 			<label htmlFor="field-about">
 				About:
 				<textarea {...register("about")} id="field-about"></textarea>
+				<ErrorTip>{errors.about?.message}</ErrorTip>
 			</label>
 			<div>Symbol count: {watchAbout.length}</div>
 			<Button

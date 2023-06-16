@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import type { FormData } from "@schema/dataTypes";
+import { FormData, formPart2Schema } from "@schema/RegistrationForm";
 import { useId } from "react-id-generator";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import {
@@ -15,7 +15,6 @@ import {
 import { useEffect, useMemo } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { formDataSchema } from "@schema/yupFormSchema";
 import RemoveIcon from "@assets/RemoveIcon.svg";
 import styles from "./FormPart2.module.scss";
 import classNames from "classnames";
@@ -25,10 +24,12 @@ export function FormPart2() {
 		register,
 		setValue,
 		getValues,
+		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>({
 		mode: "onBlur",
-		resolver: yupResolver(formDataSchema),
+		reValidateMode: "onBlur",
+		resolver: yupResolver(formPart2Schema),
 	});
 
 	const dispatch = useAppDispatch();
@@ -157,7 +158,7 @@ export function FormPart2() {
 			<Button
 				className={classNames(styles.form2__button_next)}
 				type="button"
-				onClick={nextStepHandle}
+				onClick={(...args) => void handleSubmit(nextStepHandle)(...args)}
 				id="button-next"
 			>
 				Next

@@ -70,4 +70,5 @@ export const formDataSchema: ObjectSchema<FormData> = object()
 	.concat(loginPageSchema)
 	.concat(formPart1Schema)
 	.concat(formPart2Schema)
-	.concat(formPart3Schema);
+	.concat(formPart3Schema)
+	.required("Should have form.");

@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@store/store";
-import type { FormData } from "@schema/dataTypes";
+import type { FormData } from "@schema/RegistrationForm/dataTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseURL } from "./formSubmitAPI";
 import { ServerResponse } from "./responseType";

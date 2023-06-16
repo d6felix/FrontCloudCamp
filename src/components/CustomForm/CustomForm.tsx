@@ -4,8 +4,7 @@ import { FormPart3 } from "./FormPart3/FormPart3";
 import { useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { selectFormStep } from "@features/formStep/formStepSlice";
-import { FormData } from "@schema/dataTypes";
-import { formDataSchema } from "@schema/yupFormSchema";
+import { FormData, formDataSchema } from "@schema/RegistrationForm";
 import { Modal } from "@components/Modal";
 
 import {
@@ -26,29 +25,28 @@ export type ModalState = {
 export function CustomForm() {
 	const {
 		handleSubmit,
-		//formState: { errors },
+		formState: { errors },
 	} = useForm<FormData>();
 
 	const dispatch = useAppDispatch();
 
-	//const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
+	const [addFormData, { isLoading: isUpdating }] = useAddFormDataMutation();
 	const step = useAppSelector(selectFormStep);
 	const formSubmit = useAppSelector(selectFormData);
-	//const onSubmit = async () => {
-	// if (formDataSchema.isValidSync(formSubmit)) {
-	// 	 const submitResult = await addFormData(formSubmit)
-	// 	 	.unwrap()
-	// 	 	.then((payload) => payload.status === "success")
-	// 	 	.catch(() => false);
-	// 	setSubmitSuccess(submitResult);
-	// } else {
-	// 	setSubmitSuccess(false);
-	// }
-	const onSubmit = () => {
-		dispatch(showModalSuccess());
-		console.log(formSubmit);
+	const onSubmit = async () => {
+		if (formDataSchema.isValidSync(formSubmit)) {
+			const submitResult = await addFormData(formSubmit)
+				.unwrap()
+				.then((payload) =>
+					payload.status === "success"
+						? dispatch(showModalSuccess())
+						: dispatch(showModalError())
+				)
+				.catch(() => dispatch(showModalError()));
+		} else {
+			dispatch(showModalError());
+		}
 	};
-
 	return (
 		<>
 			<form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>

@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
 import styles from "./LoginPage.module.scss";
 import { useNavigate } from "react-router-dom";
-import type { FormData } from "@schema/dataTypes";
+import { FormData, loginPageSchema } from "@schema/RegistrationForm";
 import { useAppDispatch } from "@hooks/reduxHooks";
 import { updateForm } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
@@ -12,7 +11,6 @@ import { resetFormStep } from "@features/formStep/formStepSlice";
 import { Button } from "@components/FormElements/Button";
 import classNames from "classnames";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { formDataSchema } from "@schema/yupFormSchema";
 import { ErrorTip } from "@components/ErrorTip";
 import { phonenumberTransform } from "@utils/helperFunctions";
 
@@ -22,10 +20,11 @@ export function LoginPage() {
 		setValue,
 		getValues,
 		formState: { errors },
+		handleSubmit,
 	} = useForm<FormData>({
 		mode: "onBlur",
 		reValidateMode: "onBlur",
-		resolver: yupResolver(formDataSchema),
+		resolver: yupResolver(loginPageSchema),
 	});
 
 	const dispatch = useAppDispatch();
@@ -87,7 +86,7 @@ export function LoginPage() {
 				</label>
 				<Button
 					type="button"
-					onClick={onStart}
+					onClick={(...args) => void handleSubmit(onStart)(...args)}
 					id="button-start"
 					className={classNames(styles.loginPage__button)}
 				>

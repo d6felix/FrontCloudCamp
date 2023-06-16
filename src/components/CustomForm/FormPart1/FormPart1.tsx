@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { FormData } from "@schema/dataTypes";
+import { FormData, formPart1Schema } from "@schema/RegistrationForm";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { incrementFormStep } from "@features/formStep/formStepSlice";
@@ -9,13 +9,11 @@ import {
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
-import { formPart1Schema } from "@schema/yupFormSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
 import classNames from "classnames";
 import styles from "./FormPart1.module.scss";
 import { Select } from "@components/FormElements/Select";
-import { ValidationError } from "yup";
 
 export function FormPart1() {
 	const {

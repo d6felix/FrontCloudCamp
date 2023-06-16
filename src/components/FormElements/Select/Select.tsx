@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import styles from "./Select.module.scss";
 import { UseFormRegister } from "react-hook-form/dist/types";
-import { FormData } from "@schema/dataTypes";
+import { FormData } from "@schema/RegistrationForm/dataTypes";
 import { memo } from "react";
 import { useId } from "react-id-generator";
 import { capitalizeFirstLetter } from "@utils/helperFunctions";
