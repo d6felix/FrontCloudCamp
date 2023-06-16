@@ -1,6 +1,5 @@
 {
   "name": "front-cloud-camp",
-  "homepage": "https://d6felix.github.io/FrontCloudCamp/",
   "version": "1.0.0",
   "description": "form page",
   "main": "index.js",
@@ -32,8 +31,6 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build -r https://github.com/d6felix/FrontCloudCamp.git",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --cache --max-warnings=0",
     "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix",
     "start": "SET NODE_ENV=development & webpack serve --open --config webpack.dev.js",
@@ -79,7 +76,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
-    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.1",
     "install-peers": "^1.0.4",
     "mini-css-extract-plugin": "^2.7.5",

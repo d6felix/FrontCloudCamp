@@ -12,12 +12,12 @@ const rootElement = document.getElementById("root");
 
 const router = createBrowserRouter([
 	{
-		path: "/FrontCloudCamp/",
+		path: "/",
 		element: <LoginPage />,
 		errorElement: <ErrorPage />,
 	},
 	{
-		path: "/FrontCloudCamp/create",
+		path: "/create",
 		element: <FormPage />,
 		errorElement: <ErrorPage />,
 	},

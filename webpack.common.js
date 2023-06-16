@@ -1,5 +1,4 @@
 const path = require("path");
-console.log("Path: ", __dirname);
 
 const buildPath = path.resolve(__dirname, "build");
 const contentPath = path.resolve(__dirname, "public");
