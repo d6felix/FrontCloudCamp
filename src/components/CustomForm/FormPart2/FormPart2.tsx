@@ -18,6 +18,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import RemoveIcon from "@assets/RemoveIcon.svg";
 import styles from "./FormPart2.module.scss";
 import classNames from "classnames";
+import { ErrorTip } from "@components/ErrorTip";
 
 export function FormPart2() {
 	const {
@@ -126,8 +127,11 @@ export function FormPart2() {
 
 	return (
 		<div className={classNames(styles.form2)}>
-			<fieldset>
+			<fieldset className={classNames(styles.form2__advantages)}>
 				<label htmlFor="field-advantages">Advantages:{advantages}</label>
+				<ErrorTip>
+					{errors.advantages ? errors.advantages[0]?.message : ""}
+				</ErrorTip>
 				<Button
 					type="button"
 					onClick={addAdvantages}
@@ -137,12 +141,12 @@ export function FormPart2() {
 					+
 				</Button>
 			</fieldset>
-			<fieldset>
+			<fieldset className={classNames(styles.form2__checkbox)}>
 				<legend>Checkbox group:</legend>
 				<ul>{checkbox}</ul>
 			</fieldset>
 
-			<fieldset>
+			<fieldset className={classNames(styles.form2__radio)}>
 				<legend>Radio group:</legend>
 				<ul>{radio}</ul>
 			</fieldset>

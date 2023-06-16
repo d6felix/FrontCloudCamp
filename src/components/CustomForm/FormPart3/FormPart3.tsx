@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
+import classNames from "classnames";
+import styles from "./FormPart3.module.scss";
 
 export function FormPart3() {
 	const {
@@ -28,6 +30,12 @@ export function FormPart3() {
 	const dispatch = useAppDispatch();
 	const savedValues = useAppSelector(selectFormData);
 
+	const watchAbout = useWatch({
+		control,
+		name: "about",
+		defaultValue: "",
+	}).replaceAll(" ", "");
+
 	useEffect(() => {
 		const { about } = { ...savedValues };
 		setFocus("about");
@@ -42,29 +50,39 @@ export function FormPart3() {
 		dispatch(updateForm(getValues()));
 	};
 
-	const watchAbout = useWatch({
-		control,
-		name: "about",
-		defaultValue: "",
-	}).replaceAll(" ", "");
-
 	return (
-		<div>
-			<label htmlFor="field-about">
-				About:
-				<textarea {...register("about")} id="field-about"></textarea>
-				<ErrorTip>{errors.about?.message}</ErrorTip>
+		<div className={classNames(styles.form3)}>
+			<label htmlFor="field-about" className={classNames(styles.form3__about)}>
+				<div className={classNames(styles.form3__about_container)}>
+					About:
+					<textarea
+						className={classNames(styles.form3__input)}
+						{...register("about")}
+						id="field-about"
+					></textarea>
+				</div>
+				<ErrorTip className={classNames(styles.form3__about_error)}>
+					{errors.about?.message}
+				</ErrorTip>
+				<div className={classNames(styles.form3__about_count)}>
+					Symbol count: {watchAbout.length}
+				</div>
 			</label>
-			<div>Symbol count: {watchAbout.length}</div>
 			<Button
 				type="button"
 				onClick={backStepHandle}
 				id="button-back"
 				style="border"
+				className={classNames(styles.form3__button_back)}
 			>
 				Back
 			</Button>
-			<Button type="submit" onClick={onSubmitHandle} id="button-send">
+			<Button
+				type="submit"
+				onClick={onSubmitHandle}
+				id="button-send"
+				className={classNames(styles.form3__button_submit)}
+			>
 				Submit
 			</Button>
 		</div>

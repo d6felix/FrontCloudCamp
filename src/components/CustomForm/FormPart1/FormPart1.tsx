@@ -52,7 +52,10 @@ export function FormPart1() {
 
 	return (
 		<div className={classNames(styles.form1)}>
-			<label htmlFor="field-nickname">
+			<label
+				htmlFor="field-nickname"
+				className={classNames(styles.form1__nickname)}
+			>
 				Nickname
 				<input
 					className={classNames(styles.form1__input)}
@@ -61,7 +64,7 @@ export function FormPart1() {
 				/>
 				<ErrorTip>{errors.nickname?.message}</ErrorTip>
 			</label>
-			<label htmlFor="field-name">
+			<label htmlFor="field-name" className={classNames(styles.form1__name)}>
 				Name
 				<input
 					className={classNames(styles.form1__input)}
@@ -70,7 +73,10 @@ export function FormPart1() {
 				/>
 				<ErrorTip>{errors.name?.message}</ErrorTip>
 			</label>
-			<label htmlFor="field-surname">
+			<label
+				htmlFor="field-surname"
+				className={classNames(styles.form1__surname)}
+			>
 				Surname
 				<input
 					className={classNames(styles.form1__input)}
@@ -79,12 +85,18 @@ export function FormPart1() {
 				/>
 				<ErrorTip>{errors.surname?.message}</ErrorTip>
 			</label>
-			<Select register={register} label="sex" options={["man", "woman"]} />
+			<Select
+				register={register}
+				label="sex"
+				options={["man", "woman"]}
+				className={classNames(styles.form1__sex)}
+			/>
 			<Button
 				type="button"
 				onClick={handleBack}
 				id="button-back"
 				style="border"
+				className={classNames(styles.form1__button_back)}
 			>
 				Back
 			</Button>
@@ -92,6 +104,7 @@ export function FormPart1() {
 				type="button"
 				onClick={(...args) => void handleSubmit(handleNextStep)(...args)}
 				id="button-next"
+				className={classNames(styles.form1__button_next)}
 			>
 				Next
 			</Button>
