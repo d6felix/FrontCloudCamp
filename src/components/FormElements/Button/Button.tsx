@@ -21,7 +21,7 @@ export const Button = ({
 			className={classNames(
 				styles.button,
 				className,
-				styles.button.concat("_", style)
+				styles[`button_${style}`]
 			)}
 		>
 			<div>{children}</div>
