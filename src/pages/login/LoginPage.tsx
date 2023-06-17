@@ -1,7 +1,11 @@
 import { useForm } from "react-hook-form";
 import styles from "./LoginPage.module.scss";
 import { useNavigate } from "react-router-dom";
-import { FormData, loginPageSchema } from "@schema/RegistrationForm";
+import {
+	FormData,
+	LoginPageData,
+	loginPageSchema,
+} from "@schema/RegistrationForm";
 import { useAppDispatch } from "@hooks/reduxHooks";
 import { updateForm } from "@features/formSubmit/formSubmitSlice";
 
@@ -17,7 +21,6 @@ import { phonenumberTransform } from "@utils/helperFunctions";
 export function LoginPage() {
 	const {
 		register,
-		getValues,
 		formState: { errors },
 		handleSubmit,
 	} = useForm<FormData>({
@@ -33,17 +36,10 @@ export function LoginPage() {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	// useEffect(() => {
-	// 	setValue("phoneNumber", 9175156001);
-	// 	setValue("email", "d6felix@gmail.com");
-	// }, []);
-
-	const handleStart = () => {
-		dispatch(updateForm(getValues()));
+	const handleStart = (data: LoginPageData) => {
+		dispatch(updateForm(data));
 		dispatch(resetFormStep());
-		if (!errors.email && !errors.phoneNumber) {
-			navigate("/create");
-		}
+		navigate("/create");
 	};
 
 	return (

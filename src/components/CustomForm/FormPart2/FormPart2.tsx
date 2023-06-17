@@ -1,5 +1,9 @@
 import { useForm } from "react-hook-form";
-import { FormData, formPart2Schema } from "@schema/RegistrationForm";
+import {
+	FormData,
+	FormDataPart2,
+	formPart2Schema,
+} from "@schema/RegistrationForm";
 import { useId } from "react-id-generator";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import {
@@ -12,7 +16,7 @@ import {
 	selectFormData,
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import RemoveIcon from "@assets/RemoveIcon.svg";
@@ -21,9 +25,9 @@ import { ErrorTip } from "@components/ErrorTip";
 import { CheckBox } from "@components/FormElements/CheckBox";
 
 export function FormPart2() {
+	const savedValues = useAppSelector(selectFormData);
 	const {
 		register,
-		setValue,
 		getValues,
 		handleSubmit,
 		formState: { errors },
@@ -31,24 +35,17 @@ export function FormPart2() {
 		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(formPart2Schema),
+		defaultValues: savedValues,
 	});
 
 	const dispatch = useAppDispatch();
-	const savedValues = useAppSelector(selectFormData);
-
-	useEffect(() => {
-		const { advantages, checkbox, radio } = { ...savedValues };
-		setValue("advantages", advantages);
-		setValue("checkbox", checkbox);
-		setValue("radio", radio);
-	}, [savedValues]);
 
 	const handleBackStep = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(decrementFormStep());
 	};
-	const handleNextStep = () => {
-		dispatch(updateForm(getValues()));
+	const handleNextStep = (data: FormDataPart2) => {
+		dispatch(updateForm(data));
 		dispatch(incrementFormStep());
 	};
 

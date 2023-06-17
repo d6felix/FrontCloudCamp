@@ -1,6 +1,7 @@
 import { useForm, useWatch } from "react-hook-form";
 import {
 	FormData,
+	FormDataPart3,
 	formDataSchema,
 	formPart3Schema,
 } from "@schema/RegistrationForm";
@@ -11,7 +12,6 @@ import {
 	updateForm,
 	useAddFormDataMutation,
 } from "@features/formSubmit/formSubmitSlice";
-import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
@@ -24,10 +24,9 @@ import {
 } from "@features/showModal/showModalSlice";
 
 export function FormPart3() {
+	const savedValues = useAppSelector(selectFormData);
 	const {
 		register,
-		setValue,
-		setFocus,
 		getValues,
 		handleSubmit,
 		control,
@@ -36,13 +35,13 @@ export function FormPart3() {
 		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(formPart3Schema),
+		defaultValues: savedValues,
 	});
 
 	const dispatch = useAppDispatch();
 
 	const [addFormData] = useAddFormDataMutation();
 	const formSubmit = useAppSelector(selectFormData);
-	const savedValues = useAppSelector(selectFormData);
 
 	const watchAbout = useWatch({
 		control,
@@ -50,22 +49,13 @@ export function FormPart3() {
 		defaultValue: "",
 	}).replaceAll(" ", "");
 
-	useEffect(() => {
-		const { about } = { ...savedValues };
-		setFocus("about");
-		setValue("about", about);
-	}, [savedValues, setFocus]);
-
 	const backStepHandle = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(decrementFormStep());
 	};
 
-	const handleSubmitClick = () => {
-		dispatch(updateForm(getValues()));
-	};
-
-	const onSubmit = async () => {
+	const onFetch = async () => {
+		console.log(formSubmit);
 		if (formDataSchema.isValidSync(formSubmit)) {
 			await addFormData(formSubmit)
 				.unwrap()
@@ -78,6 +68,11 @@ export function FormPart3() {
 		} else {
 			dispatch(showModalError());
 		}
+	};
+
+	const onSubmit = (data: FormDataPart3) => {
+		dispatch(updateForm(data));
+		return onFetch();
 	};
 
 	return (
@@ -113,7 +108,6 @@ export function FormPart3() {
 				</Button>
 				<Button
 					type="submit"
-					onClick={handleSubmitClick}
 					id="button-send"
 					className={styles.form3__button_submit}
 				>

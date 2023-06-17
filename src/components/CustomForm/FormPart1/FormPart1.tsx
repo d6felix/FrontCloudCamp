@@ -1,5 +1,9 @@
 import { useForm } from "react-hook-form";
-import { FormData, formPart1Schema } from "@schema/RegistrationForm";
+import {
+	FormData,
+	FormDataPart1,
+	formPart1Schema,
+} from "@schema/RegistrationForm";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { incrementFormStep } from "@features/formStep/formStepSlice";
@@ -7,7 +11,6 @@ import {
 	updateForm,
 	selectFormData,
 } from "@features/formSubmit/formSubmitSlice";
-import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
@@ -15,37 +18,29 @@ import styles from "./FormPart1.module.scss";
 import { Select } from "@components/FormElements/Select";
 
 export function FormPart1() {
+	const savedValues = useAppSelector(selectFormData);
 	const {
 		register,
 		getValues,
-		setValue,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>({
 		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(formPart1Schema),
+		defaultValues: savedValues,
 	});
 
 	const dispatch = useAppDispatch();
-	const savedValues = useAppSelector(selectFormData);
 	const navigate = useNavigate();
-
-	useEffect(() => {
-		const { nickname, name, surname, sex } = { ...savedValues };
-		setValue("nickname", nickname);
-		setValue("name", name);
-		setValue("surname", surname);
-		setValue("sex", sex);
-	}, []);
 
 	const handleBack = () => {
 		dispatch(updateForm(getValues()));
 		navigate("/");
 	};
 
-	const handleNextStep = () => {
-		dispatch(updateForm(getValues()));
+	const handleNextStep = (data: FormDataPart1) => {
+		dispatch(updateForm(data));
 		dispatch(incrementFormStep());
 	};
 
