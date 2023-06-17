@@ -1,17 +1,15 @@
 .select {
   position: relative;
-  overflow: visible;
 
   &__container {
     overflow: hidden;
+    width: clamp(20rem, 100%, 30rem);
 
     position: absolute;
     height: 4.4rem;
     cursor: pointer;
-    text-align: left;
     white-space: nowrap;
 
-    width: clamp(10rem, 100%, 30rem);
     background: hsla(0, 0%, 100%, 1);
     color: hsla(0, 0%, 0%, 0.48);
     border: 1px solid hsla(0, 0%, 0%, 0.16);
@@ -34,7 +32,6 @@
         transform: rotate(-135deg);
       }
     }
-
   }
 
   &__option {
@@ -55,9 +52,8 @@
   &__checked {
     height: 4.4rem;
     padding: 1.2rem;
-    width: 100%;
     display: grid;
-    grid-template-columns: 11.2fr 1fr;
+    grid-template-columns: 11.4fr 1fr;
     gap: 1.2rem;
     align-items: center;
 
@@ -65,8 +61,8 @@
       content: "";
       margin: 0.55rem;
       display: inline-block;
-      min-width: 0.9rem;
-      min-height: 0.9rem;
+      width: 0.9rem;
+      height: 0.9rem;
       border-bottom: 1px solid hsla(0, 0%, 0%, 0.24);
       border-right: 1px solid hsla(0, 0%, 0%, 0.24);
       transform: rotate(45deg);

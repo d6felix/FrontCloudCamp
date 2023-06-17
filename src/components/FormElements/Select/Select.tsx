@@ -50,9 +50,11 @@ export function Select({ register, label, options, className }: SelectProps) {
 		);
 	});
 
-	//
 	return (
-		<label htmlFor={`field-${label}`} className={(styles.select, className)}>
+		<label
+			htmlFor={`field-${label}`}
+			className={classNames(styles.select, className)}
+		>
 			<span>{labelCapitalized}</span>
 			<span
 				id={`field-${label}`}
