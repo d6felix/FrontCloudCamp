@@ -44,11 +44,11 @@ export function LoginPage() {
 	};
 
 	return (
-		<div className={classNames(styles.loginPage)}>
+		<div className={styles.loginPage}>
 			<LoginHeader />
 			<form
 				onSubmit={(...args) => void handleSubmit(handleStart)(...args)}
-				className={classNames(styles.loginPage__form)}
+				className={styles.loginPage__form}
 			>
 				<label
 					className={classNames(
@@ -58,7 +58,7 @@ export function LoginPage() {
 				>
 					Phone number
 					<input
-						className={classNames(styles.loginPage__input)}
+						className={styles.loginPage__input}
 						type="tel"
 						{...withHookFormMask(
 							register("phoneNumber", {
@@ -67,7 +67,7 @@ export function LoginPage() {
 							["+7 (999) 999-99-99"]
 						)}
 					/>
-					<ErrorTip className={classNames(styles.loginPage__errorTip)}>
+					<ErrorTip className={styles.loginPage__errorTip}>
 						{errors.phoneNumber?.message}
 					</ErrorTip>
 				</label>
@@ -81,16 +81,16 @@ export function LoginPage() {
 					<input
 						type="email"
 						{...register("email")}
-						className={classNames(styles.loginPage__input)}
+						className={styles.loginPage__input}
 					/>
-					<ErrorTip className={classNames(styles.loginPage__errorTip)}>
+					<ErrorTip className={styles.loginPage__errorTip}>
 						{errors.email?.message}
 					</ErrorTip>
 				</label>
 				<Button
 					type="submit"
 					id="button-start"
-					className={classNames(styles.loginPage__button)}
+					className={styles.loginPage__button}
 				>
 					Start
 				</Button>

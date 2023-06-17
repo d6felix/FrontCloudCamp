@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import styles from "./CheckBox.module.scss";
 import { UseFormRegister } from "react-hook-form";
 import { FormData } from "@schema/RegistrationForm";
@@ -18,16 +17,16 @@ export function CheckBox({
 	...props
 }: CheckBoxProps) {
 	return (
-		<label className={classNames(styles.checkbox)} htmlFor={id}>
+		<label className={styles.checkbox} htmlFor={id}>
 			<input
 				{...props}
 				type="checkbox"
 				id={id}
 				value={value}
 				{...register(label)}
-				className={classNames(styles.checkbox__original_hidden)}
+				className={styles.checkbox__original_hidden}
 			/>
-			<div className={classNames(styles.checkbox__custom)} />
+			<div className={styles.checkbox__custom} />
 			{value}
 		</label>
 	);

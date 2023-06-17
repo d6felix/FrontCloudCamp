@@ -17,7 +17,6 @@ import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import RemoveIcon from "@assets/RemoveIcon.svg";
 import styles from "./FormPart2.module.scss";
-import classNames from "classnames";
 import { ErrorTip } from "@components/ErrorTip";
 import { CheckBox } from "@components/FormElements/CheckBox";
 
@@ -64,7 +63,7 @@ export function FormPart2() {
 			return (
 				<div key={advantagesId[index]} id="field-advantages">
 					<input
-						className={classNames(styles.form2__input)}
+						className={styles.form2__input}
 						{...register(`advantages.${index}`)}
 						id={`field-advantages-${index + 1}`}
 					/>
@@ -126,9 +125,9 @@ export function FormPart2() {
 	return (
 		<form
 			onSubmit={(...args) => void handleSubmit(handleNextStep)(...args)}
-			className={classNames(styles.form2)}
+			className={styles.form2}
 		>
-			<fieldset className={classNames(styles.form2__advantages)}>
+			<fieldset className={styles.form2__advantages}>
 				<label htmlFor="field-advantages">Advantages:{advantages}</label>
 				<ErrorTip>
 					{errors.advantages ? errors.advantages[0]?.message : ""}
@@ -142,17 +141,17 @@ export function FormPart2() {
 					+
 				</Button>
 			</fieldset>
-			<fieldset className={classNames(styles.form2__checkbox)}>
+			<fieldset className={styles.form2__checkbox}>
 				<legend>Checkbox group:</legend>
 				<ul>{checkbox}</ul>
 			</fieldset>
 
-			<fieldset className={classNames(styles.form2__radio)}>
+			<fieldset className={styles.form2__radio}>
 				<legend>Radio group:</legend>
 				<ul>{radio}</ul>
 			</fieldset>
 			<Button
-				className={classNames(styles.form2__button_back)}
+				className={styles.form2__button_back}
 				type="button"
 				onClick={handleBackStep}
 				id="button-back"
@@ -161,7 +160,7 @@ export function FormPart2() {
 				Back
 			</Button>
 			<Button
-				className={classNames(styles.form2__button_next)}
+				className={styles.form2__button_next}
 				type="submit"
 				id="button-next"
 			>

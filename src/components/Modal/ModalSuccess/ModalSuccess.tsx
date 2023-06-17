@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./ModalSuccess.module.scss";
-import classNames from "classnames";
 import { useAppDispatch } from "@hooks/reduxHooks";
 import { hideModal } from "@features/showModal/showModalSlice";
 import ModalGreenSuccess from "@assets/ModalGreenSuccess.svg";
@@ -15,12 +14,12 @@ export function ModalSuccess() {
 		navigate("/");
 	};
 	return (
-		<div className={classNames(styles.modal__success)}>
-			<h1 className={classNames(styles.modal__title)}>Form send successfull</h1>
+		<div className={styles.modal__success}>
+			<h1 className={styles.modal__title}>Form send successfull</h1>
 			<img
 				src={ModalGreenSuccess}
 				alt="success icon"
-				className={classNames(styles.modal__successIcon)}
+				className={styles.modal__successIcon}
 			/>
 			<Button
 				type="button"

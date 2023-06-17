@@ -9,11 +9,8 @@ type FormProgressProps = {
 
 export function FormProgress({ step }: FormProgressProps) {
 	return (
-		<div className={classNames(styles.formProgress)}>
-			<div
-				data-step={step}
-				className={classNames(styles.formProgress__container_progress)}
-			>
+		<div className={styles.formProgress}>
+			<div data-step={step} className={styles.formProgress__container_progress}>
 				{step > 1 ? (
 					<img
 						src={CheckMark}
@@ -55,10 +52,10 @@ export function FormProgress({ step }: FormProgressProps) {
 					)}
 				/>
 			</div>
-			<div className={classNames(styles.formProgress__container_labels)}>
-				<p className={classNames(styles.formProgress__label)}>1</p>
-				<p className={classNames(styles.formProgress__label)}>2</p>
-				<p className={classNames(styles.formProgress__label)}>3</p>
+			<div className={styles.formProgress__container_labels}>
+				<p className={styles.formProgress__label}>1</p>
+				<p className={styles.formProgress__label}>2</p>
+				<p className={styles.formProgress__label}>3</p>
 			</div>
 		</div>
 	);

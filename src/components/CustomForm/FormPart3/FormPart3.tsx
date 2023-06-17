@@ -15,7 +15,6 @@ import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
-import classNames from "classnames";
 import styles from "./FormPart3.module.scss";
 import { createPortal } from "react-dom";
 import { Modal } from "@components/Modal";
@@ -85,24 +84,21 @@ export function FormPart3() {
 		<>
 			<form
 				onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
-				className={classNames(styles.form3)}
+				className={styles.form3}
 			>
-				<label
-					htmlFor="field-about"
-					className={classNames(styles.form3__about)}
-				>
-					<div className={classNames(styles.form3__about_container)}>
+				<label htmlFor="field-about" className={styles.form3__about}>
+					<div className={styles.form3__about_container}>
 						About:
 						<textarea
-							className={classNames(styles.form3__input)}
+							className={styles.form3__input}
 							{...register("about")}
 							id="field-about"
 						></textarea>
 					</div>
-					<ErrorTip className={classNames(styles.form3__about_error)}>
+					<ErrorTip className={styles.form3__about_error}>
 						{errors.about?.message}
 					</ErrorTip>
-					<div className={classNames(styles.form3__about_count)}>
+					<div className={styles.form3__about_count}>
 						Symbol count: {watchAbout.length}
 					</div>
 				</label>
@@ -111,7 +107,7 @@ export function FormPart3() {
 					onClick={backStepHandle}
 					id="button-back"
 					style="border"
-					className={classNames(styles.form3__button_back)}
+					className={styles.form3__button_back}
 				>
 					Back
 				</Button>
@@ -119,7 +115,7 @@ export function FormPart3() {
 					type="submit"
 					onClick={handleSubmitClick}
 					id="button-send"
-					className={classNames(styles.form3__button_submit)}
+					className={styles.form3__button_submit}
 				>
 					Submit
 				</Button>

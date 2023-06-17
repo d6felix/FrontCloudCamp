@@ -33,13 +33,13 @@ export function Select({ register, label, options, className }: SelectProps) {
 			<label
 				key={checkboxId[index]}
 				htmlFor={`field-${label}-option-${value}`}
-				className={classNames(styles.select__label)}
+				className={styles.select__label}
 			>
 				<input
 					type="radio"
 					value={value}
 					id={`field-${label}-option-${value}`}
-					className={classNames(styles.select__option)}
+					className={styles.select__option}
 					onChange={(...args) => void onChange(...args)}
 					onBlur={(...args) => void onBlur(...args)}
 					name={name}
@@ -52,10 +52,7 @@ export function Select({ register, label, options, className }: SelectProps) {
 
 	//
 	return (
-		<label
-			htmlFor={`field-${label}`}
-			className={classNames(styles.select, className)}
-		>
+		<label htmlFor={`field-${label}`} className={(styles.select, className)}>
 			<span>{labelCapitalized}</span>
 			<span
 				id={`field-${label}`}
@@ -68,10 +65,8 @@ export function Select({ register, label, options, className }: SelectProps) {
 					setVisible(newState);
 				}}
 			>
-				<span className={classNames(styles.select__checked)}>{checked}</span>
-				<div className={classNames(styles.select__optionsContainer)}>
-					{optionsList}
-				</div>
+				<span className={styles.select__checked}>{checked}</span>
+				<div className={styles.select__optionsContainer}>{optionsList}</div>
 			</span>
 		</label>
 	);

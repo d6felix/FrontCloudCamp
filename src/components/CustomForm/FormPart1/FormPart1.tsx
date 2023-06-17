@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
-import classNames from "classnames";
 import styles from "./FormPart1.module.scss";
 import { Select } from "@components/FormElements/Select";
 
@@ -53,36 +52,30 @@ export function FormPart1() {
 	return (
 		<form
 			onSubmit={(...args) => void handleSubmit(handleNextStep)(...args)}
-			className={classNames(styles.form1)}
+			className={styles.form1}
 		>
-			<label
-				htmlFor="field-nickname"
-				className={classNames(styles.form1__nickname)}
-			>
+			<label htmlFor="field-nickname" className={styles.form1__nickname}>
 				Nickname
 				<input
-					className={classNames(styles.form1__input)}
+					className={styles.form1__input}
 					{...register("nickname")}
 					id="field-nickname"
 				/>
 				<ErrorTip>{errors.nickname?.message}</ErrorTip>
 			</label>
-			<label htmlFor="field-name" className={classNames(styles.form1__name)}>
+			<label htmlFor="field-name" className={styles.form1__name}>
 				Name
 				<input
-					className={classNames(styles.form1__input)}
+					className={styles.form1__input}
 					{...register("name")}
 					id="field-name"
 				/>
 				<ErrorTip>{errors.name?.message}</ErrorTip>
 			</label>
-			<label
-				htmlFor="field-surname"
-				className={classNames(styles.form1__surname)}
-			>
+			<label htmlFor="field-surname" className={styles.form1__surname}>
 				Surname
 				<input
-					className={classNames(styles.form1__input)}
+					className={styles.form1__input}
 					{...register("surname")}
 					id="field-surname"
 				/>
@@ -92,7 +85,7 @@ export function FormPart1() {
 				register={register}
 				label="sex"
 				options={["man", "woman"]}
-				className={classNames(styles.form1__sex)}
+				className={styles.form1__sex}
 			/>
 			<ErrorTip>{errors.sex?.message}</ErrorTip>
 			<Button
@@ -100,14 +93,14 @@ export function FormPart1() {
 				onClick={handleBack}
 				id="button-back"
 				style="border"
-				className={classNames(styles.form1__button_back)}
+				className={styles.form1__button_back}
 			>
 				Back
 			</Button>
 			<Button
 				type="submit"
 				id="button-next"
-				className={classNames(styles.form1__button_next)}
+				className={styles.form1__button_next}
 			>
 				Next
 			</Button>
