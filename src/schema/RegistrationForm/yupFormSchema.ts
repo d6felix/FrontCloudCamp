@@ -55,9 +55,15 @@ export const formPart2Schema: ObjectSchema<FormDataPart2> = object({
 		.of(string().required("Should have all advantages fields filled."))
 		.required("Should have advantages array."),
 	checkbox: array()
-		.of(number().required("Should have checkbox item."))
+		.of(
+			number()
+				.typeError("Should be a number.")
+				.required("Should have checkbox item.")
+		)
 		.required("Should have checkbox."),
-	radio: number().required("Should have radio."),
+	radio: number()
+		.typeError("Should be a number.")
+		.required("Should have radio."),
 });
 
 export const formPart3Schema: ObjectSchema<FormDataPart3> = object({
