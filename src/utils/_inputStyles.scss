@@ -1,7 +1,7 @@
 @mixin inputStyles {
   &__input {
     padding: 1.2rem;
-    width: clamp(10rem, 70%, 30rem);
+    width: clamp(10rem, 100%, 30rem);
     background: #FFFFFF;
     color: hsla(0, 0%, 0%, 0.48);
     border: 1px solid hsla(0, 0%, 0%, 0.16);
