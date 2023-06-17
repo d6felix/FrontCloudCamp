@@ -28,31 +28,10 @@ export const formDataSlice = createSlice({
 			const newState = Object.assign({}, state, action.payload);
 			return newState;
 		},
-		removeFormAdvantage: (
-			state,
-			action: PayloadAction<{ toRemove: number; advantages: string[] }>
-		) => {
-			const newState = Object.assign({}, state, {
-				advantages: [...action.payload.advantages].filter(
-					(_, index) => index !== action.payload.toRemove
-				),
-			});
-			return newState;
-		},
-		addFormAdvantage: (
-			state,
-			action: PayloadAction<{ advantages: string[] }>
-		) => {
-			const newState = Object.assign({}, state, {
-				advantages: [...action.payload.advantages, ""],
-			});
-			return newState;
-		},
 	},
 });
 
-export const { updateForm, removeFormAdvantage, addFormAdvantage } =
-	formDataSlice.actions;
+export const { updateForm } = formDataSlice.actions;
 
 export const selectFormData = (state: RootState) => state.formData;
 
