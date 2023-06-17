@@ -87,7 +87,6 @@ export function FormPart1() {
 				options={["man", "woman"]}
 				className={styles.form1__sex}
 			/>
-			<ErrorTip>{errors.sex?.message}</ErrorTip>
 			<Button
 				type="button"
 				onClick={handleBack}
