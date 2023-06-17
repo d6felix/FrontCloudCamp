@@ -15,7 +15,7 @@ import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart1.module.scss";
 import { Select } from "@components/FormElements/Select";
-import { Input } from "@components/FormElements/Input";
+import { FormInput } from "@components/FormElements/FormInput";
 
 export function FormPart1() {
 	const savedValues = useAppSelector(selectFormData);
@@ -49,20 +49,20 @@ export function FormPart1() {
 			onSubmit={(...args) => void handleSubmit(handleNextStep)(...args)}
 			className={styles.form1}
 		>
-			<Input
-				register={register}
+			<FormInput
+				{...register("nickname")}
 				errors={errors.nickname?.message}
 				label="nickname"
 				className={styles.form1__nickname}
 			/>
-			<Input
-				register={register}
+			<FormInput
+				{...register("name")}
 				errors={errors.name?.message}
 				label="name"
 				className={styles.form1__name}
 			/>
-			<Input
-				register={register}
+			<FormInput
+				{...register("surname")}
 				errors={errors.surname?.message}
 				label="surname"
 				className={styles.form1__surname}

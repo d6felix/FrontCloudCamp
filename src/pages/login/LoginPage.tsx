@@ -15,7 +15,7 @@ import { resetFormStep } from "@features/formStep/formStepSlice";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { phonenumberTransform } from "@utils/helperFunctions";
-import { Input } from "@components/FormElements/Input";
+import { FormInput } from "@components/FormElements/FormInput";
 
 export function LoginPage() {
 	const {
@@ -48,7 +48,7 @@ export function LoginPage() {
 				onSubmit={(...args) => void handleSubmit(handleStart)(...args)}
 				className={styles.loginPage__form}
 			>
-				<Input
+				<FormInput
 					className={styles.loginPage__phone}
 					type="tel"
 					{...withHookFormMask(
@@ -62,10 +62,10 @@ export function LoginPage() {
 					length="l"
 				/>
 
-				<Input
+				<FormInput
 					className={styles.loginPage__email}
 					type="email"
-					register={register}
+					{...register("email")}
 					label={"email"}
 					errors={errors.email?.message}
 					length="l"

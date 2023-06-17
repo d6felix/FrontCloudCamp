@@ -1,6 +1,10 @@
-import { InputHTMLAttributes } from "react";
-import styles from "./Input.module.scss";
-import { UseFormRegister } from "react-hook-form";
+import { InputHTMLAttributes, forwardRef } from "react";
+import styles from "./FormInput.module.scss";
+import {
+	RefCallBack,
+	UseFormRegister,
+	UseFormRegisterReturn,
+} from "react-hook-form";
 import { ErrorTip } from "@components/ErrorTip";
 import classNames from "classnames";
 import { FormData } from "@schema/RegistrationForm";
@@ -13,18 +17,22 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 	errors: string | undefined;
 	type?: string;
 	length?: "n" | "l";
-};
+} & Partial<UseFormRegisterReturn>;
 
-export function Input({
-	register,
-	label,
-	className = "",
-	errors,
-	type = "text",
-	length = "n",
-}: InputProps) {
+export const FormInput = forwardRef(function Input(
+	{
+		register,
+		label,
+		className = "",
+		errors,
+		type = "text",
+		length = "n",
+		...props
+	}: InputProps,
+	ref: RefCallBack
+) {
 	const labelCapitalized = useCapitalizeFirstLetter(label);
-	const props = register ? { ...register(label) } : null;
+	const spreadProps = register ? { ...register(label) } : { ...props };
 	return (
 		<label
 			htmlFor={`field-${label}`}
@@ -37,12 +45,13 @@ export function Input({
 					styles.input__input,
 					`${styles.input__input}_${length}`
 				)}
-				{...props}
+				{...spreadProps}
 				id={`field-${label}`}
+				ref={ref}
 			/>
 			<ErrorTip>{errors}</ErrorTip>
 		</label>
 	);
-}
+});
 
-export default Input;
+export default FormInput;

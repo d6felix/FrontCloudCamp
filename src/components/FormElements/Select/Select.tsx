@@ -4,7 +4,7 @@ import { UseFormRegister } from "react-hook-form/dist/types";
 import { FormData } from "@schema/RegistrationForm/dataTypes";
 import { SyntheticEvent, memo, useMemo, useState } from "react";
 import { useId } from "react-id-generator";
-import { capitalizeFirstLetter } from "@utils/helperFunctions";
+import { useCapitalizeFirstLetter } from "@utils/helperFunctions";
 
 type SelectProps = {
 	register: UseFormRegister<FormData>;
@@ -18,7 +18,7 @@ export function Select({ register, label, options, className }: SelectProps) {
 	const [checked, setChecked] = useState<(typeof options)[number]>(options[0]);
 
 	const checkboxId: React.Key[] = useId(options.length, label);
-	const labelCapitalized = capitalizeFirstLetter(label);
+	const labelCapitalized = useCapitalizeFirstLetter(label);
 
 	const optionsList = useMemo<JSX.Element[]>(() => {
 		return options.map((value, index) => {
