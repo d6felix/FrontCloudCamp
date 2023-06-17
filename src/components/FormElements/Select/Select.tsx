@@ -2,7 +2,7 @@ import classNames from "classnames";
 import styles from "./Select.module.scss";
 import { UseFormRegister } from "react-hook-form/dist/types";
 import { FormData } from "@schema/RegistrationForm/dataTypes";
-import { SyntheticEvent, memo, useState } from "react";
+import { SyntheticEvent, memo, useMemo, useState } from "react";
 import { useId } from "react-id-generator";
 import { capitalizeFirstLetter } from "@utils/helperFunctions";
 
@@ -20,35 +20,37 @@ export function Select({ register, label, options, className }: SelectProps) {
 	const checkboxId: React.Key[] = useId(options.length, label);
 	const labelCapitalized = capitalizeFirstLetter(label);
 
-	const optionsList = options.map((value, index) => {
-		const { onBlur, name, ref, onChange } = register(label, {
-			onChange: (event: SyntheticEvent) => {
-				const { target } = event;
-				setChecked((target as HTMLInputElement).value);
-				setVisible(false);
-			},
-		});
+	const optionsList = useMemo<JSX.Element[]>(() => {
+		return options.map((value, index) => {
+			const { onBlur, name, ref, onChange } = register(label, {
+				onChange: (event: SyntheticEvent) => {
+					const { target } = event;
+					setChecked((target as HTMLInputElement).value);
+					setVisible(false);
+				},
+			});
 
-		return (
-			<label
-				key={checkboxId[index]}
-				htmlFor={`field-${label}-option-${value}`}
-				className={styles.select__label}
-			>
-				<input
-					type="radio"
-					value={value}
-					id={`field-${label}-option-${value}`}
-					className={styles.select__option}
-					onChange={(...args) => void onChange(...args)}
-					onBlur={(...args) => void onBlur(...args)}
-					name={name}
-					ref={ref}
-				/>
-				{value}
-			</label>
-		);
-	});
+			return (
+				<label
+					key={checkboxId[index]}
+					htmlFor={`field-${label}-option-${value}`}
+					className={styles.select__label}
+				>
+					<input
+						type="radio"
+						value={value}
+						id={`field-${label}-option-${value}`}
+						className={styles.select__option}
+						onChange={(...args) => void onChange(...args)}
+						onBlur={(...args) => void onBlur(...args)}
+						name={name}
+						ref={ref}
+					/>
+					{value}
+				</label>
+			);
+		});
+	}, [checkboxId, labelCapitalized, checked, visible, setVisible, setChecked]);
 
 	return (
 		<label

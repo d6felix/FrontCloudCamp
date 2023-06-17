@@ -9,11 +9,9 @@ export function CustomForm() {
 
 	return (
 		<>
-			<div>
-				{step === 1 && <FormPart1 />}
-				{step === 2 && <FormPart2 />}
-				{step === 3 && <FormPart3 />}
-			</div>
+			{step === 1 && <FormPart1 />}
+			{step === 2 && <FormPart2 />}
+			{step === 3 && <FormPart3 />}
 		</>
 	);
 }
