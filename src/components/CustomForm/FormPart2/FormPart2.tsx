@@ -29,7 +29,7 @@ export function FormPart2() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>({
-		mode: "onBlur",
+		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(formPart2Schema),
 	});
@@ -44,11 +44,11 @@ export function FormPart2() {
 		setValue("radio", radio);
 	}, [savedValues]);
 
-	const backStepHandle = () => {
+	const handleBackStep = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(decrementFormStep());
 	};
-	const nextStepHandle = () => {
+	const handleNextStep = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(incrementFormStep());
 	};
@@ -124,7 +124,10 @@ export function FormPart2() {
 	}, [radioId]);
 
 	return (
-		<div className={classNames(styles.form2)}>
+		<form
+			onSubmit={(...args) => void handleSubmit(handleNextStep)(...args)}
+			className={classNames(styles.form2)}
+		>
 			<fieldset className={classNames(styles.form2__advantages)}>
 				<label htmlFor="field-advantages">Advantages:{advantages}</label>
 				<ErrorTip>
@@ -151,7 +154,7 @@ export function FormPart2() {
 			<Button
 				className={classNames(styles.form2__button_back)}
 				type="button"
-				onClick={backStepHandle}
+				onClick={handleBackStep}
 				id="button-back"
 				style="border"
 			>
@@ -159,13 +162,12 @@ export function FormPart2() {
 			</Button>
 			<Button
 				className={classNames(styles.form2__button_next)}
-				type="button"
-				onClick={(...args) => void handleSubmit(nextStepHandle)(...args)}
+				type="submit"
 				id="button-next"
 			>
 				Next
 			</Button>
-		</div>
+		</form>
 	);
 }
 

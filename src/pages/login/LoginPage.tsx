@@ -22,7 +22,7 @@ export function LoginPage() {
 		formState: { errors },
 		handleSubmit,
 	} = useForm<FormData>({
-		mode: "onBlur",
+		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(loginPageSchema),
 	});
@@ -35,7 +35,7 @@ export function LoginPage() {
 		setValue("email", "d6felix@gmail.com");
 	}, []);
 
-	const onStart = () => {
+	const handleStart = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(resetFormStep());
 		if (!errors.email && !errors.phoneNumber) {
@@ -46,7 +46,10 @@ export function LoginPage() {
 	return (
 		<div className={classNames(styles.loginPage)}>
 			<LoginHeader />
-			<form className={classNames(styles.loginPage__form)}>
+			<form
+				onSubmit={(...args) => void handleSubmit(handleStart)(...args)}
+				className={classNames(styles.loginPage__form)}
+			>
 				<label
 					className={classNames(
 						styles.loginPage__label,
@@ -85,8 +88,7 @@ export function LoginPage() {
 					</ErrorTip>
 				</label>
 				<Button
-					type="button"
-					onClick={(...args) => void handleSubmit(onStart)(...args)}
+					type="submit"
 					id="button-start"
 					className={classNames(styles.loginPage__button)}
 				>

@@ -23,7 +23,7 @@ export function FormPart1() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>({
-		mode: "onBlur",
+		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(formPart1Schema),
 	});
@@ -51,7 +51,10 @@ export function FormPart1() {
 	};
 
 	return (
-		<div className={classNames(styles.form1)}>
+		<form
+			onSubmit={(...args) => void handleSubmit(handleNextStep)(...args)}
+			className={classNames(styles.form1)}
+		>
 			<label
 				htmlFor="field-nickname"
 				className={classNames(styles.form1__nickname)}
@@ -91,6 +94,7 @@ export function FormPart1() {
 				options={["man", "woman"]}
 				className={classNames(styles.form1__sex)}
 			/>
+			<ErrorTip>{errors.sex?.message}</ErrorTip>
 			<Button
 				type="button"
 				onClick={handleBack}
@@ -101,14 +105,13 @@ export function FormPart1() {
 				Back
 			</Button>
 			<Button
-				type="button"
-				onClick={(...args) => void handleSubmit(handleNextStep)(...args)}
+				type="submit"
 				id="button-next"
 				className={classNames(styles.form1__button_next)}
 			>
 				Next
 			</Button>
-		</div>
+		</form>
 	);
 }
 

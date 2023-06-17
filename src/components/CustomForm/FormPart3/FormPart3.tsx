@@ -1,10 +1,15 @@
 import { useForm, useWatch } from "react-hook-form";
-import { FormData, formPart3Schema } from "@schema/RegistrationForm";
+import {
+	FormData,
+	formDataSchema,
+	formPart3Schema,
+} from "@schema/RegistrationForm";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { decrementFormStep } from "@features/formStep/formStepSlice";
 import {
 	selectFormData,
 	updateForm,
+	useAddFormDataMutation,
 } from "@features/formSubmit/formSubmitSlice";
 import { useEffect } from "react";
 import { Button } from "@components/FormElements/Button";
@@ -12,6 +17,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
 import classNames from "classnames";
 import styles from "./FormPart3.module.scss";
+import { createPortal } from "react-dom";
+import { Modal } from "@components/Modal";
+import {
+	showModalError,
+	showModalSuccess,
+} from "@features/showModal/showModalSlice";
 
 export function FormPart3() {
 	const {
@@ -19,15 +30,19 @@ export function FormPart3() {
 		setValue,
 		setFocus,
 		getValues,
+		handleSubmit,
 		control,
 		formState: { errors },
 	} = useForm<FormData>({
-		mode: "onBlur",
+		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(formPart3Schema),
 	});
 
 	const dispatch = useAppDispatch();
+
+	const [addFormData] = useAddFormDataMutation();
+	const formSubmit = useAppSelector(selectFormData);
 	const savedValues = useAppSelector(selectFormData);
 
 	const watchAbout = useWatch({
@@ -46,46 +61,71 @@ export function FormPart3() {
 		dispatch(updateForm(getValues()));
 		dispatch(decrementFormStep());
 	};
-	const onSubmitHandle = () => {
+
+	const handleSubmitClick = () => {
 		dispatch(updateForm(getValues()));
 	};
 
+	const onSubmit = async () => {
+		if (formDataSchema.isValidSync(formSubmit)) {
+			await addFormData(formSubmit)
+				.unwrap()
+				.then((payload) =>
+					payload.status === "success"
+						? dispatch(showModalSuccess())
+						: dispatch(showModalError())
+				)
+				.catch(() => dispatch(showModalError()));
+		} else {
+			dispatch(showModalError());
+		}
+	};
+
 	return (
-		<div className={classNames(styles.form3)}>
-			<label htmlFor="field-about" className={classNames(styles.form3__about)}>
-				<div className={classNames(styles.form3__about_container)}>
-					About:
-					<textarea
-						className={classNames(styles.form3__input)}
-						{...register("about")}
-						id="field-about"
-					></textarea>
-				</div>
-				<ErrorTip className={classNames(styles.form3__about_error)}>
-					{errors.about?.message}
-				</ErrorTip>
-				<div className={classNames(styles.form3__about_count)}>
-					Symbol count: {watchAbout.length}
-				</div>
-			</label>
-			<Button
-				type="button"
-				onClick={backStepHandle}
-				id="button-back"
-				style="border"
-				className={classNames(styles.form3__button_back)}
+		<>
+			<form
+				onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
+				className={classNames(styles.form3)}
 			>
-				Back
-			</Button>
-			<Button
-				type="submit"
-				onClick={onSubmitHandle}
-				id="button-send"
-				className={classNames(styles.form3__button_submit)}
-			>
-				Submit
-			</Button>
-		</div>
+				<label
+					htmlFor="field-about"
+					className={classNames(styles.form3__about)}
+				>
+					<div className={classNames(styles.form3__about_container)}>
+						About:
+						<textarea
+							className={classNames(styles.form3__input)}
+							{...register("about")}
+							id="field-about"
+						></textarea>
+					</div>
+					<ErrorTip className={classNames(styles.form3__about_error)}>
+						{errors.about?.message}
+					</ErrorTip>
+					<div className={classNames(styles.form3__about_count)}>
+						Symbol count: {watchAbout.length}
+					</div>
+				</label>
+				<Button
+					type="button"
+					onClick={backStepHandle}
+					id="button-back"
+					style="border"
+					className={classNames(styles.form3__button_back)}
+				>
+					Back
+				</Button>
+				<Button
+					type="submit"
+					onClick={handleSubmitClick}
+					id="button-send"
+					className={classNames(styles.form3__button_submit)}
+				>
+					Submit
+				</Button>
+			</form>
+			{createPortal(<Modal />, document.body)}
+		</>
 	);
 }
 
