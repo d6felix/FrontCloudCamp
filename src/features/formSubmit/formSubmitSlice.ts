@@ -14,7 +14,7 @@ const initialState: FormDataState = {
 	name: "",
 	surname: "",
 	sex: "man",
-	advantages: ["", "", ""],
+	advantages: [{ value: "" }, { value: "" }, { value: "" }],
 	checkbox: [],
 	radio: 0,
 	about: "",

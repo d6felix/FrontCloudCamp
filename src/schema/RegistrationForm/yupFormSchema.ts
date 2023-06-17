@@ -52,7 +52,11 @@ export const formPart1Schema: ObjectSchema<FormDataPart1> = object({
 
 export const formPart2Schema: ObjectSchema<FormDataPart2> = object({
 	advantages: array()
-		.of(string().required("Should have all advantages fields filled."))
+		.of(
+			object({ value: string().required() }).required(
+				"Should have all advantages fields filled."
+			)
+		)
 		.required("Should have advantages array."),
 	checkbox: array()
 		.of(

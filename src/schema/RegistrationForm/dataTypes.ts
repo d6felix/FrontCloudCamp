@@ -11,7 +11,7 @@ export type FormDataPart1 = {
 };
 
 export type FormDataPart2 = {
-	advantages: string[];
+	advantages: { value: string }[];
 	checkbox: number[];
 	radio: number;
 };

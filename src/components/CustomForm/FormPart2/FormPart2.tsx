@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import {
 	FormData,
 	FormDataPart2,
@@ -11,8 +11,6 @@ import {
 	decrementFormStep,
 } from "@features/formStep/formStepSlice";
 import {
-	removeFormAdvantage,
-	addFormAdvantage,
 	selectFormData,
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
@@ -30,6 +28,7 @@ export function FormPart2() {
 		register,
 		getValues,
 		handleSubmit,
+		control,
 		formState: { errors },
 	} = useForm<FormData>({
 		mode: "onSubmit",
@@ -38,49 +37,31 @@ export function FormPart2() {
 		defaultValues: savedValues,
 	});
 
+	const { fields, append, remove } = useFieldArray({
+		control,
+		name: "advantages",
+	});
+
 	const dispatch = useAppDispatch();
 
-	const handleBackStep = () => {
-		dispatch(updateForm(getValues()));
-		dispatch(decrementFormStep());
-	};
-	const handleNextStep = (data: FormDataPart2) => {
-		dispatch(updateForm(data));
-		dispatch(incrementFormStep());
-	};
-
-	const addAdvantages = () => {
-		dispatch(addFormAdvantage(getValues()));
-	};
-
-	const advantagesLength = useAppSelector(selectFormData).advantages.length;
+	const advantagesLength = fields.length;
 	const advantagesId: React.Key[] = useId(advantagesLength, "advantages");
-	const advantages = useMemo(() => {
-		return Array.from({ length: advantagesLength }).map((_, index) => {
+	const advantages = Array.from({ length: advantagesLength }).map(
+		(_, index) => {
 			return (
 				<div key={advantagesId[index]} id="field-advantages">
 					<input
 						className={styles.form2__input}
-						{...register(`advantages.${index}`)}
+						{...register(`advantages.${index}.value`)}
 						id={`field-advantages-${index + 1}`}
 					/>
-					<div
-						onClick={() => {
-							dispatch(
-								removeFormAdvantage({
-									toRemove: index,
-									advantages: getValues("advantages"),
-								})
-							);
-						}}
-						id={`button-remove-${index + 1}`}
-					>
+					<div onClick={() => remove(index)} id={`button-remove-${index + 1}`}>
 						<img src={RemoveIcon} alt="remove" />
 					</div>
 				</div>
 			);
-		});
-	}, [advantagesLength, advantagesId]);
+		}
+	);
 
 	const checkboxId: React.Key[] = useId(3, "checkbox");
 	const checkbox = useMemo(() => {
@@ -119,6 +100,19 @@ export function FormPart2() {
 			);
 		});
 	}, [radioId]);
+
+	const handleBackStep = () => {
+		dispatch(updateForm(getValues()));
+		dispatch(decrementFormStep());
+	};
+	const handleNextStep = (data: FormDataPart2) => {
+		dispatch(updateForm(data));
+		dispatch(incrementFormStep());
+	};
+
+	const addAdvantages = () => {
+		append({ value: "" });
+	};
 
 	return (
 		<form
