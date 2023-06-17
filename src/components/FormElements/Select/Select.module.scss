@@ -1,62 +1,82 @@
 .select {
+  position: relative;
+  overflow: visible;
 
-  &__select {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: inherit;
-    line-height: inherit;
-    outline: none;
-    z-index: 1;
-    grid-area: select;
-    width: 300px;
+  &__container {
+    overflow: hidden;
 
+    position: absolute;
+    height: 4.4rem;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+
+    width: clamp(10rem, 100%, 30rem);
+    background: hsla(0, 0%, 100%, 1);
+    color: hsla(0, 0%, 0%, 0.48);
     border: 1px solid hsla(0, 0%, 0%, 0.16);
-    border-radius: 0.25em;
-    padding: 12px 0 12px 12px;
+    border-radius: 4px;
+    outline: none;
 
-    &::-ms-expand {
-      display: none;
+    transition: 0.3s all ease-in-out;
+
+    &_expanded {
+      border: .06em solid hsla(239, 94%, 66%, 1);
+      height: fit-content;
+      overflow: visible;
+
+      >.select__optionsContainer {
+        visibility: visible;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      >.select__checked::after {
+        transform: rotate(-135deg);
+      }
     }
 
-    &::after {
-      grid-area: select;
-    }
   }
 
-  &__selectContainer {
-    display: grid;
-    grid-template-areas: "select";
-    align-items: center;
-    position: relative;
+  &__option {
+    width: 1px;
+    height: 1px;
+    display: inline-block;
+    position: absolute;
+    opacity: 0.01;
+  }
 
-    :focus {
-      border: 1px solid hsla(239, 94%, 66%, 1)
-    }
-
+  &__label {
+    height: 4.4rem;
+    padding: 1.2rem;
     cursor: pointer;
+    position: relative;
+  }
+
+  &__checked {
+    height: 4.4rem;
+    padding: 1.2rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 11.2fr 1fr;
+    gap: 1.2rem;
+    align-items: center;
 
     &::after {
-      position: absolute;
       content: "";
-      justify-self: end;
-      width: 9.5px;
-      height: 9.5px;
+      margin: 0.55rem;
+      display: inline-block;
+      min-width: 0.9rem;
+      min-height: 0.9rem;
       border-bottom: 1px solid hsla(0, 0%, 0%, 0.24);
       border-right: 1px solid hsla(0, 0%, 0%, 0.24);
       transform: rotate(45deg);
+      transition: .4s all ease-in-out;
     }
-
-
   }
 
-  &__selectOption {
-
-    height: 37px;
-    padding: 12px;
-    width: 300px;
+  &__optionsContainer {
+    visibility: hidden;
+    display: grid;
+    gap: 0.4rem
   }
 }
