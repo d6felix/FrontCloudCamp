@@ -113,6 +113,7 @@ export function FormPart2() {
 							type="radio"
 							id={`field-radio-group-option-${num}`}
 							value={num}
+							className={styles.form2__radioItem}
 							{...register("radio")}
 						/>
 						{num}

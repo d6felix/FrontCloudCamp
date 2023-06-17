@@ -26,6 +26,24 @@
     grid-area: radio;
   }
 
+  &__radioItem {
+    appearance: none;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.24);
+    width: 1.6rem;
+    height: 1.6rem;
+    display: grid;
+    grid-template-columns: 1.6rem auto;
+
+    &:checked {
+      gap: 0;
+      border: 0.35rem solid #FFF;
+      background: hsla(0, 0%, 80%, 1);
+    }
+  }
+
   &__button {
     &_back {
       align-self: end;
