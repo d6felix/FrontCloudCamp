@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import styles from "./ErrorTip.module.scss";
 
 export type ErrorTipProps = React.PropsWithChildren<{
@@ -6,7 +7,7 @@ export type ErrorTipProps = React.PropsWithChildren<{
 }>;
 
 export function ErrorTip({ children, className }: ErrorTipProps) {
-	return <p className={(styles.errorTip, className)}>{children}</p>;
+	return <p className={classNames(styles.errorTip, className)}>{children}</p>;
 }
 
 export default ErrorTip;
