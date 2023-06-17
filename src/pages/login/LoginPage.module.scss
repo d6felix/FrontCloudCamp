@@ -21,19 +21,16 @@
     gap: 24px;
   }
 
-  &__label {
-    &__phone {
-      grid-area: phone;
-    }
-
-    &__email {
-      grid-area: email;
-    }
+  &__phone {
+    grid-area: phone;
   }
 
-  &__input {
+  &__email {
+    grid-area: email;
+  }
+
+  >input {
     margin-top: 8px;
-    width: clamp(20rem, 100%, 40rem);
   }
 
   &__button {

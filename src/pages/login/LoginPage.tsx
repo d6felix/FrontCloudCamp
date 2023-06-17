@@ -13,10 +13,9 @@ import { withHookFormMask } from "use-mask-input";
 import { LoginHeader } from "@components/LoginHeader";
 import { resetFormStep } from "@features/formStep/formStepSlice";
 import { Button } from "@components/FormElements/Button";
-import classNames from "classnames";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorTip } from "@components/ErrorTip";
 import { phonenumberTransform } from "@utils/helperFunctions";
+import { Input } from "@components/FormElements/Input";
 
 export function LoginPage() {
 	const {
@@ -49,43 +48,28 @@ export function LoginPage() {
 				onSubmit={(...args) => void handleSubmit(handleStart)(...args)}
 				className={styles.loginPage__form}
 			>
-				<label
-					className={classNames(
-						styles.loginPage__label,
-						styles.loginPage__label_phone
+				<Input
+					className={styles.loginPage__phone}
+					type="tel"
+					{...withHookFormMask(
+						register("phoneNumber", {
+							setValueAs: phonenumberTransform,
+						}),
+						["+7 (999) 999-99-99"]
 					)}
-				>
-					Phone number
-					<input
-						className={styles.loginPage__input}
-						type="tel"
-						{...withHookFormMask(
-							register("phoneNumber", {
-								setValueAs: phonenumberTransform,
-							}),
-							["+7 (999) 999-99-99"]
-						)}
-					/>
-					<ErrorTip className={styles.loginPage__errorTip}>
-						{errors.phoneNumber?.message}
-					</ErrorTip>
-				</label>
-				<label
-					className={classNames(
-						styles.loginPage__label,
-						styles.loginPage__label_email
-					)}
-				>
-					E-mail
-					<input
-						type="email"
-						{...register("email")}
-						className={styles.loginPage__input}
-					/>
-					<ErrorTip className={styles.loginPage__errorTip}>
-						{errors.email?.message}
-					</ErrorTip>
-				</label>
+					label={"phoneNumber"}
+					errors={errors.phoneNumber?.message}
+					length="l"
+				/>
+
+				<Input
+					className={styles.loginPage__email}
+					type="email"
+					register={register}
+					label={"email"}
+					errors={errors.email?.message}
+					length="l"
+				/>
 				<Button
 					type="submit"
 					id="button-start"

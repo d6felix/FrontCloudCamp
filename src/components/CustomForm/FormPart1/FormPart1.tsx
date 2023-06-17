@@ -13,9 +13,9 @@ import {
 } from "@features/formSubmit/formSubmitSlice";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorTip } from "@components/ErrorTip";
 import styles from "./FormPart1.module.scss";
 import { Select } from "@components/FormElements/Select";
+import { Input } from "@components/FormElements/Input";
 
 export function FormPart1() {
 	const savedValues = useAppSelector(selectFormData);
@@ -49,33 +49,24 @@ export function FormPart1() {
 			onSubmit={(...args) => void handleSubmit(handleNextStep)(...args)}
 			className={styles.form1}
 		>
-			<label htmlFor="field-nickname" className={styles.form1__nickname}>
-				Nickname
-				<input
-					className={styles.form1__input}
-					{...register("nickname")}
-					id="field-nickname"
-				/>
-				<ErrorTip>{errors.nickname?.message}</ErrorTip>
-			</label>
-			<label htmlFor="field-name" className={styles.form1__name}>
-				Name
-				<input
-					className={styles.form1__input}
-					{...register("name")}
-					id="field-name"
-				/>
-				<ErrorTip>{errors.name?.message}</ErrorTip>
-			</label>
-			<label htmlFor="field-surname" className={styles.form1__surname}>
-				Surname
-				<input
-					className={styles.form1__input}
-					{...register("surname")}
-					id="field-surname"
-				/>
-				<ErrorTip>{errors.surname?.message}</ErrorTip>
-			</label>
+			<Input
+				register={register}
+				errors={errors.nickname?.message}
+				label="nickname"
+				className={styles.form1__nickname}
+			/>
+			<Input
+				register={register}
+				errors={errors.name?.message}
+				label="name"
+				className={styles.form1__name}
+			/>
+			<Input
+				register={register}
+				errors={errors.surname?.message}
+				label="surname"
+				className={styles.form1__surname}
+			/>
 			<Select
 				register={register}
 				label="sex"
