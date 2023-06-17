@@ -1,13 +1,11 @@
 import styles from "./LoginHeader.module.scss";
-import { useMemo } from "react";
+import { memo } from "react";
 import FolderIcon from "@assets/FolderIcon.svg";
 
 export function LoginHeader() {
 	const firstName = "Филипп";
 	const lastName = "Ашайкин";
-	const userImg = useMemo(() => {
-		return lastName.charAt(0).concat(firstName.charAt(0));
-	}, []);
+	const userImg = lastName.charAt(0).concat(firstName.charAt(0));
 
 	return (
 		<header className={styles.header}>
@@ -36,4 +34,4 @@ export function LoginHeader() {
 	);
 }
 
-export default LoginHeader;
+export default memo(LoginHeader);

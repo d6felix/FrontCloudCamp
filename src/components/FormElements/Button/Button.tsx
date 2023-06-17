@@ -1,6 +1,7 @@
 import classNames from "classnames";
 
 import styles from "./Button.module.scss";
+import { memo } from "react";
 
 export type ButtonProps = React.PropsWithChildren<{
 	children: React.ReactNode;
@@ -29,4 +30,4 @@ export const Button = ({
 	);
 };
 
-export default Button;
+export default memo(Button);
