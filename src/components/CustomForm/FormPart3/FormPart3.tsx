@@ -23,7 +23,6 @@ import {
 	showModalSuccess,
 } from "@features/showModal/showModalSlice";
 import { ServerResponse } from "@features/formSubmit/responseType";
-import { useCallback } from "react";
 
 export function FormPart3() {
 	const savedValues = useAppSelector(selectFormData);
@@ -41,9 +40,7 @@ export function FormPart3() {
 	});
 
 	const dispatch = useAppDispatch();
-
 	const [addFormData] = useAddFormDataMutation();
-	const formSubmit = useAppSelector(selectFormData);
 
 	const watchAbout = useWatch({
 		control,
@@ -56,7 +53,7 @@ export function FormPart3() {
 		dispatch(decrementFormStep());
 	};
 
-	const onFetch = useCallback(async () => {
+	const onFetch = async (formSubmit: Partial<FormData>) => {
 		console.log(formSubmit);
 		if (formDataSchema.isValidSync(formSubmit)) {
 			await addFormData(formSubmit)
@@ -70,12 +67,12 @@ export function FormPart3() {
 		} else {
 			dispatch(showModalError());
 		}
-	}, [formSubmit]);
+	};
 
-	const onSubmit = useCallback((data: FormDataPart3) => {
-		dispatch(updateForm(data));
-		return onFetch();
-	}, []);
+	const onSubmit = (data: FormDataPart3) => {
+		const storeData = dispatch(updateForm(data)).payload;
+		return onFetch(storeData);
+	};
 
 	return (
 		<>
