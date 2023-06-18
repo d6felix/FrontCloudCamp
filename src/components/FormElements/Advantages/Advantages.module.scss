@@ -1,0 +1,6 @@
+@use "./../../../utils/inputStyles" as mix;
+
+.advantages {
+  @include mix.inputStyles;
+
+}

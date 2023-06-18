@@ -1,4 +1,4 @@
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
 	FormData,
 	FormDataPart2,
@@ -17,10 +17,9 @@ import {
 import { useMemo } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
-import RemoveIcon from "@assets/RemoveIcon.svg";
 import styles from "./FormPart2.module.scss";
-import { ErrorTip } from "@components/ErrorTip";
 import { CheckBox } from "@components/FormElements/CheckBox";
+import { Advantages } from "@components/FormElements/Advantages";
 
 export function FormPart2() {
 	const savedValues = useAppSelector(selectFormData);
@@ -37,31 +36,7 @@ export function FormPart2() {
 		defaultValues: savedValues,
 	});
 
-	const { fields, append, remove } = useFieldArray({
-		control,
-		name: "advantages",
-	});
-
 	const dispatch = useAppDispatch();
-
-	const advantagesLength = fields.length;
-	const advantagesId: React.Key[] = useId(advantagesLength, "advantages");
-	const advantages = Array.from({ length: advantagesLength }).map(
-		(_, index) => {
-			return (
-				<div key={advantagesId[index]} id="field-advantages">
-					<input
-						className={styles.form2__input}
-						{...register(`advantages.${index}.value`)}
-						id={`field-advantages-${index + 1}`}
-					/>
-					<div onClick={() => remove(index)} id={`button-remove-${index + 1}`}>
-						<img src={RemoveIcon} alt="remove" />
-					</div>
-				</div>
-			);
-		}
-	);
 
 	const checkboxId: React.Key[] = useId(3, "checkbox");
 	const checkbox = useMemo(() => {
@@ -110,29 +85,17 @@ export function FormPart2() {
 		dispatch(incrementFormStep());
 	};
 
-	const addAdvantages = () => {
-		append({ value: "" });
-	};
-
 	return (
 		<form
 			onSubmit={(...args) => void handleSubmit(handleNextStep)(...args)}
 			className={styles.form2}
 		>
-			<fieldset className={styles.form2__advantages}>
-				<label htmlFor="field-advantages">Advantages:{advantages}</label>
-				<ErrorTip>
-					{errors.advantages ? errors.advantages[0]?.message : ""}
-				</ErrorTip>
-				<Button
-					type="button"
-					onClick={addAdvantages}
-					id="button-add"
-					style="border"
-				>
-					+
-				</Button>
-			</fieldset>
+			<Advantages
+				control={control}
+				register={register}
+				errors={errors}
+				className={styles.form2__advantages}
+			/>
 			<fieldset className={styles.form2__checkbox}>
 				<legend>Checkbox group:</legend>
 				<ul>{checkbox}</ul>
