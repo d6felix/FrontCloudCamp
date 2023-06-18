@@ -40,7 +40,7 @@ module.exports = {
   entry: path.join(srcPath, "index.tsx"),
   output: {
     path: buildPath,
-    filename: "bundle.js",
+    filename: "[name].js",
     clean: true,
   },
   plugins: [
@@ -66,6 +66,7 @@ module.exports = {
       },
       {
         test: /\.[tj]sx?$/,
+        exclude: /node_modules/,
         use: "babel-loader",
       },
       {
