@@ -82,7 +82,7 @@ export function FormPart3() {
 			>
 				<label htmlFor="field-about" className={styles.form3__about}>
 					<div className={styles.form3__about_container}>
-						About:
+						About
 						<textarea
 							className={styles.form3__input}
 							{...register("about")}

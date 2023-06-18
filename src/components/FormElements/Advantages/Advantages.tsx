@@ -52,7 +52,7 @@ export function Advantages({ control, register, className }: AdvantagesProps) {
 	return (
 		<fieldset className={classNames(styles.advantages, className)}>
 			<label htmlFor="field-advantages">
-				<p>Advantages:</p>
+				<p>Advantages</p>
 				{advantages}
 			</label>
 			<Button
