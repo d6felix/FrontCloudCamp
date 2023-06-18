@@ -20,6 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart2.module.scss";
 import { CheckBox } from "@components/FormElements/CheckBox";
 import { Advantages } from "@components/FormElements/Advantages";
+import { RadioGroup } from "@components/FormElements/RadioGroup";
 
 export function FormPart2() {
 	const savedValues = useAppSelector(selectFormData);
@@ -49,27 +50,6 @@ export function FormPart2() {
 		});
 	}, [checkboxId]);
 
-	const radioId: React.Key[] = useId(3, "radio");
-	const radio = useMemo(() => {
-		return Array.from({ length: 3 }).map((_, index) => {
-			const num = index + 1;
-			return (
-				<li key={radioId[index]}>
-					<label htmlFor={`field-radio-group-option-${num}`}>
-						<input
-							type="radio"
-							id={`field-radio-group-option-${num}`}
-							value={num}
-							className={styles.form2__radioItem}
-							{...register("radio")}
-						/>
-						{num}
-					</label>
-				</li>
-			);
-		});
-	}, [radioId]);
-
 	const handleBackStep = () => {
 		dispatch(updateForm(getValues()));
 		dispatch(decrementFormStep());
@@ -90,14 +70,16 @@ export function FormPart2() {
 				className={styles.form2__advantages}
 			/>
 			<fieldset className={styles.form2__checkbox}>
-				<legend>Checkbox group:</legend>
+				<legend>Checkbox group</legend>
 				<ul>{checkbox}</ul>
 			</fieldset>
 
-			<fieldset className={styles.form2__radio}>
-				<legend>Radio group:</legend>
-				<ul>{radio}</ul>
-			</fieldset>
+			<RadioGroup
+				values={["1", "2", "3"]}
+				register={register}
+				className={styles.form2__radio}
+			/>
+
 			<Button
 				className={styles.form2__button_back}
 				type="button"
