@@ -45,6 +45,7 @@ export const FormInput = forwardRef(function Input(
 		>
 			<p>{labelCapitalized}</p>
 			<input
+				placeholder={"Type here..."}
 				type={type}
 				className={classNames(
 					styles.input__input,

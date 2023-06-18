@@ -30,6 +30,7 @@ export function Advantages({ control, register, className }: AdvantagesProps) {
 					className={styles.advantages__container}
 				>
 					<input
+						placeholder={"Type here..."}
 						className={styles.advantages__input}
 						{...register(`advantages.${index}.value`)}
 						id={`field-advantages-${index + 1}`}
