@@ -17,7 +17,10 @@ export const loginPageSchema: ObjectSchema<LoginPageData> = object({
 		.min(1000000000, "Should have 10 digits."),
 	email: string()
 		.required("Should have email.")
-		.email("Should be a valid email: example@domain.com."),
+		.matches(
+			/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/,
+			"Should be a valid email: example@domain.com."
+		),
 });
 
 export const formPart1Schema: ObjectSchema<FormDataPart1> = object({
