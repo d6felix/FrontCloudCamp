@@ -4,7 +4,6 @@ import {
 	FormDataPart2,
 	formPart2Schema,
 } from "@schema/RegistrationForm";
-import { useId } from "react-id-generator";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import {
 	incrementFormStep,
@@ -14,13 +13,12 @@ import {
 	selectFormData,
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
-import { useMemo } from "react";
 import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart2.module.scss";
-import { CheckBox } from "@components/FormElements/CheckBox";
 import { Advantages } from "@components/FormElements/Advantages";
 import { RadioGroup } from "@components/FormElements/RadioGroup";
+import { CheckBoxGroup } from "@components/FormElements/CheckBoxGroup";
 
 export function FormPart2() {
 	const savedValues = useAppSelector(selectFormData);
@@ -32,23 +30,6 @@ export function FormPart2() {
 	});
 
 	const dispatch = useAppDispatch();
-
-	const checkboxId: React.Key[] = useId(3, "checkbox");
-	const checkbox = useMemo(() => {
-		return Array.from({ length: 3 }).map((_, index) => {
-			const num = index + 1;
-			return (
-				<li key={checkboxId[index]}>
-					<CheckBox
-						id={`field-checkbox-group-option-${num}`}
-						register={register}
-						value={num}
-						label={"checkbox"}
-					/>
-				</li>
-			);
-		});
-	}, [checkboxId]);
 
 	const handleBackStep = () => {
 		dispatch(updateForm(getValues()));
@@ -69,10 +50,12 @@ export function FormPart2() {
 				register={register}
 				className={styles.form2__advantages}
 			/>
-			<fieldset className={styles.form2__checkbox}>
-				<legend>Checkbox group</legend>
-				<ul>{checkbox}</ul>
-			</fieldset>
+
+			<CheckBoxGroup
+				register={register}
+				values={["1", "2", "3"]}
+				className={styles.form2__checkbox}
+			/>
 
 			<RadioGroup
 				values={["1", "2", "3"]}

@@ -6,7 +6,7 @@ import { memo } from "react";
 export type CheckBoxProps = React.InputHTMLAttributes<HTMLInputElement> & {
 	register: UseFormRegister<FormData>;
 	label: keyof FormData;
-	value: number;
+	value: string;
 	id: string;
 };
 
