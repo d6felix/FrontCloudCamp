@@ -13,7 +13,7 @@ import { capitalizeFirstLetter } from "@utils/helperFunctions";
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 	register?: UseFormRegister<FormData>;
 	inputName: keyof FormData;
-	label?: string;
+	inputLabel?: string;
 	className?: string;
 	errors: string | undefined;
 	type?: string;
@@ -26,14 +26,17 @@ export const FormInput = forwardRef(function Input(
 		inputName,
 		className = "",
 		errors,
-		label,
+		inputLabel,
 		type = "text",
 		length = "n",
 		...props
 	}: InputProps,
 	ref: RefCallBack
 ) {
-	const labelCapitalized = label ? label : capitalizeFirstLetter(inputName);
+	const labelCapitalized =
+		typeof inputLabel === "string"
+			? inputLabel
+			: capitalizeFirstLetter(inputName);
 	const spreadProps = register ? { ...register(inputName) } : { ...props };
 	return (
 		<label

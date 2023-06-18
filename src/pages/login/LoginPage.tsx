@@ -57,7 +57,7 @@ export function LoginPage() {
 						["+7 (999) 999-99-99"]
 					)}
 					inputName={"phoneNumber"}
-					label="Phone Number"
+					inputLabel="Phone Number"
 					errors={errors.phoneNumber?.message}
 					length="l"
 				/>
