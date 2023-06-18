@@ -12,7 +12,7 @@ import {
 	updateForm,
 	useAddFormDataMutation,
 } from "@features/formSubmit/formSubmitSlice";
-import { Button } from "@components/FormElements/Button";
+import { Button } from "@components/FormElements";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorTip } from "@components/ErrorTip";
 import styles from "./FormPart3.module.scss";

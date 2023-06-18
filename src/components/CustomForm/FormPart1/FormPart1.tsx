@@ -11,11 +11,9 @@ import {
 	updateForm,
 	selectFormData,
 } from "@features/formSubmit/formSubmitSlice";
-import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart1.module.scss";
-import { Select } from "@components/FormElements/Select";
-import { FormInput } from "@components/FormElements/FormInput";
+import { FormInput, Select, Button } from "@components/FormElements";
 
 export function FormPart1() {
 	const savedValues = useAppSelector(selectFormData);

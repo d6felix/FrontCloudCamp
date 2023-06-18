@@ -12,10 +12,9 @@ import { updateForm } from "@features/formSubmit/formSubmitSlice";
 import { withHookFormMask } from "use-mask-input";
 import { LoginHeader } from "@components/LoginHeader";
 import { resetFormStep } from "@features/formStep/formStepSlice";
-import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { phonenumberTransform } from "@utils/helperFunctions";
-import { FormInput } from "@components/FormElements/FormInput";
+import { FormInput, Button } from "@components/FormElements";
 
 export function LoginPage() {
 	const {

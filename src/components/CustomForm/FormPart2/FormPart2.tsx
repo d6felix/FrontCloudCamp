@@ -13,12 +13,14 @@ import {
 	selectFormData,
 	updateForm,
 } from "@features/formSubmit/formSubmitSlice";
-import { Button } from "@components/FormElements/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart2.module.scss";
-import { Advantages } from "@components/FormElements/Advantages";
-import { RadioGroup } from "@components/FormElements/RadioGroup";
-import { CheckBoxGroup } from "@components/FormElements/CheckBoxGroup";
+import {
+	Advantages,
+	RadioGroup,
+	CheckBoxGroup,
+	Button,
+} from "@components/FormElements";
 
 export function FormPart2() {
 	const savedValues = useAppSelector(selectFormData);
