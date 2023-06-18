@@ -25,7 +25,7 @@ export const Button = ({
 				styles[`button_${style}`]
 			)}
 		>
-			<div>{children}</div>
+			{children}
 		</button>
 	);
 };
