@@ -5,3 +5,4 @@ export * from "./CheckBoxGroup";
 export * from "./FormInput";
 export * from "./RadioGroup";
 export * from "./Select";
+export * from "./About";

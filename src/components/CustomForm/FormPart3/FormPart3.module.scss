@@ -1,7 +1,4 @@
-@use "./../../../utils/inputStyles" as mix;
-
 .form3 {
-  @include mix.inputStyles;
 
   display: grid;
   grid-template-columns: 3fr 4fr;
@@ -12,36 +9,8 @@
   justify-content: start;
   gap: 2rem;
 
-  &__input {
-    width: 100%;
-    max-width: 100%;
-    height: 8.4rem;
-  }
-
   &__about {
     grid-area: about;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: min-content min-content;
-    grid-template-areas:
-      "container container"
-      "error count";
-
-    &_container {
-      width: 49vw;
-      grid-area: container;
-    }
-
-    &_error {
-      grid-area: error;
-      align-self: end;
-    }
-
-    &_count {
-      grid-area: count;
-      align-self: end;
-      justify-self: end;
-    }
   }
 
   &__button {

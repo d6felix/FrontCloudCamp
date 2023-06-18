@@ -1,4 +1,4 @@
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
 	FormData,
 	FormDataPart3,
@@ -12,9 +12,8 @@ import {
 	updateForm,
 	useAddFormDataMutation,
 } from "@features/formSubmit/formSubmitSlice";
-import { Button } from "@components/FormElements";
+import { About, Button } from "@components/FormElements";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorTip } from "@components/ErrorTip";
 import styles from "./FormPart3.module.scss";
 import { createPortal } from "react-dom";
 import { Modal } from "@components/Modal";
@@ -41,12 +40,6 @@ export function FormPart3() {
 
 	const dispatch = useAppDispatch();
 	const [addFormData] = useAddFormDataMutation();
-
-	const watchAbout = useWatch({
-		control,
-		name: "about",
-		defaultValue: "",
-	}).replaceAll(" ", "");
 
 	const backStepHandle = () => {
 		dispatch(updateForm(getValues()));
@@ -79,22 +72,12 @@ export function FormPart3() {
 				onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
 				className={styles.form3}
 			>
-				<label htmlFor="field-about" className={styles.form3__about}>
-					<div className={styles.form3__about_container}>
-						About
-						<textarea
-							className={styles.form3__input}
-							{...register("about")}
-							id="field-about"
-						></textarea>
-					</div>
-					<ErrorTip className={styles.form3__about_error}>
-						{errors.about?.message}
-					</ErrorTip>
-					<div className={styles.form3__about_count}>
-						Symbol count: {watchAbout.length}
-					</div>
-				</label>
+				<About
+					register={register}
+					control={control}
+					className={styles.form3__about}
+					errors={errors.about?.message}
+				/>
 				<Button
 					type="button"
 					onClick={backStepHandle}

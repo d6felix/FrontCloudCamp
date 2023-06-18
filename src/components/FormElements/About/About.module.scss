@@ -1,0 +1,33 @@
+@use "./../../../utils/inputStyles" as mix;
+
+.about {
+  @include mix.inputStyles;
+
+  &__input {
+    width: 100%;
+    max-width: 100%;
+    height: 8.4rem;
+  }
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content min-content;
+  grid-template-areas: "container container"
+  "error count";
+
+  &__container {
+    width: 49vw;
+    grid-area: container;
+  }
+
+  &__error {
+    grid-area: error;
+    align-self: end;
+  }
+
+  &__count {
+    grid-area: count;
+    align-self: end;
+    justify-self: end;
+  }
+}
