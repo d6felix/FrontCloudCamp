@@ -54,7 +54,6 @@ export function FormPart3() {
 	};
 
 	const onFetch = async (formSubmit: Partial<FormData>) => {
-		console.log(formSubmit);
 		if (formDataSchema.isValidSync(formSubmit)) {
 			await addFormData(formSubmit)
 				.unwrap()
