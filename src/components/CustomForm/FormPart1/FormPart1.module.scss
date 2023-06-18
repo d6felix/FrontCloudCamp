@@ -4,7 +4,7 @@
   @include mix.inputStyles;
 
   display: grid;
-  grid-template-columns: 3fr 4fr;
+  grid-template-columns: 40% 1fr;
   grid-template-rows: repeat(3, min-content) 14.5rem min-content;
   grid-template-areas:
     "nickname ."

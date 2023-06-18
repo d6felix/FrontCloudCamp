@@ -5,11 +5,11 @@
     color: hsla(0, 0%, 0%, 0.48);
     border: 1px solid hsla(0, 0%, 0%, 0.16);
     border-radius: 4px;
-    width: clamp(20rem, 100%, 30rem);
+    width: clamp(15rem, 70% + 7rem, 30rem);
     margin-top: 0.8rem;
 
     &_l {
-      width: clamp(20rem, 100%, 40rem);
+      width: clamp(15rem, 70% + 7rem, 40rem);
     }
 
     &:focus {

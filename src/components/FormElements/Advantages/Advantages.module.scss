@@ -4,11 +4,11 @@
   @include mix.inputStyles;
 
   &__container {
-    display: grid;
-    grid-template-columns: 1fr 20px;
-    grid-template-areas: "input delete";
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
-    column-gap: 16px;
+    column-gap: 1.6rem;
   }
 
   &__add {

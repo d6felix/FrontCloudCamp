@@ -4,15 +4,15 @@
   @include mix.inputStyles;
 
   display: grid;
-  grid-template-columns: 3fr 4fr;
-  grid-template-rows: repeat(3, min-content) 8.8rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, min-content);
   grid-template-areas:
-    "advantages ."
+    "advantages advantages"
     "checkbox ."
     "radio ."
     "button_back button_next";
   justify-content: start;
-  gap: 2rem;
+  row-gap: 2rem;
 
   &__advantages {
     grid-area: advantages;
