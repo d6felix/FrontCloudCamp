@@ -8,11 +8,12 @@ import {
 import { ErrorTip } from "@components/ErrorTip";
 import classNames from "classnames";
 import { FormData } from "@schema/RegistrationForm";
-import { useCapitalizeFirstLetter } from "@utils/helperFunctions";
+import { capitalizeFirstLetter } from "@utils/helperFunctions";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 	register?: UseFormRegister<FormData>;
-	label: keyof FormData;
+	inputName: keyof FormData;
+	label?: string;
 	className?: string;
 	errors: string | undefined;
 	type?: string;
@@ -22,20 +23,21 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 export const FormInput = forwardRef(function Input(
 	{
 		register,
-		label,
+		inputName,
 		className = "",
 		errors,
+		label,
 		type = "text",
 		length = "n",
 		...props
 	}: InputProps,
 	ref: RefCallBack
 ) {
-	const labelCapitalized = useCapitalizeFirstLetter(label);
-	const spreadProps = register ? { ...register(label) } : { ...props };
+	const labelCapitalized = label ? label : capitalizeFirstLetter(inputName);
+	const spreadProps = register ? { ...register(inputName) } : { ...props };
 	return (
 		<label
-			htmlFor={`field-${label}`}
+			htmlFor={`field-${inputName}`}
 			className={classNames(styles.input, className)}
 		>
 			<p>{labelCapitalized}</p>
@@ -46,7 +48,7 @@ export const FormInput = forwardRef(function Input(
 					`${styles.input__input}_${length}`
 				)}
 				{...spreadProps}
-				id={`field-${label}`}
+				id={`field-${inputName}`}
 				ref={ref}
 			/>
 			<ErrorTip>{errors}</ErrorTip>

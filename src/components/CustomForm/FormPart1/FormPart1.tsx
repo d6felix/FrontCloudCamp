@@ -52,19 +52,19 @@ export function FormPart1() {
 			<FormInput
 				{...register("nickname")}
 				errors={errors.nickname?.message}
-				label="nickname"
+				inputName="nickname"
 				className={styles.form1__nickname}
 			/>
 			<FormInput
 				{...register("name")}
 				errors={errors.name?.message}
-				label="name"
+				inputName="name"
 				className={styles.form1__name}
 			/>
 			<FormInput
 				{...register("surname")}
 				errors={errors.surname?.message}
-				label="surname"
+				inputName="surname"
 				className={styles.form1__surname}
 			/>
 			<Select

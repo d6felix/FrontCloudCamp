@@ -57,7 +57,8 @@ export function LoginPage() {
 						}),
 						["+7 (999) 999-99-99"]
 					)}
-					label={"phoneNumber"}
+					inputName={"phoneNumber"}
+					label="Phone Number"
 					errors={errors.phoneNumber?.message}
 					length="l"
 				/>
@@ -66,7 +67,7 @@ export function LoginPage() {
 					className={styles.loginPage__email}
 					type="email"
 					{...register("email")}
-					label={"email"}
+					inputName={"email"}
 					errors={errors.email?.message}
 					length="l"
 				/>
