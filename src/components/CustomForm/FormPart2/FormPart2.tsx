@@ -23,13 +23,7 @@ import { Advantages } from "@components/FormElements/Advantages";
 
 export function FormPart2() {
 	const savedValues = useAppSelector(selectFormData);
-	const {
-		register,
-		getValues,
-		handleSubmit,
-		control,
-		formState: { errors },
-	} = useForm<FormData>({
+	const { register, getValues, handleSubmit, control } = useForm<FormData>({
 		mode: "onSubmit",
 		reValidateMode: "onBlur",
 		resolver: yupResolver(formPart2Schema),
@@ -93,7 +87,6 @@ export function FormPart2() {
 			<Advantages
 				control={control}
 				register={register}
-				errors={errors}
 				className={styles.form2__advantages}
 			/>
 			<fieldset className={styles.form2__checkbox}>

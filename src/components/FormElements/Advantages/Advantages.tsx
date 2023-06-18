@@ -1,33 +1,19 @@
-import { ErrorTip } from "@components/ErrorTip";
 import { Button } from "../Button";
 import { useId } from "react-id-generator";
-import {
-	Control,
-	FieldErrors,
-	UseFormRegister,
-	useFieldArray,
-} from "react-hook-form";
+import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
 import { FormData } from "@schema/RegistrationForm";
 import RemoveIcon from "@assets/RemoveIcon.svg";
+import CrossAddIcon from "@assets/CrossAddIcon.svg";
 import styles from "./Advantages.module.scss";
 import classNames from "classnames";
 
 type AdvantagesProps = {
 	control: Control<FormData, unknown>;
 	register: UseFormRegister<FormData>;
-	//inputName: keyof FormData;
-	//label?: string;
 	className?: string;
-	errors: FieldErrors<FormData>;
-	//type?: string;
 };
 
-export function Advantages({
-	control,
-	register,
-	errors,
-	className,
-}: AdvantagesProps) {
+export function Advantages({ control, register, className }: AdvantagesProps) {
 	const { fields, append, remove } = useFieldArray({
 		control,
 		name: "advantages",
@@ -38,22 +24,23 @@ export function Advantages({
 	const advantages = Array.from({ length: advantagesLength }).map(
 		(_, index) => {
 			return (
-				<div key={advantagesId[index]} id="field-advantages">
+				<div
+					key={advantagesId[index]}
+					id="field-advantages"
+					className={styles.advantages__container}
+				>
 					<input
 						className={styles.advantages__input}
 						{...register(`advantages.${index}.value`)}
 						id={`field-advantages-${index + 1}`}
 					/>
 					<div
-						className={styles.adVantages__delete}
+						className={styles.advantages__delete}
 						onClick={() => remove(index)}
 						id={`button-remove-${index + 1}`}
 					>
 						<img src={RemoveIcon} alt="remove" />
 					</div>
-					<ErrorTip>
-						{errors.advantages ? errors.advantages[index]?.message : ""}
-					</ErrorTip>
 				</div>
 			);
 		}
@@ -69,12 +56,13 @@ export function Advantages({
 				{advantages}
 			</label>
 			<Button
+				className={styles.advantages__add}
 				type="button"
 				onClick={addAdvantages}
 				id="button-add"
 				style="border"
 			>
-				+
+				<img src={CrossAddIcon} alt="remove" />
 			</Button>
 		</fieldset>
 	);
