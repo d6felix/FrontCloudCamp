@@ -25,58 +25,53 @@ export const loginPageSchema: ObjectSchema<LoginPageData> = object({
 
 export const formPart1Schema: ObjectSchema<FormDataPart1> = object({
 	nickname: string()
-		.required("Should have nickname.")
-		.max(30, "Nickname max length is 30.")
-		.min(1, "Should have nickname.")
-		.matches(
-			/^[0-9a-zA-Z]*$/,
-			"Nickname should have only numbers and letters."
-		),
+		.required("Should have nickname")
+		.max(30, "Nickname max length is 30")
+		.min(1, "Should have nickname")
+		.matches(/^[0-9a-zA-Z]*$/, "Nickname should have only numbers and letters"),
 	name: string()
 		.required("Should have name.")
 		.max(50, "Name max length is 30.")
 		.min(1, "Should have name.")
 		.matches(
 			/^[A-Z][a-z]*$/,
-			"Name should have only letters and start with capital."
+			"Name should have only letters and start with capital"
 		),
 	surname: string()
-		.required("Should have surname.")
-		.max(50, "Surname max length is 30.")
-		.min(1, "Should have surname.")
+		.required("Should have surname")
+		.max(50, "Surname max length is 30")
+		.min(1, "Should have surname")
 		.matches(
 			/^[A-Z][a-z]*$/,
-			"Surname should have only letters and start with capital."
+			"Surname should have only letters and start with capital"
 		),
 	sex: string()
-		.oneOf(["man", "woman"], "Sex should be a man or woman.")
-		.required("Should have sex."),
+		.oneOf(["man", "woman"], "Sex should be a man or woman")
+		.required("Should have sex"),
 });
 
 export const formPart2Schema: ObjectSchema<FormDataPart2> = object({
 	advantages: array()
 		.of(
 			object({ value: string().required() }).required(
-				"Should have all advantages fields filled."
+				"Should have all advantages fields filled"
 			)
 		)
-		.required("Should have advantages array."),
+		.required("Should have advantages array"),
 	checkbox: array()
 		.of(
 			number()
-				.typeError("Should be a number.")
-				.required("Should have checkbox item.")
+				.typeError("Should be a number")
+				.required("Should have checkbox item")
 		)
-		.required("Should have checkbox."),
-	radio: number()
-		.typeError("Should be a number.")
-		.required("Should have radio."),
+		.required("Should have checkbox"),
+	radio: number().typeError("Should be a number").required("Should have radio"),
 });
 
 export const formPart3Schema: ObjectSchema<FormDataPart3> = object({
 	about: string()
-		.required("Should have about.")
-		.max(200, "About max length is 200."),
+		.required("Should have about")
+		.max(200, "About max length is 200"),
 });
 
 export const formDataSchema: ObjectSchema<FormData> = object()
@@ -84,4 +79,4 @@ export const formDataSchema: ObjectSchema<FormData> = object()
 	.concat(formPart1Schema)
 	.concat(formPart2Schema)
 	.concat(formPart3Schema)
-	.required("Should have form.");
+	.required("Should have form");
