@@ -3,7 +3,7 @@ import { RootState } from "@store/store";
 
 export interface ShowModalState {
 	show: boolean;
-	isSuccessfull: boolean;
+	isSuccessfull: boolean | undefined;
 }
 
 const initialState: ShowModalState = {
@@ -24,10 +24,13 @@ export const showModalSlice = createSlice({
 		hideModal: () => {
 			return { show: false, isSuccessfull: false };
 		},
+		showModalLoading: () => {
+			return { show: true, isSuccessfull: undefined };
+		},
 	},
 });
 
-export const { showModalSuccess, showModalError, hideModal } =
+export const { showModalSuccess, showModalError, hideModal, showModalLoading } =
 	showModalSlice.actions;
 
 export const selectShowModal = (state: RootState) => state.showModal;

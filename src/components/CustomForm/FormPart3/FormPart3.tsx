@@ -18,6 +18,7 @@ import styles from "./FormPart3.module.scss";
 import { createPortal } from "react-dom";
 import { Modal } from "@components/Modal";
 import {
+	showModalLoading,
 	showModalError,
 	showModalSuccess,
 } from "@features/showModal/showModalSlice";
@@ -47,18 +48,21 @@ export function FormPart3() {
 	};
 
 	const onFetch = async (formSubmit: Partial<FormData>) => {
-		if (formDataSchema.isValidSync(formSubmit)) {
-			await addFormData(formSubmit)
-				.unwrap()
-				.then((payload: ServerResponse) =>
-					payload.status === "success"
-						? dispatch(showModalSuccess())
-						: dispatch(showModalError())
-				)
-				.catch(() => dispatch(showModalError()));
-		} else {
-			dispatch(showModalError());
-		}
+		dispatch(showModalLoading());
+
+		await formDataSchema
+			.isValid(formSubmit)
+			.then(() => {
+				addFormData(formSubmit as FormData)
+					.unwrap()
+					.then((payload: ServerResponse) =>
+						payload.status === "success"
+							? dispatch(showModalSuccess())
+							: dispatch(showModalError())
+					)
+					.catch(() => dispatch(showModalError()));
+			})
+			.catch(() => dispatch(showModalError()));
 	};
 
 	const onSubmit = (data: FormDataPart3) => {

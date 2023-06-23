@@ -1,0 +1,45 @@
+.loader {
+    border: solid hsla(239, 94%, 66%, 1);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    rotate: -55deg;
+    position: absolute;
+    left: 50%;
+    translate: -50% -50%;
+
+    transition-property: transform;
+    animation-name: spin;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    &.loader_size_l {
+        border-width: 0.6rem;
+        width: 5.7rem;
+        height: 5.7rem;
+    }
+
+    &.loader_size_m {
+        border-width: 0.45rem;
+        width: 3.1rem;
+        height: 3.1rem;
+    }
+
+    &.loader_size_s {
+        border-width: 0.3rem;
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
