@@ -1,6 +1,6 @@
 import styles from "./CheckBox.module.scss";
 import { UseFormRegister } from "react-hook-form";
-import { FormData } from "@schema/RegistrationForm";
+import { FormData } from "~schema/RegistrationForm";
 import { memo } from "react";
 
 export type CheckBoxProps = React.InputHTMLAttributes<HTMLInputElement> & {

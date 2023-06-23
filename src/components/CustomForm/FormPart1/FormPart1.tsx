@@ -3,17 +3,17 @@ import {
 	FormData,
 	FormDataPart1,
 	formPart1Schema,
-} from "@schema/RegistrationForm";
+} from "~schema/RegistrationForm";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { incrementFormStep } from "@features/formStep/formStepSlice";
+import { useAppDispatch, useAppSelector } from "~hooks/reduxHooks";
+import { incrementFormStep } from "~features/formStep/formStepSlice";
 import {
 	updateForm,
 	selectFormData,
-} from "@features/formSubmit/formSubmitSlice";
+} from "~features/formSubmit/formSubmitSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart1.module.scss";
-import { FormInput, Select, Button } from "@components/FormElements";
+import { FormInput, Select, Button } from "~components/FormElements";
 
 export function FormPart1() {
 	const savedValues = useAppSelector(selectFormData);

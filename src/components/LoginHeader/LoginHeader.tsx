@@ -1,6 +1,6 @@
 import styles from "./LoginHeader.module.scss";
 import { memo } from "react";
-import FolderIcon from "@assets/FolderIcon.svg";
+import FolderIcon from "~assets/FolderIcon.svg";
 
 export function LoginHeader() {
 	const firstName = "Филипп";

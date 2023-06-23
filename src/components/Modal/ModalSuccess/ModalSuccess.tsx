@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./ModalSuccess.module.scss";
-import { useAppDispatch } from "@hooks/reduxHooks";
-import { hideModal } from "@features/showModal/showModalSlice";
-import ModalGreenSuccess from "@assets/ModalGreenSuccess.svg";
-import { Button } from "@components/FormElements/Button";
+import { useAppDispatch } from "~hooks/reduxHooks";
+import { hideModal } from "~features/showModal/showModalSlice";
+import ModalGreenSuccess from "~assets/ModalGreenSuccess.svg";
+import { Button } from "~components/FormElements/Button";
 
 export function ModalSuccess() {
 	const navigate = useNavigate();

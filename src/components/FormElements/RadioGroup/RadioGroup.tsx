@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useId } from "react-id-generator";
 import styles from "./RadioGroup.module.scss";
 import { UseFormRegister } from "react-hook-form";
-import { FormData } from "@schema/RegistrationForm";
+import { FormData } from "~schema/RegistrationForm";
 import classNames from "classnames";
 
 type RadioGroupProps = {

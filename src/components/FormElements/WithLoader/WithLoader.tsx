@@ -1,4 +1,4 @@
-import { Loader, LoaderSize } from "@components/FormElements/Loader";
+import { Loader, LoaderSize } from "~components/FormElements/Loader";
 
 export type WithLoaderProps = React.PropsWithChildren<{
 	loading: boolean;

@@ -3,16 +3,16 @@ import {
 	FormData,
 	FormDataPart2,
 	formPart2Schema,
-} from "@schema/RegistrationForm";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+} from "~schema/RegistrationForm";
+import { useAppDispatch, useAppSelector } from "~hooks/reduxHooks";
 import {
 	incrementFormStep,
 	decrementFormStep,
-} from "@features/formStep/formStepSlice";
+} from "~features/formStep/formStepSlice";
 import {
 	selectFormData,
 	updateForm,
-} from "@features/formSubmit/formSubmitSlice";
+} from "~features/formSubmit/formSubmitSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart2.module.scss";
 import {
@@ -20,7 +20,7 @@ import {
 	RadioGroup,
 	CheckBoxGroup,
 	Button,
-} from "@components/FormElements";
+} from "~components/FormElements";
 
 export function FormPart2() {
 	const savedValues = useAppSelector(selectFormData);

@@ -1,9 +1,9 @@
 import styles from "./CheckboxGroup.module.scss";
 import { useId } from "react-id-generator";
 import { useMemo } from "react";
-import { CheckBox } from "@components/FormElements/CheckBox/";
+import { CheckBox } from "~components/FormElements/CheckBox/";
 import { UseFormRegister } from "react-hook-form";
-import { FormData } from "@schema/RegistrationForm";
+import { FormData } from "~schema/RegistrationForm";
 import classnames from "classnames";
 
 type CheckBoxGroupProps = {

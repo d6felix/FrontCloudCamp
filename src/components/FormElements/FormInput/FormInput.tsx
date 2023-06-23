@@ -5,10 +5,10 @@ import {
 	UseFormRegister,
 	UseFormRegisterReturn,
 } from "react-hook-form";
-import { ErrorTip } from "@components/ErrorTip";
+import { ErrorTip } from "~components/ErrorTip";
 import classNames from "classnames";
-import { FormData } from "@schema/RegistrationForm";
-import { capitalizeFirstLetter } from "@utils/helperFunctions";
+import { FormData } from "~schema/RegistrationForm";
+import { capitalizeFirstLetter } from "~utils/helperFunctions";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 	register?: UseFormRegister<FormData>;

@@ -1,9 +1,9 @@
-import { useAppSelector } from "@hooks/reduxHooks";
+import { useAppSelector } from "~hooks/reduxHooks";
 import styles from "./About.module.scss";
 import { Control, UseFormRegister, useWatch } from "react-hook-form";
-import { FormData } from "@schema/RegistrationForm";
-import { selectFormData } from "@features/formSubmit/formSubmitSlice";
-import { ErrorTip } from "@components/ErrorTip";
+import { FormData } from "~schema/RegistrationForm";
+import { selectFormData } from "~features/formSubmit/formSubmitSlice";
+import { ErrorTip } from "~components/ErrorTip";
 import classNames from "classnames";
 
 type AboutProps = {

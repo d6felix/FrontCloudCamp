@@ -5,16 +5,16 @@ import {
 	FormData,
 	LoginPageData,
 	loginPageSchema,
-} from "@schema/RegistrationForm";
-import { useAppDispatch } from "@hooks/reduxHooks";
-import { updateForm } from "@features/formSubmit/formSubmitSlice";
+} from "~schema/RegistrationForm";
+import { useAppDispatch } from "~hooks/reduxHooks";
+import { updateForm } from "~features/formSubmit/formSubmitSlice";
 
 import { withHookFormMask } from "use-mask-input";
-import { LoginHeader } from "@components/LoginHeader";
-import { resetFormStep } from "@features/formStep/formStepSlice";
+import { LoginHeader } from "~components/LoginHeader";
+import { resetFormStep } from "~features/formStep/formStepSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { phonenumberTransform } from "@utils/helperFunctions";
-import { FormInput, Button } from "@components/FormElements";
+import { phonenumberTransform } from "~utils/helperFunctions";
+import { FormInput, Button } from "~components/FormElements";
 
 export function LoginPage() {
 	const {

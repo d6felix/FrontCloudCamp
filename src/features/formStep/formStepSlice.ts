@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "@store/store";
+import { RootState } from "~store/store";
 
 export interface FormStepState {
 	value: number;

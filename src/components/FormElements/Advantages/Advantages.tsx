@@ -1,9 +1,9 @@
 import { Button } from "../Button";
 import { useId } from "react-id-generator";
 import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
-import { FormData } from "@schema/RegistrationForm";
-import RemoveIcon from "@assets/RemoveIcon.svg";
-import CrossAddIcon from "@assets/CrossAddIcon.svg";
+import { FormData } from "~schema/RegistrationForm";
+import RemoveIcon from "~assets/RemoveIcon.svg";
+import CrossAddIcon from "~assets/CrossAddIcon.svg";
 import styles from "./Advantages.module.scss";
 import classNames from "classnames";
 

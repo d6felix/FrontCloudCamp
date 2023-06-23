@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import styles from "./FormProgress.module.scss";
-import CheckMark from "@assets/CheckMark.svg";
+import CheckMark from "~assets/CheckMark.svg";
 import { memo } from "react";
 
 type FormProgressProps = {

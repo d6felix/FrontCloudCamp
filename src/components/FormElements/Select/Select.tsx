@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import styles from "./Select.module.scss";
 import { UseFormRegister } from "react-hook-form/dist/types";
-import { FormData } from "@schema/RegistrationForm/dataTypes";
+import { FormData } from "~schema/RegistrationForm/dataTypes";
 import { SyntheticEvent, memo, useMemo, useState } from "react";
 import { useId } from "react-id-generator";
-import { capitalizeFirstLetter } from "@utils/helperFunctions";
+import { capitalizeFirstLetter } from "~utils/helperFunctions";
 
 type SelectProps = {
 	register: UseFormRegister<FormData>;
