@@ -1,6 +1,6 @@
 import { CustomForm } from "~components/CustomForm";
-import { useAppSelector } from "~store/reduxHooks";
-import { selectFormStep } from "~store/formStep/formStepSlice";
+import { useAppSelector, selectFormStep } from "~store";
+
 import { FormProgress } from "~components/FormProgress";
 import styles from "./FormPage.module.scss";
 

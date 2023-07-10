@@ -6,12 +6,11 @@ import {
 	LoginPageData,
 	loginPageSchema,
 } from "~schema/RegistrationForm";
-import { useAppDispatch } from "~store/reduxHooks";
-import { updateForm } from "~store/formSubmit/formSubmitSlice";
+import { useAppDispatch, updateForm, resetFormStep } from "~store";
 
 import { withHookFormMask } from "use-mask-input";
 import { LoginHeader } from "~components/LoginHeader";
-import { resetFormStep } from "~store/formStep/formStepSlice";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { phonenumberTransform } from "~utils/helperFunctions";
 import { FormInput, Button } from "~components/FormElements";

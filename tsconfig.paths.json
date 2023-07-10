@@ -23,6 +23,9 @@
       "~store/*": [
         "src/store/*"
       ],
+      "~store": [
+        "src/store"
+      ],
       "~schema/*": [
         "src/schema/*"
       ],

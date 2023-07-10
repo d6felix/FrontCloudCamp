@@ -5,13 +5,15 @@ import {
 	formDataSchema,
 	formPart3Schema,
 } from "~schema/RegistrationForm";
-import { useAppDispatch, useAppSelector } from "~store/reduxHooks";
-import { decrementFormStep } from "~store/formStep/formStepSlice";
 import {
+	useAppDispatch,
+	useAppSelector,
+	decrementFormStep,
 	selectFormData,
 	updateForm,
 	useAddFormDataMutation,
-} from "~store/formSubmit/formSubmitSlice";
+} from "~store";
+
 import { About, Button } from "~components/FormElements";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart3.module.scss";

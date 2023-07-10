@@ -5,9 +5,14 @@ import {
 	formPart1Schema,
 } from "~schema/RegistrationForm";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "~store/reduxHooks";
-import { incrementFormStep } from "~store/formStep/formStepSlice";
-import { updateForm, selectFormData } from "~store/formSubmit/formSubmitSlice";
+import {
+	useAppDispatch,
+	useAppSelector,
+	incrementFormStep,
+	updateForm,
+	selectFormData,
+} from "~store";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart1.module.scss";
 import { FormInput, Select, Button } from "~components/FormElements";

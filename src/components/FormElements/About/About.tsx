@@ -1,8 +1,8 @@
-import { useAppSelector } from "~store/reduxHooks";
+import { useAppSelector, selectFormData } from "~store";
 import styles from "./About.module.scss";
 import { Control, UseFormRegister, useWatch } from "react-hook-form";
 import { FormData } from "~schema/RegistrationForm";
-import { selectFormData } from "~store/formSubmit/formSubmitSlice";
+
 import { ErrorTip } from "~components/ErrorTip";
 import classNames from "classnames";
 
