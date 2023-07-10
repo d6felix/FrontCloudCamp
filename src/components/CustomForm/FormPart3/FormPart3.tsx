@@ -5,13 +5,13 @@ import {
 	formDataSchema,
 	formPart3Schema,
 } from "~schema/RegistrationForm";
-import { useAppDispatch, useAppSelector } from "~hooks/reduxHooks";
-import { decrementFormStep } from "~features/formStep/formStepSlice";
+import { useAppDispatch, useAppSelector } from "~store/reduxHooks";
+import { decrementFormStep } from "~store/formStep/formStepSlice";
 import {
 	selectFormData,
 	updateForm,
 	useAddFormDataMutation,
-} from "~features/formSubmit/formSubmitSlice";
+} from "~store/formSubmit/formSubmitSlice";
 import { About, Button } from "~components/FormElements";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart3.module.scss";
@@ -21,8 +21,8 @@ import {
 	showModalLoading,
 	showModalError,
 	showModalSuccess,
-} from "~features/showModal/showModalSlice";
-import { ServerResponse } from "~features/formSubmit/responseType";
+} from "~store/showModal/showModalSlice";
+import { ServerResponse } from "~store/formSubmit/responseType";
 
 export function FormPart3() {
 	const savedValues = useAppSelector(selectFormData);

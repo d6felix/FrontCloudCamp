@@ -6,12 +6,12 @@ import {
 	LoginPageData,
 	loginPageSchema,
 } from "~schema/RegistrationForm";
-import { useAppDispatch } from "~hooks/reduxHooks";
-import { updateForm } from "~features/formSubmit/formSubmitSlice";
+import { useAppDispatch } from "~store/reduxHooks";
+import { updateForm } from "~store/formSubmit/formSubmitSlice";
 
 import { withHookFormMask } from "use-mask-input";
 import { LoginHeader } from "~components/LoginHeader";
-import { resetFormStep } from "~features/formStep/formStepSlice";
+import { resetFormStep } from "~store/formStep/formStepSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { phonenumberTransform } from "~utils/helperFunctions";
 import { FormInput, Button } from "~components/FormElements";
@@ -70,11 +70,7 @@ export function LoginPage() {
 					errors={errors.email?.message}
 					length="l"
 				/>
-				<Button
-					type="submit"
-					id="button-start"
-					className={styles.loginPage__button}
-				>
+				<Button type="submit" className={styles.loginPage__button}>
 					Start
 				</Button>
 			</form>

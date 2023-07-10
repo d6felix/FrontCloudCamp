@@ -4,15 +4,12 @@ import {
 	FormDataPart2,
 	formPart2Schema,
 } from "~schema/RegistrationForm";
-import { useAppDispatch, useAppSelector } from "~hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "~store/reduxHooks";
 import {
 	incrementFormStep,
 	decrementFormStep,
-} from "~features/formStep/formStepSlice";
-import {
-	selectFormData,
-	updateForm,
-} from "~features/formSubmit/formSubmitSlice";
+} from "~store/formStep/formStepSlice";
+import { selectFormData, updateForm } from "~store/formSubmit/formSubmitSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart2.module.scss";
 import {

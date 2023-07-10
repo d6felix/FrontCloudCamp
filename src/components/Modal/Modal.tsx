@@ -1,8 +1,8 @@
 import { ModalError } from "./ModalError";
 import { ModalSuccess } from "./ModalSuccess";
 import styles from "./Modal.module.scss";
-import { useAppSelector } from "~hooks/reduxHooks";
-import { selectShowModal } from "~features/showModal/showModalSlice";
+import { useAppSelector } from "~store/reduxHooks";
+import { selectShowModal } from "~store/showModal/showModalSlice";
 import { WithLoader } from "~components/FormElements/WithLoader";
 
 export function Modal() {

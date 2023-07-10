@@ -5,12 +5,9 @@ import {
 	formPart1Schema,
 } from "~schema/RegistrationForm";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "~hooks/reduxHooks";
-import { incrementFormStep } from "~features/formStep/formStepSlice";
-import {
-	updateForm,
-	selectFormData,
-} from "~features/formSubmit/formSubmitSlice";
+import { useAppDispatch, useAppSelector } from "~store/reduxHooks";
+import { incrementFormStep } from "~store/formStep/formStepSlice";
+import { updateForm, selectFormData } from "~store/formSubmit/formSubmitSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./FormPart1.module.scss";
 import { FormInput, Select, Button } from "~components/FormElements";
@@ -74,17 +71,12 @@ export function FormPart1() {
 			<Button
 				type="button"
 				onClick={handleBack}
-				id="button-back"
 				style="border"
 				className={styles.form1__button_back}
 			>
 				Back
 			</Button>
-			<Button
-				type="submit"
-				id="button-next"
-				className={styles.form1__button_next}
-			>
+			<Button type="submit" className={styles.form1__button_next}>
 				Next
 			</Button>
 		</form>

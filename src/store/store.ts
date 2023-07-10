@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import formStepReducer from "~features/formStep/formStepSlice";
-import showModalReducer from "~features/showModal/showModalSlice";
-import formDataReducer, { formApi } from "~features/formSubmit/formSubmitSlice";
+import formStepReducer from "./formStep/formStepSlice";
+import showModalReducer from "./showModal/showModalSlice";
+import formDataReducer, { formApi } from "./formSubmit/formSubmitSlice";
 
 export const store = configureStore({
 	reducer: {
